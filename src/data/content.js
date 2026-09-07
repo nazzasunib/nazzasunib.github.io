@@ -500,13 +500,6 @@ export const SOCIALS = [
     tone: '#23d3b0',
   },
   {
-    icon: 'cloud',
-    name: 'Portfolio (Live)',
-    handle: 'nazzasunib.netlify.app',
-    url: 'https://nazzasunib.netlify.app/',
-    tone: '#23d3b0',
-  },
-  {
     icon: 'cart',
     name: 'Shop at UNA Mart',
     handle: 'Explore products & shop online',
