@@ -35,8 +35,16 @@ jobs:
       - name: Build
         run: npm run build
 
+      # `enablement` matters here: a <user>.github.io repo gets Pages switched
+      # on automatically, serving the default branch ROOT. That publishes this
+      # repo's source tree — including the Vite dev entry, whose
+      # <script src="/src/main.jsx"> does not exist in a build — so the site
+      # renders blank. This flips Pages to "GitHub Actions" mode so the built
+      # artifact below is what actually gets served.
       - name: Configure Pages
         uses: actions/configure-pages@v5
+        with:
+          enablement: true
 
       - name: Upload build output
         uses: actions/upload-pages-artifact@v3
