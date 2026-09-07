@@ -1,0 +1,122 @@
+.cert-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+.cert-head .sec-head { margin-bottom: clamp(30px, 4vw, 48px); }
+
+.cert-nav {
+  display: flex;
+  gap: 9px;
+  margin-bottom: clamp(34px, 4.4vw, 54px);
+  flex: none;
+}
+.cert-nav button {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--chalk);
+  border: 1px solid var(--line-2);
+  background: rgba(245, 242, 234, 0.03);
+  transition: all 0.35s var(--ease);
+}
+.cert-nav button:hover:not(:disabled) {
+  color: var(--ink);
+  background: var(--grad-warm);
+  border-color: transparent;
+  transform: translateY(-3px);
+}
+.cert-nav button:disabled { opacity: 0.32; cursor: default; }
+
+.cert-viewport {
+  position: relative;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  padding: 6px 2px 22px;
+  margin: 0 -2px;
+  scroll-snap-type: x proximity;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  mask-image: linear-gradient(90deg, transparent 0, #000 3%, #000 97%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 3%, #000 97%, transparent 100%);
+}
+.cert-viewport.at-start {
+  mask-image: linear-gradient(90deg, #000 0, #000 97%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, #000 0, #000 97%, transparent 100%);
+}
+.cert-viewport.at-end {
+  mask-image: linear-gradient(90deg, transparent 0, #000 3%, #000 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 3%, #000 100%);
+}
+.cert-viewport.at-start.at-end { mask-image: none; -webkit-mask-image: none; }
+.cert-viewport::-webkit-scrollbar { display: none; }
+.cert-viewport.is-dragging { scroll-snap-type: none; }
+.cert-viewport.is-dragging .cert { transition: none; }
+
+.cert-track {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+}
+
+.cert {
+  position: relative;
+  width: clamp(232px, 30vw, 296px);
+  min-height: 224px;
+  padding: 24px 24px 26px;
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  user-select: none;
+  scroll-snap-align: start;
+  transition: transform 0.45s var(--ease), border-color 0.45s var(--ease),
+    box-shadow 0.45s var(--ease);
+}
+.cert:hover {
+  transform: translateY(-8px);
+  border-color: rgba(255, 176, 32, 0.34);
+  box-shadow: 0 30px 68px -38px rgba(255, 176, 32, 0.55);
+}
+
+.cert-seal {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 13px;
+  color: var(--saffron);
+  background: rgba(255, 176, 32, 0.1);
+  border: 1px solid rgba(255, 176, 32, 0.26);
+  margin-bottom: 8px;
+}
+.cert-index {
+  position: absolute;
+  top: 20px;
+  right: 22px;
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  color: var(--ash-2);
+}
+.cert h4 { font-size: 1.02rem; }
+.cert-org { font-size: 0.72rem; color: var(--jade); }
+.cert p { font-size: 0.83rem; color: var(--ash); margin-top: auto; }
+
+/* faint perforation edge, like a real certificate stub */
+.cert-perf {
+  position: absolute;
+  right: 0;
+  top: 22px;
+  bottom: 22px;
+  width: 1px;
+  background-image: linear-gradient(
+    180deg,
+    var(--line-2) 0 6px,
+    transparent 6px 12px
+  );
+  background-size: 1px 12px;
+}

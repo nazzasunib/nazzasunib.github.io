@@ -1,0 +1,266 @@
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(292px, 1fr));
+  gap: 18px;
+}
+
+.event {
+  border-radius: var(--radius);
+  transition: transform 0.5s var(--ease), border-color 0.5s var(--ease),
+    box-shadow 0.5s var(--ease);
+}
+.event:hover {
+  transform: translateY(-7px);
+  border-color: rgba(255, 125, 176, 0.34);
+  box-shadow: 0 34px 74px -40px rgba(255, 125, 176, 0.55);
+}
+
+.event-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  color: inherit;
+}
+
+.event-thumb {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--ink-3);
+}
+.event-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1s var(--ease), filter 0.6s var(--ease);
+}
+.event:hover .event-thumb img { transform: scale(1.08); filter: saturate(1.15); }
+.event-thumb-veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(8, 7, 15, 0) 40%, rgba(8, 7, 15, 0.72));
+}
+.event-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border-radius: 100px;
+  color: var(--ink);
+  background: var(--grad-warm);
+}
+
+.event-body { padding: 20px 22px 22px; }
+.event-body h4 { font-size: 1.12rem; margin-bottom: 6px; }
+.event-meta {
+  display: block;
+  font-size: 0.71rem;
+  color: var(--rose);
+  margin-bottom: 10px;
+}
+.event-body p { font-size: 0.88rem; color: var(--ash); margin-bottom: 14px; }
+.event-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.79rem;
+  font-weight: 600;
+  color: var(--saffron);
+  transition: gap 0.35s var(--ease);
+}
+.event:hover .event-hint { gap: 12px; }
+
+/* empty slot */
+.event-slot {
+  padding: 30px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  border-style: dashed;
+  color: var(--ash);
+}
+.event-slot > svg { color: var(--iris); }
+.event-slot h4 { font-size: 0.98rem; color: var(--chalk-dim); }
+.event-slot p { font-size: 0.83rem; }
+.event-slot code {
+  font-family: var(--mono);
+  font-size: 0.78em;
+  padding: 1px 5px;
+  border-radius: 5px;
+  background: rgba(245, 242, 234, 0.06);
+  color: var(--jade);
+}
+
+/* image fallback */
+.shot-fallback {
+  width: 100%;
+  height: 100%;
+  min-height: 150px;
+  display: grid;
+  place-items: center;
+  gap: 10px;
+  align-content: center;
+  padding: 20px;
+  text-align: center;
+  color: var(--ash-2);
+  background:
+    repeating-linear-gradient(90deg, rgba(245, 242, 234, 0.05) 0 1px, transparent 1px 12px),
+    repeating-linear-gradient(0deg, rgba(245, 242, 234, 0.05) 0 1px, transparent 1px 12px),
+    linear-gradient(150deg, rgba(30, 26, 58, 0.9), rgba(8, 7, 15, 0.95));
+}
+.shot-fallback .mono { font-size: 0.68rem; max-width: 26ch; line-height: 1.5; }
+
+/* ---------- modal ---------- */
+.modal-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 9600;
+  background: rgba(4, 3, 9, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: grid;
+  place-items: start center;
+  padding: clamp(14px, 3vw, 40px);
+  overflow-y: auto;
+}
+
+.modal {
+  position: relative;
+  width: min(880px, 100%);
+  border-radius: 24px;
+  background: var(--glass-2);
+  overflow: hidden;
+}
+
+.modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 6;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--chalk);
+  background: rgba(8, 7, 15, 0.7);
+  border: 1px solid var(--line-2);
+  transition: background 0.3s, transform 0.35s var(--ease);
+}
+.modal-close:hover { background: var(--vermilion); color: var(--ink); transform: rotate(90deg); }
+
+.slideshow {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: var(--ink-2);
+  overflow: hidden;
+}
+.slide {
+  position: absolute;
+  inset: 0;
+}
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slide-nav {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  pointer-events: none;
+}
+.slide-nav button {
+  pointer-events: auto;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--chalk);
+  background: rgba(8, 7, 15, 0.62);
+  border: 1px solid var(--line-2);
+  transition: background 0.3s, transform 0.3s var(--ease);
+}
+.slide-nav button:hover { background: var(--saffron); color: var(--ink); transform: scale(1.1); }
+
+.slide-count {
+  position: absolute;
+  bottom: 12px;
+  right: 14px;
+  z-index: 4;
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  color: var(--chalk);
+  padding: 4px 10px;
+  border-radius: 100px;
+  background: rgba(8, 7, 15, 0.66);
+}
+
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+  padding: 14px 0 4px;
+}
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(245, 242, 234, 0.22);
+  transition: all 0.35s var(--ease);
+}
+.dot-on { width: 24px; border-radius: 100px; background: var(--grad-warm); }
+
+/* ---------- story article ---------- */
+.story {
+  padding: 20px clamp(20px, 4vw, 44px) clamp(30px, 4vw, 48px);
+  max-height: 62vh;
+  overflow-y: auto;
+}
+.story h2 {
+  font-size: clamp(1.35rem, 3.4vw, 1.95rem);
+  margin-bottom: 18px;
+}
+.story h3 {
+  font-size: 1.02rem;
+  color: var(--saffron);
+  margin: 26px 0 10px;
+}
+.story p {
+  font-size: 0.92rem;
+  color: var(--ash);
+  margin-bottom: 13px;
+}
+.story strong { color: var(--chalk-dim); font-weight: 600; }
+.story a { color: var(--jade); border-bottom: 1px solid rgba(35, 211, 176, 0.35); }
+.story a:hover { color: var(--saffron); }
+
+.story-list {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin: 4px 0 16px;
+}
+.story-list li {
+  display: flex;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: var(--ash);
+}
+.story-list li svg { color: var(--jade); flex: none; margin-top: 4px; }
+
+@media (max-width: 620px) {
+  .slideshow { aspect-ratio: 4 / 3; }
+  .story { max-height: none; }
+}

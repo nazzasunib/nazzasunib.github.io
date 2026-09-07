@@ -1,0 +1,71 @@
+.pre {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--ink);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+.pre::after {
+  content: '';
+  position: absolute;
+  inset: -30%;
+  background: radial-gradient(circle at 50% 60%, rgba(255, 176, 32, 0.12), transparent 55%);
+  pointer-events: none;
+}
+
+.pre-loom {
+  position: absolute;
+  width: min(760px, 88vw);
+  height: 240px;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.pre-center {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.pre-mark {
+  font-family: var(--display);
+  font-size: clamp(1.9rem, 5.5vw, 2.9rem);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+}
+.pre-mark span {
+  background: var(--grad-warm);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-left: 6px;
+}
+
+.pre-bar {
+  width: min(280px, 62vw);
+  height: 2px;
+  background: rgba(245, 242, 234, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.pre-fill {
+  height: 100%;
+  background: var(--grad-full);
+  box-shadow: 0 0 14px rgba(255, 176, 32, 0.6);
+}
+
+.pre-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ash);
+}
+.pre-pct { color: var(--saffron); }

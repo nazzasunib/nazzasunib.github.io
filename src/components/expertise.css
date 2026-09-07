@@ -1,0 +1,141 @@
+.xpert {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.65fr);
+  gap: clamp(30px, 5vw, 62px);
+  align-items: center;
+}
+.xpert-flip .xpert-copy { order: 2; }
+.xpert-flip .xpert-visual { order: 1; }
+
+.xpert-sub { margin-bottom: 32px; }
+
+/* ---------- feature cards ---------- */
+.feat {
+  position: relative;
+  padding: 22px 20px 24px;
+  border-radius: var(--radius-sm);
+  transition: transform 0.45s var(--ease), border-color 0.45s var(--ease),
+    box-shadow 0.45s var(--ease);
+}
+.feat:hover {
+  transform: translateY(-6px);
+  border-color: var(--line-2);
+  box-shadow: 0 26px 56px -34px rgba(0, 0, 0, 0.9);
+}
+.feat h4 { font-size: 0.94rem; margin-bottom: 7px; line-height: 1.3; }
+.feat p { font-size: 0.84rem; color: var(--ash); }
+
+.feat-icon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  margin-bottom: 14px;
+  transition: transform 0.5s var(--ease), background 0.4s;
+}
+.feat:hover .feat-icon { transform: rotate(-8deg) scale(1.08); }
+.feat-icon-saffron {
+  color: var(--saffron);
+  background: rgba(255, 176, 32, 0.1);
+  border: 1px solid rgba(255, 176, 32, 0.24);
+}
+.feat-icon-jade {
+  color: var(--jade);
+  background: rgba(35, 211, 176, 0.1);
+  border: 1px solid rgba(35, 211, 176, 0.24);
+}
+.feat-icon-iris {
+  color: var(--iris);
+  background: rgba(138, 107, 255, 0.1);
+  border: 1px solid rgba(138, 107, 255, 0.24);
+}
+.feat-icon-vermilion {
+  color: var(--vermilion);
+  background: rgba(255, 92, 57, 0.1);
+  border: 1px solid rgba(255, 92, 57, 0.24);
+}
+
+.feat-sheen {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(120deg, transparent 38%, rgba(245, 242, 234, 0.07) 50%, transparent 62%);
+  transform: translateX(-110%);
+  transition: transform 0.9s var(--ease);
+  pointer-events: none;
+}
+.feat:hover .feat-sheen { transform: translateX(110%); }
+
+/* ---------- swatch visual ---------- */
+.xpert-visual { display: grid; place-items: center; }
+.swatch {
+  position: relative;
+  width: 100%;
+  max-width: 340px;
+  aspect-ratio: 3 / 4;
+  border-radius: 26px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: linear-gradient(160deg, rgba(30, 26, 58, 0.7), rgba(8, 7, 15, 0.9));
+  display: grid;
+  place-items: center;
+  box-shadow: 0 44px 100px -50px rgba(0, 0, 0, 0.95);
+}
+
+.swatch-bands {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-rows: repeat(5, 1fr);
+}
+.swatch-bands span {
+  display: block;
+  transform-origin: 0 50%;
+  opacity: 0.42;
+}
+.swatch-saffron .swatch-bands span:nth-child(1) { background: #ffb020; }
+.swatch-saffron .swatch-bands span:nth-child(2) { background: #ff8a2b; }
+.swatch-saffron .swatch-bands span:nth-child(3) { background: #ff5c39; }
+.swatch-saffron .swatch-bands span:nth-child(4) { background: #c2497a; }
+.swatch-saffron .swatch-bands span:nth-child(5) { background: #8a6bff; }
+
+.swatch-jade .swatch-bands span:nth-child(1) { background: #23d3b0; }
+.swatch-jade .swatch-bands span:nth-child(2) { background: #2fb4c4; }
+.swatch-jade .swatch-bands span:nth-child(3) { background: #4b8bd4; }
+.swatch-jade .swatch-bands span:nth-child(4) { background: #8a6bff; }
+.swatch-jade .swatch-bands span:nth-child(5) { background: #ff7db0; }
+
+.swatch::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(90deg, rgba(8, 7, 15, 0.42) 0 2px, transparent 2px 7px),
+    repeating-linear-gradient(0deg, rgba(8, 7, 15, 0.3) 0 2px, transparent 2px 7px),
+    linear-gradient(180deg, rgba(8, 7, 15, 0.28), rgba(8, 7, 15, 0.72));
+  pointer-events: none;
+}
+
+.swatch-glyph {
+  position: relative;
+  z-index: 2;
+  color: rgba(245, 242, 234, 0.85);
+  filter: drop-shadow(0 8px 30px rgba(0, 0, 0, 0.7));
+}
+.swatch-stitch {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  color: rgba(245, 242, 234, 0.5);
+  pointer-events: none;
+}
+
+@media (max-width: 940px) {
+  .xpert { grid-template-columns: 1fr; }
+  .xpert-flip .xpert-copy,
+  .xpert-flip .xpert-visual { order: initial; }
+  .xpert-visual { order: -1; }
+  .swatch { max-width: 260px; aspect-ratio: 4 / 3; }
+  .swatch-glyph svg { width: 140px; height: 140px; }
+}

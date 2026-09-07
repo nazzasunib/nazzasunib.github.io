@@ -1,0 +1,324 @@
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 130px 0 0;
+  z-index: 3;
+  overflow: hidden;
+}
+
+.hero-bloom {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(140px);
+  pointer-events: none;
+  z-index: 0;
+}
+.hero-bloom-a {
+  width: 640px; height: 640px; top: -220px; left: -180px;
+  background: radial-gradient(circle, rgba(255, 176, 32, 0.34), transparent 66%);
+  animation: bloomDrift 22s ease-in-out infinite;
+}
+.hero-bloom-b {
+  width: 560px; height: 560px; bottom: -240px; right: -160px;
+  background: radial-gradient(circle, rgba(35, 211, 176, 0.3), transparent 66%);
+  animation: bloomDrift 27s ease-in-out infinite reverse;
+}
+.hero-bloom-c {
+  width: 480px; height: 480px; top: 34%; right: 26%;
+  background: radial-gradient(circle, rgba(138, 107, 255, 0.28), transparent 66%);
+  animation: bloomDrift 19s ease-in-out infinite;
+}
+@keyframes bloomDrift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(40px, -30px) scale(1.08); }
+  66% { transform: translate(-30px, 26px) scale(0.95); }
+}
+
+.hero-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: clamp(30px, 5vw, 70px);
+  align-items: center;
+  /* grow to fill a tall viewport, but never shrink below the content —
+     `flex: 1` would resolve to `1 1 0%` and let the grid collapse, which
+     pushes the portrait out through the hero's overflow clip on small
+     screens */
+  flex: 1 0 auto;
+  min-height: 0;
+  padding-bottom: 40px;
+}
+
+/* ---------- copy ---------- */
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 15px 7px 11px;
+  border-radius: 100px;
+  border: 1px solid rgba(35, 211, 176, 0.3);
+  background: rgba(35, 211, 176, 0.07);
+  margin-bottom: 24px;
+}
+.hero-tag .mono {
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--jade);
+}
+.live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--jade);
+  box-shadow: 0 0 0 0 rgba(35, 211, 176, 0.7);
+  animation: livePulse 2.1s ease-out infinite;
+  flex: none;
+}
+@keyframes livePulse {
+  0% { box-shadow: 0 0 0 0 rgba(35, 211, 176, 0.65); }
+  70% { box-shadow: 0 0 0 11px rgba(35, 211, 176, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(35, 211, 176, 0); }
+}
+
+.hero-name {
+  font-size: clamp(2.5rem, 7.2vw, 5.4rem);
+  font-weight: 700;
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+  margin-bottom: 16px;
+}
+.hero-last { display: block; }
+
+.hero-role {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--mono);
+  font-size: clamp(0.9rem, 2.1vw, 1.16rem);
+  color: var(--saffron);
+  min-height: 1.9em;
+  margin-bottom: 22px;
+}
+.hero-role-bar {
+  width: 3px;
+  height: 1.4em;
+  border-radius: 3px;
+  background: var(--grad-warm);
+  flex: none;
+}
+.hero-caret {
+  display: inline-block;
+  width: 9px;
+  height: 1.05em;
+  background: var(--vermilion);
+  animation: caretBlink 1s steps(2) infinite;
+  flex: none;
+}
+@keyframes caretBlink { 50% { opacity: 0; } }
+
+.hero-intro {
+  color: var(--chalk-dim);
+  max-width: 58ch;
+  font-size: clamp(0.95rem, 1.15vw, 1.04rem);
+  margin-bottom: 32px;
+}
+
+.hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* ---------- portrait ---------- */
+.hero-portrait { display: grid; place-items: center; }
+.portrait-stack {
+  position: relative;
+  width: min(400px, 78vw);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+}
+
+.portrait-conic {
+  position: absolute;
+  inset: -3%;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    rgba(35, 211, 176, 0) 0deg,
+    var(--jade) 60deg,
+    var(--saffron) 150deg,
+    var(--vermilion) 220deg,
+    var(--iris) 300deg,
+    rgba(35, 211, 176, 0) 360deg
+  );
+  filter: blur(22px);
+  opacity: 0.5;
+  animation: conicSpin 16s linear infinite;
+}
+@keyframes conicSpin { to { transform: rotate(360deg); } }
+
+.portrait-arc {
+  position: absolute;
+  inset: -6%;
+  width: 112%;
+  height: 112%;
+  overflow: visible;
+}
+
+.portrait-orbit {
+  position: absolute;
+  inset: -12%;
+  border-radius: 50%;
+  animation: conicSpin 24s linear infinite;
+}
+.portrait-orbit i {
+  position: absolute;
+  top: 6%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--saffron);
+  box-shadow: 0 0 18px 4px rgba(255, 176, 32, 0.65);
+  translate: -50% -50%;
+}
+
+.portrait-frame {
+  position: relative;
+  width: 86%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid rgba(245, 242, 234, 0.18);
+  background: var(--ink-3);
+  box-shadow: 0 40px 90px -40px rgba(0, 0, 0, 0.95),
+    inset 0 0 0 8px rgba(8, 7, 15, 0.7);
+  z-index: 2;
+}
+.portrait-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 18%;
+  filter: saturate(1.05) contrast(1.04);
+  transition: transform 0.9s var(--ease), filter 0.6s var(--ease);
+}
+.portrait-frame:hover img { transform: scale(1.055); filter: saturate(1.15) contrast(1.08); }
+.portrait-sheen {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(150deg, rgba(245, 242, 234, 0.16), transparent 42%, transparent 62%, rgba(138, 107, 255, 0.14));
+  pointer-events: none;
+}
+
+.portrait-badge {
+  position: absolute;
+  bottom: 2%;
+  left: -4%;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 16px;
+  max-width: 74%;
+  background: var(--glass-2);
+  animation: badgeFloat 6.5s ease-in-out infinite;
+}
+@keyframes badgeFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-9px); }
+}
+.portrait-badge-icon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 11px;
+  color: var(--ink);
+  background: var(--grad-warm);
+  flex: none;
+}
+.pb-title {
+  font-family: var(--display);
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+.pb-sub {
+  font-size: 0.7rem;
+  color: var(--ash);
+  font-family: var(--mono);
+}
+
+/* ---------- foot ---------- */
+.hero-foot {
+  position: relative;
+  z-index: 2;
+  padding-bottom: 26px;
+}
+.hero-marquee { margin-bottom: 18px; opacity: 0.55; }
+.hero-marquee .marquee-item { font-size: clamp(1.1rem, 2.6vw, 1.9rem); }
+
+.scroll-cue {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 auto;
+  color: var(--ash);
+  font-size: 0.68rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+.cue-rail {
+  position: relative;
+  width: 1px;
+  height: 34px;
+  background: var(--line-2);
+  overflow: hidden;
+}
+.cue-rail i {
+  position: absolute;
+  top: 0;
+  left: -1px;
+  width: 3px;
+  height: 12px;
+  border-radius: 3px;
+  background: var(--saffron);
+  display: block;
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 980px) {
+  .hero {
+    padding-top: 104px;
+    justify-content: flex-start;
+  }
+  .hero-grid {
+    grid-template-columns: 1fr;
+    text-align: left;
+    padding-top: 10px;
+  }
+  .hero-portrait { order: -1; }
+  .portrait-stack { width: min(300px, 66vw); }
+}
+@media (max-width: 560px) {
+  .hero-ctas .btn { flex: 1 1 100%; justify-content: center; }
+  .portrait-stack { width: min(250px, 62vw); }
+  .portrait-badge {
+    left: 50%;
+    translate: -50% 0;
+    bottom: -13%;
+    max-width: 100%;
+    width: max-content;
+  }
+  /* room for the badge that hangs below the portrait */
+  .hero-portrait { margin-bottom: 44px; }
+  .hero-name { font-size: clamp(2.1rem, 11vw, 3rem); }
+}

@@ -1,0 +1,117 @@
+/* ---------- Section shell ---------- */
+.sec {
+  position: relative;
+  padding: var(--pad-section) 0;
+  z-index: 3;
+  isolation: isolate;
+  /* keep the decorative blooms from widening the document box.
+     `clip` (not `hidden`) leaves the vertical axis alone, and the
+     clip margin gives card hover shadows room to breathe. */
+  overflow-x: clip;
+  overflow-clip-margin: 48px;
+}
+.sec-inner { position: relative; z-index: 2; }
+
+.sec-hairline {
+  position: absolute;
+  top: 0;
+  left: 8%;
+  right: 8%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(245, 242, 234, 0.12) 30%,
+    rgba(245, 242, 234, 0.12) 70%,
+    transparent
+  );
+  z-index: 1;
+}
+
+.sec-bloom {
+  position: absolute;
+  width: clamp(340px, 46vw, 680px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  filter: blur(130px);
+  z-index: 0;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+.bloom-left { left: -14%; top: 8%; }
+.bloom-right { right: -14%; top: 12%; }
+.bloom-center { left: 50%; top: 6%; translate: -50% 0; }
+
+.bloom-saffron { background: radial-gradient(circle, rgba(255, 176, 32, 0.5), transparent 68%); }
+.bloom-vermilion { background: radial-gradient(circle, rgba(255, 92, 57, 0.48), transparent 68%); }
+.bloom-jade { background: radial-gradient(circle, rgba(35, 211, 176, 0.42), transparent 68%); }
+.bloom-iris { background: radial-gradient(circle, rgba(138, 107, 255, 0.48), transparent 68%); }
+.bloom-rose { background: radial-gradient(circle, rgba(255, 125, 176, 0.4), transparent 68%); }
+
+/* ---------- Section head ---------- */
+.sec-head { margin-bottom: clamp(40px, 5vw, 66px); }
+.sec-head-center { text-align: center; }
+.sec-head-center .section-title,
+.sec-head-center .section-sub { margin-inline: auto; }
+.sec-head-center .eyebrow::before { display: none; }
+
+/* ---------- text splitting ---------- */
+.split { display: inline; }
+
+.word-mask,
+.char-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  /* the mask is only as tall as the line, so a descender clipped at the
+     baseline still looks right once the word has settled */
+  padding-bottom: 0.06em;
+  margin-bottom: -0.06em;
+}
+.word,
+.char {
+  display: inline-block;
+  will-change: transform;
+}
+.char-word { display: inline-block; white-space: nowrap; }
+
+/* gradient phrases keep their glyphs in this element, never in
+   descendants — see GradientLine in Primitives.jsx */
+.grad-line {
+  display: inline-block;
+  will-change: transform, opacity, filter;
+}
+
+/* ---------- marquee ---------- */
+.marquee {
+  overflow: hidden;
+  width: 100%;
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+.marquee-row {
+  display: flex;
+  width: max-content;
+  gap: 0;
+}
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 26px;
+  padding-right: 26px;
+  font-family: var(--display);
+  font-size: clamp(1.5rem, 4.4vw, 3.2rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(245, 242, 234, 0.22);
+  white-space: nowrap;
+}
+.marquee-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--saffron);
+  flex: none;
+  -webkit-text-stroke: 0;
+}

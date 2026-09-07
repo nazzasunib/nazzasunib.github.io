@@ -1,0 +1,117 @@
+/* ---------- scroll progress ---------- */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 9000;
+  transform-origin: 0 50%;
+  background: var(--grad-full);
+  box-shadow: 0 0 12px rgba(255, 176, 32, 0.55);
+}
+
+/* ---------- custom cursor ---------- */
+.cursor-ring,
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9500;
+  pointer-events: none;
+  translate: -50% -50%;
+  border-radius: 50%;
+}
+.cursor-ring {
+  border: 1px solid rgba(255, 176, 32, 0.75);
+  display: grid;
+  place-items: center;
+  mix-blend-mode: difference;
+}
+.cursor-grow {
+  border-color: rgba(35, 211, 176, 0.9);
+  background: rgba(35, 211, 176, 0.08);
+}
+.cursor-drag {
+  border-color: rgba(138, 107, 255, 0.9);
+  background: rgba(138, 107, 255, 0.1);
+  mix-blend-mode: normal;
+}
+.cursor-label {
+  font-size: 0.55rem;
+  letter-spacing: 0.16em;
+  color: var(--chalk);
+}
+.cursor-dot {
+  width: 4px;
+  height: 4px;
+  background: var(--chalk);
+  mix-blend-mode: difference;
+}
+/* scoped to the class the Cursor component sets, so the native cursor is
+   never hidden unless the custom one is really on screen */
+html.has-custom-cursor,
+html.has-custom-cursor body,
+html.has-custom-cursor a,
+html.has-custom-cursor button,
+html.has-custom-cursor input,
+html.has-custom-cursor textarea,
+html.has-custom-cursor [role='button'] {
+  cursor: none;
+}
+
+/* ---------- floating glyphs ---------- */
+.glyph-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  will-change: transform;
+}
+.glyph {
+  position: absolute;
+  animation-name: glyphFloat, glyphFade;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  will-change: transform, opacity;
+}
+.glyph-spin {
+  display: block;
+  animation: glyphSpin linear infinite;
+}
+.tone-saffron { color: var(--saffron); }
+.tone-vermilion { color: var(--vermilion); }
+.tone-jade { color: var(--jade); }
+.tone-iris { color: var(--iris); }
+
+@keyframes glyphFloat {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  25% { transform: translate3d(9px, -16px, 0); }
+  50% { transform: translate3d(-7px, -26px, 0); }
+  75% { transform: translate3d(-12px, -10px, 0); }
+}
+@keyframes glyphFade {
+  0%, 100% { opacity: var(--op-min); }
+  50% { opacity: var(--op-max); }
+}
+@keyframes glyphSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* ---------- back to top ---------- */
+.to-top {
+  position: fixed;
+  right: clamp(16px, 3vw, 34px);
+  bottom: clamp(16px, 3vw, 34px);
+  z-index: 8000;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--ink);
+  background: var(--grad-warm);
+  box-shadow: 0 12px 32px -10px rgba(255, 92, 57, 0.7);
+  transition: transform 0.35s var(--ease);
+}
+.to-top:hover { transform: translateY(-4px) scale(1.06); }
