@@ -158,10 +158,13 @@
   background: var(--ink-2);
   overflow: hidden;
   cursor: grab;
-  /* the wheel handler owns horizontal intent; stop the browser panning too */
-  overscroll-behavior: contain;
+  /* only sideways gestures are captured — a vertical wheel must still scroll
+     the story underneath, so no overscroll containment here */
   touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
 }
+.slideshow img { -webkit-user-drag: none; user-drag: none; }
 .slideshow:active { cursor: grabbing; }
 
 /* one continuous track — frames sit edge to edge and the whole strip slides */

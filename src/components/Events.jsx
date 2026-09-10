@@ -205,14 +205,15 @@ function EventModal({ event, onClose }) {
     if (!el) return;
 
     const onWheel = (e) => {
-      /* horizontal intent wins; a vertical wheel also drives the strip */
-      const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
-      if (!delta) return;
+      /* Only a sideways gesture drives the strip. A plain vertical wheel has
+         to keep scrolling the page, otherwise the story below the photos is
+         unreachable while the pointer sits over them. */
+      if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
+      if (!e.deltaX) return;
       e.preventDefault();
-      e.stopPropagation();
       interacted.current = Date.now();
 
-      accum.current += delta;
+      accum.current += e.deltaX;
       const width = el.clientWidth || 1;
       const fraction = accum.current / (width * 0.85);
       /* the strip tracks the wheel live, then snaps when the gesture stops */
@@ -234,28 +235,51 @@ function EventModal({ event, onClose }) {
     };
   }, [pos, slot, goToSlot]);
 
-  /* ---- touch drag: same continuous feel on phones ---- */
-  const touch = useRef({ x: 0, t: 0, active: false });
-  const onTouchStart = (e) => {
-    touch.current = { x: e.touches[0].clientX, t: Date.now(), active: true };
-    dragging.current = true;
+  /* ---- pointer drag: one path for mouse, pen and touch ----
+     Vertical movement is left alone so a finger can still scroll the story;
+     the gesture only claims the pointer once it reads as horizontal. */
+  const drag = useRef({ x: 0, y: 0, t: 0, active: false, claimed: false });
+
+  const onPointerDown = (e) => {
+    if (e.pointerType === 'mouse' && e.button !== 0) return;
+    drag.current = { x: e.clientX, y: e.clientY, t: Date.now(), active: true, claimed: false };
     interacted.current = Date.now();
   };
-  const onTouchMove = (e) => {
-    if (!touch.current.active) return;
+
+  const onPointerMove = (e) => {
+    const d = drag.current;
+    if (!d.active) return;
+    const dx = e.clientX - d.x;
+    const dy = e.clientY - d.y;
+
+    if (!d.claimed) {
+      /* wait until the intent is clear, then commit to it */
+      if (Math.abs(dx) < 8 && Math.abs(dy) < 8) return;
+      if (Math.abs(dy) > Math.abs(dx)) {
+        d.active = false; // vertical — let the page scroll
+        return;
+      }
+      d.claimed = true;
+      dragging.current = true;
+      e.currentTarget.setPointerCapture?.(e.pointerId);
+    }
+
     const width = viewport.current?.clientWidth || 1;
-    const dx = e.touches[0].clientX - touch.current.x;
     pos.set(slot - dx / width);
   };
-  const onTouchEnd = (e) => {
-    if (!touch.current.active) return;
-    touch.current.active = false;
+
+  const onPointerUp = (e) => {
+    const d = drag.current;
+    d.active = false;
+    if (!d.claimed) return;
+    d.claimed = false;
     dragging.current = false;
+    e.currentTarget.releasePointerCapture?.(e.pointerId);
+
     const width = viewport.current?.clientWidth || 1;
-    const dx = e.changedTouches[0].clientX - touch.current.x;
-    const dt = Math.max(1, Date.now() - touch.current.t);
-    const velocity = dx / dt; // px per ms
-    /* a quick flick counts even when the finger barely travelled */
+    const dx = e.clientX - d.x;
+    const velocity = dx / Math.max(1, Date.now() - d.t); // px per ms
+    /* a quick flick counts even when the pointer barely travelled */
     const moved = Math.round(-dx / width - velocity * 0.35);
     interacted.current = Date.now();
     if (moved !== 0) goToSlot(slot + moved);
@@ -277,6 +301,9 @@ function EventModal({ event, onClose }) {
   return (
     <motion.div
       className="modal-scrim"
+      /* Lenis owns the wheel globally; without this it swallows the event and
+         nothing inside the modal scrolls, even while the page is locked. */
+      data-lenis-prevent
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -302,9 +329,10 @@ function EventModal({ event, onClose }) {
           ref={viewport}
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
-          onTouchStart={onTouchStart}
-          onTouchMove={onTouchMove}
-          onTouchEnd={onTouchEnd}
+          onPointerDown={onPointerDown}
+          onPointerMove={onPointerMove}
+          onPointerUp={onPointerUp}
+          onPointerCancel={onPointerUp}
         >
           <Filmstrip photos={photos} smooth={smooth} />
 
@@ -323,7 +351,7 @@ function EventModal({ event, onClose }) {
 
           <span className="slide-scroll-hint mono" aria-hidden="true">
             <Icon name="chevLeft" size={12} stroke={2.4} />
-            scroll or drag
+            drag or swipe
             <Icon name="chevRight" size={12} stroke={2.4} />
           </span>
         </div>
@@ -347,7 +375,7 @@ function EventModal({ event, onClose }) {
           ))}
         </div>
 
-        <article className="story">
+        <article className="story" data-lenis-prevent>
           <span className="eyebrow">{event.meta}</span>
           <h2>{event.article.title}</h2>
           {event.article.blocks.map((b, k) => (
