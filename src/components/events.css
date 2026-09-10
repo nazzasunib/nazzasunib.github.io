@@ -28,13 +28,11 @@
   overflow: hidden;
   background: var(--ink-3);
 }
-.event-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 1s var(--ease), filter 0.6s var(--ease);
+.event-thumb .shot { position: absolute; inset: 0; }
+.event-thumb .shot-full {
+  transition: opacity 0.5s var(--ease), transform 1s var(--ease), filter 0.6s var(--ease);
 }
-.event:hover .event-thumb img { transform: scale(1.08); filter: saturate(1.15); }
+.event:hover .event-thumb .shot-full { transform: scale(1.08); filter: saturate(1.15); }
 .event-thumb-veil {
   position: absolute;
   inset: 0;
@@ -159,16 +157,88 @@
   aspect-ratio: 16 / 9;
   background: var(--ink-2);
   overflow: hidden;
+  cursor: grab;
+  /* the wheel handler owns horizontal intent; stop the browser panning too */
+  overscroll-behavior: contain;
+  touch-action: pan-y;
 }
-.slide {
+.slideshow:active { cursor: grabbing; }
+
+/* one continuous track — frames sit edge to edge and the whole strip slides */
+.strip {
   position: absolute;
   inset: 0;
+  will-change: transform;
 }
-.slide img {
+.frame {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  /* `left` is set per frame in JS to slot * 100% */
+}
+.frame .shot { width: 100%; height: 100%; }
+
+/* soft seam so neighbouring frames read as one long pan, not hard cuts */
+.frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    rgba(8, 7, 15, 0.5) 0,
+    rgba(8, 7, 15, 0) 6%,
+    rgba(8, 7, 15, 0) 94%,
+    rgba(8, 7, 15, 0.5) 100%
+  );
+}
+
+.slide-scroll-hint {
+  position: absolute;
+  bottom: 12px;
+  left: 14px;
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ash);
+  padding: 4px 10px;
+  border-radius: 100px;
+  background: rgba(8, 7, 15, 0.66);
+  opacity: 0;
+  transition: opacity 0.4s var(--ease);
+}
+.slideshow:hover .slide-scroll-hint { opacity: 1; }
+
+/* ---------- progressive image ---------- */
+.shot {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--ink-2);
+}
+.shot img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
+/* 20px preview, blown up and blurred — paints before the real file lands */
+.shot-blur {
+  filter: blur(18px) saturate(1.15);
+  transform: scale(1.1);
+}
+.shot-full {
+  opacity: 0;
+  transition: opacity 0.5s var(--ease);
+}
+.shot-in { opacity: 1; }
 
 .slide-nav {
   position: absolute;
@@ -214,13 +284,33 @@
   padding: 14px 0 4px;
 }
 .dot {
+  position: relative;
   width: 7px;
   height: 7px;
-  border-radius: 50%;
+  border-radius: 100px;
+  overflow: hidden;
   background: rgba(245, 242, 234, 0.22);
-  transition: all 0.35s var(--ease);
+  transition: width 0.45s var(--ease), background 0.45s var(--ease);
 }
-.dot-on { width: 24px; border-radius: 100px; background: var(--grad-warm); }
+.dot:hover { background: rgba(245, 242, 234, 0.4); }
+.dot-on { width: 30px; background: rgba(245, 242, 234, 0.18); }
+
+/* the active dot fills across as the 3s autoplay timer runs */
+.dot-fill {
+  position: absolute;
+  inset: 0;
+  transform-origin: left center;
+  border-radius: inherit;
+  background: var(--grad-warm);
+  animation: dot-sweep linear forwards;
+}
+@keyframes dot-sweep {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dot-fill { animation: none; transform: scaleX(1); }
+}
 
 /* ---------- story article ---------- */
 .story {

@@ -1,3 +1,5 @@
+import { GUB_BLUR } from './gubBlur';
+
 export const PROFILE = {
   name: 'Nazzas Ibn Shams Unib',
   first: 'Nazzas Ibn Shams',
@@ -295,16 +297,48 @@ export const EVENTS = [
     name: 'GUB 2026',
     meta: '23 August 2026 · Green University of Bangladesh',
     blurb: "NidusLab's seminar on AI, careers and the future of recruitment.",
-    cover: 'assets/1.JPG',
+    cover: 'assets/gub/1-1024.webp',
+    coverSrcSet:
+      'assets/gub/1-640.webp 640w, assets/gub/1-1024.webp 1024w, assets/gub/1-1600.webp 1600w',
+    coverBlur: GUB_BLUR['1'],
     photos: [
-      { src: 'assets/1.JPG', alt: 'AI and Career Guidance Seminar cover' },
-      { src: 'assets/2.JPG', alt: 'Seminar award presentation' },
-      { src: 'assets/3.JPG', alt: 'Signing event documents' },
-      { src: 'assets/4.JPG', alt: 'Seminar group photo' },
-      { src: 'assets/5.JPG', alt: 'Seminar audience' },
-      { src: 'assets/6.JPG', alt: 'Seminar team photo' },
-    ],
-    article: {
+      {
+        src: 'assets/gub/1-1024.webp',
+        srcSet: 'assets/gub/1-640.webp 640w, assets/gub/1-1024.webp 1024w, assets/gub/1-1600.webp 1600w',
+        blur: GUB_BLUR['1'],
+        alt: 'AI and Career Guidance Seminar cover',
+      },
+      {
+        src: 'assets/gub/2-1024.webp',
+        srcSet: 'assets/gub/2-640.webp 640w, assets/gub/2-1024.webp 1024w, assets/gub/2-1600.webp 1600w',
+        blur: GUB_BLUR['2'],
+        alt: 'Seminar award presentation',
+      },
+      {
+        src: 'assets/gub/3-1024.webp',
+        srcSet: 'assets/gub/3-640.webp 640w, assets/gub/3-1024.webp 1024w, assets/gub/3-1600.webp 1600w',
+        blur: GUB_BLUR['3'],
+        alt: 'Signing event documents',
+      },
+      {
+        src: 'assets/gub/4-1024.webp',
+        srcSet: 'assets/gub/4-640.webp 640w, assets/gub/4-1024.webp 1024w, assets/gub/4-1600.webp 1600w',
+        blur: GUB_BLUR['4'],
+        alt: 'Seminar group photo',
+      },
+      {
+        src: 'assets/gub/5-1024.webp',
+        srcSet: 'assets/gub/5-640.webp 640w, assets/gub/5-1024.webp 1024w, assets/gub/5-1600.webp 1600w',
+        blur: GUB_BLUR['5'],
+        alt: 'Seminar audience',
+      },
+      {
+        src: 'assets/gub/6-1024.webp',
+        srcSet: 'assets/gub/6-640.webp 640w, assets/gub/6-1024.webp 1024w, assets/gub/6-1600.webp 1600w',
+        blur: GUB_BLUR['6'],
+        alt: 'Seminar team photo',
+      },
+    ],    article: {
       title: 'GUB 2026 — AI & Career Guidance Seminar',
       blocks: [
         { t: 'h3', v: 'Empowering Students for an AI-Driven Career Future' },
