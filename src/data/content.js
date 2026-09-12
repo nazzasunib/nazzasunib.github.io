@@ -15,7 +15,7 @@ export const PROFILE = {
   intro:
     'A Textile Engineering graduate from BGMEA University of Fashion & Technology (BUFT), currently working as a Business Development Executive at NidusLab. Passionate about business development, technology and innovation, with a focus on creating impactful digital solutions, exploring AI-driven opportunities and driving sustainable business growth.',
   badge: { title: 'Business Development Executive', sub: 'at NidusLab Ecosystem' },
-  resume: 'assets/Nazzas_Ibn_Shams_Unib_Resume.pdf',
+  resume: 'assets/Nazzas-Ibn-Shams-Unib-Resume.pdf',
   portrait: 'assets/portrait.jpg',
   email: 'mdnazzas@gmail.com',
   phone: '+880 1312-347482',

@@ -110,7 +110,7 @@ export default function Hero() {
               </a>
             </Magnetic>
             <Magnetic strength={0.18}>
-              <a href={PROFILE.resume} download className="btn btn-ghost">
+              <a href={PROFILE.resume} download="Nazzas-Ibn-Shams-Unib-Resume.pdf" className="btn btn-ghost">
                 <Icon name="download" size={16} />
                 Download Resume
               </a>
