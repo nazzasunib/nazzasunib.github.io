@@ -1,11 +1,13 @@
 import { motion } from 'framer-motion';
 import { useTilt } from '../hooks';
 import { Section, SectionHead, Stagger, staggerItem } from './ui/Primitives';
+import { projectImage } from '../data/content';
 import Icon from './ui/Icon';
 import './projects.css';
 
 function ProjectCard({ repo, index }) {
   const [ref, tilt, handlers] = useTilt({ max: 7 });
+  const cover = projectImage(repo.name);
   const topics =
     repo.topics && repo.topics.length
       ? repo.topics.slice(0, 4)
@@ -28,8 +30,12 @@ function ProjectCard({ repo, index }) {
         <span className="proj-spot" aria-hidden="true" />
         <span className="proj-index mono">{String(index + 1).padStart(2, '0')}</span>
 
-        <div className="proj-thumb">
-          <Icon name="code" size={30} stroke={1.4} />
+        <div className={`proj-thumb${cover ? ' has-cover' : ''}`}>
+          {cover ? (
+            <img className="proj-cover" src={cover} alt={`${repo.name} preview`} loading="lazy" decoding="async" />
+          ) : (
+            <Icon name="code" size={30} stroke={1.4} />
+          )}
           <span className="proj-thumb-grid" aria-hidden="true" />
         </div>
 

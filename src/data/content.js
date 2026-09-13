@@ -187,6 +187,15 @@ export const EXPERIENCE = [
   },
 ];
 
+export const PROJECT_IMAGES = {
+  'mealmate': 'assets/MealMate.png',
+  'task-management': 'assets/Task Management.png',
+  'niduslab-finance': 'assets/NidusLab Finance.png',
+};
+
+export const projectImage = (name) =>
+  PROJECT_IMAGES[String(name || '').trim().toLowerCase()] || null;
+
 export const FALLBACK_PROJECTS = [
   {
     name: 'Portfolio Website',
