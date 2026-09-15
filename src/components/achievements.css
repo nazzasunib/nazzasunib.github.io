@@ -1,69 +1,79 @@
 @import './gallery.css';
 
-.events-grid {
+.ach-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(292px, 1fr));
   gap: 18px;
 }
 
-.event {
+.ach {
   border-radius: var(--radius);
   transition: transform 0.5s var(--ease), border-color 0.5s var(--ease),
     box-shadow 0.5s var(--ease);
 }
-.event:hover {
+.ach:hover {
   transform: translateY(-7px);
-  border-color: rgba(255, 125, 176, 0.34);
-  box-shadow: 0 34px 74px -40px rgba(255, 125, 176, 0.55);
+  border-color: rgba(255, 176, 32, 0.34);
+  box-shadow: 0 34px 74px -40px rgba(255, 176, 32, 0.55);
 }
 
-.event-btn {
+.ach-btn {
   display: block;
   width: 100%;
   text-align: left;
   color: inherit;
 }
 
-.event-thumb {
+/* The thumbnail crops the portrait scan on purpose — it reads as a preview
+   here; the modal is where the full certificate is shown uncropped. */
+.ach-thumb {
   position: relative;
   aspect-ratio: 16 / 10;
   overflow: hidden;
   background: var(--ink-3);
 }
-.event-thumb .shot { position: absolute; inset: 0; }
-.event-thumb .shot-full {
+.ach-thumb .shot { position: absolute; inset: 0; }
+.ach-thumb .shot-full {
+  object-position: center 32%;
   transition: opacity 0.5s var(--ease), transform 1s var(--ease), filter 0.6s var(--ease);
 }
-.event:hover .event-thumb .shot-full { transform: scale(1.08); filter: saturate(1.15); }
-.event-thumb-veil {
+.ach:hover .ach-thumb .shot-full { transform: scale(1.08); filter: saturate(1.15); }
+.ach-thumb-veil {
   position: absolute;
   inset: 0;
   background: linear-gradient(180deg, rgba(8, 7, 15, 0) 40%, rgba(8, 7, 15, 0.72));
 }
-.event-badge {
+.ach-seal {
   position: absolute;
   top: 12px;
   left: 12px;
   z-index: 2;
-  font-size: 0.62rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  padding: 5px 11px;
-  border-radius: 100px;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
   color: var(--ink);
   background: var(--grad-warm);
+  box-shadow: 0 10px 26px -12px rgba(255, 176, 32, 0.8);
 }
 
-.event-body { padding: 20px 22px 22px; }
-.event-body h4 { font-size: 1.12rem; margin-bottom: 6px; }
-.event-meta {
+.ach-body { padding: 20px 22px 22px; }
+.ach-body h4 { font-size: 1.12rem; margin-bottom: 6px; }
+.ach-role {
   display: block;
   font-size: 0.71rem;
-  color: var(--rose);
+  color: var(--saffron);
+  margin-bottom: 3px;
+}
+.ach-date {
+  display: block;
+  font-size: 0.68rem;
+  color: var(--ash-2);
   margin-bottom: 10px;
 }
-.event-body p { font-size: 0.88rem; color: var(--ash); margin-bottom: 14px; }
-.event-hint {
+.ach-body p { font-size: 0.88rem; color: var(--ash); margin-bottom: 14px; }
+.ach-hint {
   display: inline-flex;
   align-items: center;
   gap: 7px;
@@ -72,10 +82,10 @@
   color: var(--saffron);
   transition: gap 0.35s var(--ease);
 }
-.event:hover .event-hint { gap: 12px; }
+.ach:hover .ach-hint { gap: 12px; }
 
 /* empty slot */
-.event-slot {
+.ach-slot {
   padding: 30px 24px;
   display: flex;
   flex-direction: column;
@@ -84,10 +94,10 @@
   border-style: dashed;
   color: var(--ash);
 }
-.event-slot > svg { color: var(--iris); }
-.event-slot h4 { font-size: 0.98rem; color: var(--chalk-dim); }
-.event-slot p { font-size: 0.83rem; }
-.event-slot code {
+.ach-slot > svg { color: var(--iris); }
+.ach-slot h4 { font-size: 0.98rem; color: var(--chalk-dim); }
+.ach-slot p { font-size: 0.83rem; }
+.ach-slot code {
   font-family: var(--mono);
   font-size: 0.78em;
   padding: 1px 5px;

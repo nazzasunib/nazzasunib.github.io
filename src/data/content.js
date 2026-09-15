@@ -1,4 +1,5 @@
 import { GUB_BLUR } from './gubBlur';
+import { ACHIEVEMENT_BLUR } from './achievementBlur';
 
 export const PROFILE = {
   name: 'Nazzas Ibn Shams Unib',
@@ -33,7 +34,7 @@ export const NAV = [
   { id: 'business', label: 'Business' },
   { id: 'textile', label: 'Textile' },
   { id: 'events', label: 'Events' },
-  { id: 'certificates', label: 'Certificates' },
+  { id: 'achievements', label: 'Achievements' },
   { id: 'social', label: 'Social' },
   { id: 'contact', label: 'Contact' },
 ];
@@ -469,26 +470,45 @@ export const EVENTS = [
   },
 ];
 
-export const CERTIFICATES = [
+export const ACHIEVEMENTS = [
   {
-    title: 'Certificate Title',
-    org: 'Issuing organization · Year',
-    note: 'Replace with your certificate details.',
-  },
-  {
-    title: 'Certificate Title',
-    org: 'Issuing organization · Year',
-    note: 'Replace with your certificate details.',
-  },
-  {
-    title: 'Certificate Title',
-    org: 'Issuing organization · Year',
-    note: 'Replace with your certificate details.',
-  },
-  {
-    title: 'Certificate Title',
-    org: 'Issuing organization · Year',
-    note: 'Replace with your certificate details.',
+    id: 'buft-tarunno-utsab-2025',
+    name: 'BUFT Tarunno Utsab 2025',
+    role: 'Organizer | BUFT Debate Club',
+    date: 'August 2025',
+    meta: 'August 2025 · BUFT Debate Club',
+    blurb:
+      'Organized BUFT Tarunno Utsab 2025 with the BUFT Debate Club — planning, coordination and on-ground activity management.',
+    cover: 'assets/achievements/debate-club/1-1024.webp',
+    coverSrcSet:
+      'assets/achievements/debate-club/1-640.webp 640w, assets/achievements/debate-club/1-1024.webp 1024w, assets/achievements/debate-club/1-1600.webp 1600w',
+    coverBlur: ACHIEVEMENT_BLUR['debate-club-1'],
+    photos: [
+      {
+        src: 'assets/achievements/debate-club/1-1024.webp',
+        srcSet:
+          'assets/achievements/debate-club/1-640.webp 640w, assets/achievements/debate-club/1-1024.webp 1024w, assets/achievements/debate-club/1-1600.webp 1600w',
+        blur: ACHIEVEMENT_BLUR['debate-club-1'],
+        alt: 'BUFT Tarunno Utsab 2025 certificate',
+      },
+      {
+        src: 'assets/achievements/debate-club/2-1024.webp',
+        srcSet:
+          'assets/achievements/debate-club/2-640.webp 640w, assets/achievements/debate-club/2-1024.webp 1024w, assets/achievements/debate-club/2-1600.webp 1600w',
+        blur: ACHIEVEMENT_BLUR['debate-club-2'],
+        alt: 'BUFT Tarunno Utsab 2025 recognition',
+      },
+    ],
+    article: {
+      title: 'BUFT Tarunno Utsab 2025',
+      blocks: [
+        { t: 'h3', v: 'Organizer | BUFT Debate Club' },
+        {
+          t: 'p',
+          v: 'Participated as an organizer with the <strong>BUFT Debate Club</strong> for <strong>BUFT Tarunno Utsab 2025</strong>, helping with the planning and coordination of the event. I was also involved in managing event activities and supporting the participants throughout the program.',
+        },
+      ],
+    },
   },
 ];
 

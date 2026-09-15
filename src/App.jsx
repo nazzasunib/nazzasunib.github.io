@@ -12,7 +12,7 @@ import Projects from './components/Projects';
 import GitHubPanel from './components/GitHubPanel';
 import Expertise from './components/Expertise';
 import Events from './components/Events';
-import Certificates from './components/Certificates';
+import Achievements from './components/Achievements';
 import Social from './components/Social';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -82,7 +82,7 @@ export default function App() {
         <Expertise id="business" index={6} data={BUSINESS} tone="saffron" />
         <Expertise id="textile" index={7} data={TEXTILE} tone="jade" flip />
         <Events />
-        <Certificates />
+        <Achievements />
         <Social />
         <Contact />
       </main>

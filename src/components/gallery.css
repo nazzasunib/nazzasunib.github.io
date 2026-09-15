@@ -1,0 +1,275 @@
+/* Shared by Events and Achievements: the progressive image, the filmstrip
+   modal and the story article. */
+
+/* image fallback */
+.shot-fallback {
+  width: 100%;
+  height: 100%;
+  min-height: 150px;
+  display: grid;
+  place-items: center;
+  gap: 10px;
+  align-content: center;
+  padding: 20px;
+  text-align: center;
+  color: var(--ash-2);
+  background:
+    repeating-linear-gradient(90deg, rgba(245, 242, 234, 0.05) 0 1px, transparent 1px 12px),
+    repeating-linear-gradient(0deg, rgba(245, 242, 234, 0.05) 0 1px, transparent 1px 12px),
+    linear-gradient(150deg, rgba(30, 26, 58, 0.9), rgba(8, 7, 15, 0.95));
+}
+.shot-fallback .mono { font-size: 0.68rem; max-width: 26ch; line-height: 1.5; }
+
+/* ---------- modal ---------- */
+.modal-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 9600;
+  background: rgba(4, 3, 9, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: grid;
+  place-items: start center;
+  padding: clamp(14px, 3vw, 40px);
+  overflow-y: auto;
+}
+
+.modal {
+  position: relative;
+  width: min(880px, 100%);
+  border-radius: 24px;
+  background: var(--glass-2);
+  overflow: hidden;
+}
+
+.modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 6;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--chalk);
+  background: rgba(8, 7, 15, 0.7);
+  border: 1px solid var(--line-2);
+  transition: background 0.3s, transform 0.35s var(--ease);
+}
+.modal-close:hover { background: var(--vermilion); color: var(--ink); transform: rotate(90deg); }
+
+.slideshow {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: var(--ink-2);
+  overflow: hidden;
+  cursor: grab;
+  /* only sideways gestures are captured — a vertical wheel must still scroll
+     the story underneath, so no overscroll containment here */
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.slideshow img { -webkit-user-drag: none; user-drag: none; }
+/* portrait scans need height, not width */
+.slideshow-tall { aspect-ratio: 4 / 3; max-height: 66vh; }
+.slideshow:active { cursor: grabbing; }
+
+/* one continuous track — frames sit edge to edge and the whole strip slides */
+.strip {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+}
+.frame {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  /* `left` is set per frame in JS to slot * 100% */
+}
+.frame .shot { width: 100%; height: 100%; }
+
+/* soft seam so neighbouring frames read as one long pan, not hard cuts */
+.frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    rgba(8, 7, 15, 0.5) 0,
+    rgba(8, 7, 15, 0) 6%,
+    rgba(8, 7, 15, 0) 94%,
+    rgba(8, 7, 15, 0.5) 100%
+  );
+}
+
+.slide-scroll-hint {
+  position: absolute;
+  bottom: 12px;
+  left: 14px;
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ash);
+  padding: 4px 10px;
+  border-radius: 100px;
+  background: rgba(8, 7, 15, 0.66);
+  opacity: 0;
+  transition: opacity 0.4s var(--ease);
+}
+.slideshow:hover .slide-scroll-hint { opacity: 1; }
+
+/* ---------- progressive image ---------- */
+.shot {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--ink-2);
+}
+.shot img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* 20px preview, blown up and blurred — paints before the real file lands */
+.shot-blur {
+  filter: blur(18px) saturate(1.15);
+  transform: scale(1.1);
+}
+.shot-full {
+  opacity: 0;
+  transition: opacity 0.5s var(--ease);
+}
+
+/* A portrait certificate cropped to a 16/9 window loses the seal and the
+   signature, so those frames are letterboxed against a blurred copy of
+   themselves rather than cover-cropped. */
+.shot[data-fit='contain'] .shot-full { object-fit: contain; }
+.shot[data-fit='contain'] .shot-blur { filter: blur(26px) saturate(1.1) brightness(0.55); }
+.shot-in { opacity: 1; }
+
+.slide-nav {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  pointer-events: none;
+}
+.slide-nav button {
+  pointer-events: auto;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--chalk);
+  background: rgba(8, 7, 15, 0.62);
+  border: 1px solid var(--line-2);
+  transition: background 0.3s, transform 0.3s var(--ease);
+}
+.slide-nav button:hover { background: var(--saffron); color: var(--ink); transform: scale(1.1); }
+
+.slide-count {
+  position: absolute;
+  bottom: 12px;
+  right: 14px;
+  z-index: 4;
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  color: var(--chalk);
+  padding: 4px 10px;
+  border-radius: 100px;
+  background: rgba(8, 7, 15, 0.66);
+}
+
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+  padding: 14px 0 4px;
+}
+.dot {
+  position: relative;
+  width: 7px;
+  height: 7px;
+  border-radius: 100px;
+  overflow: hidden;
+  background: rgba(245, 242, 234, 0.22);
+  transition: width 0.45s var(--ease), background 0.45s var(--ease);
+}
+.dot:hover { background: rgba(245, 242, 234, 0.4); }
+.dot-on { width: 30px; background: rgba(245, 242, 234, 0.18); }
+
+/* the active dot fills across as the 3s autoplay timer runs */
+.dot-fill {
+  position: absolute;
+  inset: 0;
+  transform-origin: left center;
+  border-radius: inherit;
+  background: var(--grad-warm);
+  animation: dot-sweep linear forwards;
+}
+@keyframes dot-sweep {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dot-fill { animation: none; transform: scaleX(1); }
+}
+
+/* ---------- story article ---------- */
+.story {
+  padding: 20px clamp(20px, 4vw, 44px) clamp(30px, 4vw, 48px);
+  max-height: 62vh;
+  overflow-y: auto;
+}
+.story h2 {
+  font-size: clamp(1.35rem, 3.4vw, 1.95rem);
+  margin-bottom: 18px;
+}
+.story h3 {
+  font-size: 1.02rem;
+  color: var(--saffron);
+  margin: 26px 0 10px;
+}
+.story p {
+  font-size: 0.92rem;
+  color: var(--ash);
+  margin-bottom: 13px;
+}
+.story strong { color: var(--chalk-dim); font-weight: 600; }
+.story a { color: var(--jade); border-bottom: 1px solid rgba(35, 211, 176, 0.35); }
+.story a:hover { color: var(--saffron); }
+
+.story-list {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin: 4px 0 16px;
+}
+.story-list li {
+  display: flex;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: var(--ash);
+}
+.story-list li svg { color: var(--jade); flex: none; margin-top: 4px; }
+
+@media (max-width: 620px) {
+  .slideshow { aspect-ratio: 4 / 3; }
+  .slideshow-tall { aspect-ratio: 3 / 4; max-height: 56vh; }
+  .story { max-height: none; }
+}
