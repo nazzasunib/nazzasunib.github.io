@@ -1,5 +1,5 @@
 import { GUB_BLUR } from './gubBlur';
-import { ACHIEVEMENT_BLUR } from './achievementBlur';
+import { GALLERY_BLUR } from './galleryBlur';
 
 export const PROFILE = {
   name: 'Nazzas Ibn Shams Unib',
@@ -468,6 +468,104 @@ export const EVENTS = [
       ],
     },
   },
+  {
+    id: 'bswc-winter-clothes-2026',
+    name: 'Winter Clothes Distribution Program 2026',
+    meta: '2026 · BUFT Social Welfare Club',
+    blurb:
+      'Planned and coordinated a winter clothes distribution drive with the BUFT Social Welfare Club, from preparing the clothes to running the day itself.',
+    cover: 'assets/events/bswc-winter-2026/1-1024.webp',
+    coverSrcSet:
+      'assets/events/bswc-winter-2026/1-640.webp 640w, assets/events/bswc-winter-2026/1-1024.webp 1024w, assets/events/bswc-winter-2026/1-1600.webp 1600w',
+    coverBlur: GALLERY_BLUR['events/bswc-winter-2026-1'],
+    photos: [
+      {
+        src: 'assets/events/bswc-winter-2026/1-1024.webp',
+        srcSet:
+          'assets/events/bswc-winter-2026/1-640.webp 640w, assets/events/bswc-winter-2026/1-1024.webp 1024w, assets/events/bswc-winter-2026/1-1600.webp 1600w',
+        blur: GALLERY_BLUR['events/bswc-winter-2026-1'],
+        alt: 'Winter clothes distribution programme',
+      },
+      {
+        src: 'assets/events/bswc-winter-2026/2-1024.webp',
+        srcSet:
+          'assets/events/bswc-winter-2026/2-640.webp 640w, assets/events/bswc-winter-2026/2-1024.webp 1024w, assets/events/bswc-winter-2026/2-1600.webp 1600w',
+        blur: GALLERY_BLUR['events/bswc-winter-2026-2'],
+        alt: 'Distributing winter clothing',
+      },
+      {
+        src: 'assets/events/bswc-winter-2026/3-1024.webp',
+        srcSet:
+          'assets/events/bswc-winter-2026/3-640.webp 640w, assets/events/bswc-winter-2026/3-1024.webp 1024w, assets/events/bswc-winter-2026/3-1600.webp 1600w',
+        blur: GALLERY_BLUR['events/bswc-winter-2026-3'],
+        alt: 'BUFT Social Welfare Club team at the distribution',
+      },
+    ],
+    article: {
+      title: 'Winter Clothes Distribution Program 2026',
+      blocks: [
+        { t: 'h3', v: 'Joint Secretary | BUFT Social Welfare Club' },
+        {
+          t: 'p',
+          v: 'In 2026, I had the opportunity to take part in a winter clothes distribution program organized by the <strong>BUFT Social Welfare Club</strong>. As a <strong>Joint Secretary of the club</strong>, I was involved in planning and coordinating the program with other members, from preparing the clothes for distribution to managing the activities on the day of the program.',
+        },
+        {
+          t: 'p',
+          v: 'What made this experience meaningful to me was the opportunity to meet and interact with people who were struggling to manage the winter with limited resources. Handing over a warm piece of clothing may seem like a small gesture, but seeing the happiness and gratitude on people&rsquo;s faces made me realize how much a simple act of support can mean to someone. It was a different kind of experience from my regular academic and club activities because it allowed me to directly connect with people and understand some of the challenges they face.',
+        },
+        {
+          t: 'p',
+          v: 'Working as part of the organizing team also taught me how important teamwork, responsibility and proper coordination are when arranging a social welfare activity. We had to work together, manage the collected clothes, organize the distribution and make sure the support reached the people who needed it. Being part of the process gave me a stronger sense of responsibility toward my community.',
+        },
+        {
+          t: 'p',
+          v: 'This program was important to me because it reminded me that social work is not always about making a big change at once. Sometimes, a small contribution, a little time and a sincere effort can bring comfort to someone. The experience gave me a sense of satisfaction and encouraged me to stay involved in activities where I can contribute to people and society in a practical way.',
+        },
+      ],
+    },
+  },
+  {
+    id: 'shukhee-seminar-2026',
+    name: 'Shukhee Mental Health Awareness Seminar',
+    meta: '9 April 2026 · BUFT Social Welfare Club',
+    blurb:
+      'A mental health awareness seminar at BUFT, run with Shukhee (Grameen HealthTech) alongside a campus health camp.',
+    cover: 'assets/events/shukhee-seminar-2026/1-1024.webp',
+    coverSrcSet:
+      'assets/events/shukhee-seminar-2026/1-640.webp 640w, assets/events/shukhee-seminar-2026/1-1024.webp 1024w, assets/events/shukhee-seminar-2026/1-1600.webp 1600w',
+    coverBlur: GALLERY_BLUR['events/shukhee-seminar-2026-1'],
+    photos: [
+      {
+        src: 'assets/events/shukhee-seminar-2026/1-1024.webp',
+        srcSet:
+          'assets/events/shukhee-seminar-2026/1-640.webp 640w, assets/events/shukhee-seminar-2026/1-1024.webp 1024w, assets/events/shukhee-seminar-2026/1-1600.webp 1600w',
+        blur: GALLERY_BLUR['events/shukhee-seminar-2026-1'],
+        alt: 'Shukhee mental health awareness seminar at BUFT',
+      },
+    ],
+    article: {
+      title: 'Shukhee Mental Health Awareness Seminar',
+      blocks: [
+        { t: 'h3', v: 'Shukhee Health Camp & Mental Health Awareness Seminar' },
+        {
+          t: 'p',
+          v: 'I had the opportunity to participate in the <strong>Shukhee Mental Health Awareness Seminar</strong>, where the discussion focused on creating awareness about important health and social issues that affect people in their everyday lives. The seminar provided a platform to learn about the importance of health awareness and how proper knowledge can help individuals make better decisions for themselves and their families.',
+        },
+        {
+          t: 'p',
+          v: 'Being part of this seminar was a valuable experience for me because it allowed me to learn beyond the classroom and listen to different perspectives on health and social well-being. I realized that many health-related problems can become more manageable when people have access to the right information and feel comfortable discussing these issues.',
+        },
+        {
+          t: 'p',
+          v: 'The seminar also helped me understand the importance of communication when working with people from different backgrounds. Listening to the speakers and interacting with others gave me a better understanding of how awareness programs can encourage people to be more conscious about their health and well-being.',
+        },
+        {
+          t: 'p',
+          v: 'For me, the experience was meaningful because it connected learning with real-life social issues. It encouraged me to become more aware of the people and communities around me and reminded me that sharing knowledge and creating awareness can be a simple but meaningful way to contribute to society.',
+        },
+      ],
+    },
+  },
 ];
 
 export const ACHIEVEMENTS = [
@@ -479,23 +577,25 @@ export const ACHIEVEMENTS = [
     meta: 'August 2025 · BUFT Debate Club',
     blurb:
       'Organized BUFT Tarunno Utsab 2025 with the BUFT Debate Club — planning, coordination and on-ground activity management.',
+    /* portrait certificate scans — letterbox them rather than crop */
+    fit: 'contain',
     cover: 'assets/achievements/debate-club/1-1024.webp',
     coverSrcSet:
       'assets/achievements/debate-club/1-640.webp 640w, assets/achievements/debate-club/1-1024.webp 1024w, assets/achievements/debate-club/1-1600.webp 1600w',
-    coverBlur: ACHIEVEMENT_BLUR['debate-club-1'],
+    coverBlur: GALLERY_BLUR['achievements/debate-club-1'],
     photos: [
       {
         src: 'assets/achievements/debate-club/1-1024.webp',
         srcSet:
           'assets/achievements/debate-club/1-640.webp 640w, assets/achievements/debate-club/1-1024.webp 1024w, assets/achievements/debate-club/1-1600.webp 1600w',
-        blur: ACHIEVEMENT_BLUR['debate-club-1'],
+        blur: GALLERY_BLUR['achievements/debate-club-1'],
         alt: 'BUFT Tarunno Utsab 2025 certificate',
       },
       {
         src: 'assets/achievements/debate-club/2-1024.webp',
         srcSet:
           'assets/achievements/debate-club/2-640.webp 640w, assets/achievements/debate-club/2-1024.webp 1024w, assets/achievements/debate-club/2-1600.webp 1600w',
-        blur: ACHIEVEMENT_BLUR['debate-club-2'],
+        blur: GALLERY_BLUR['achievements/debate-club-2'],
         alt: 'BUFT Tarunno Utsab 2025 recognition',
       },
     ],
@@ -506,6 +606,53 @@ export const ACHIEVEMENTS = [
         {
           t: 'p',
           v: 'Participated as an organizer with the <strong>BUFT Debate Club</strong> for <strong>BUFT Tarunno Utsab 2025</strong>, helping with the planning and coordination of the event. I was also involved in managing event activities and supporting the participants throughout the program.',
+        },
+      ],
+    },
+  },
+
+  {
+    id: 'shukhee-seminar-2026',
+    name: 'Shukhee Mental Health Awareness Seminar',
+    role: 'BUFT Social Welfare Club',
+    date: '9 April 2026',
+    meta: '9 April 2026 · BUFT Social Welfare Club',
+    blurb:
+      'Certificate of Appreciation from Shukhee (Grameen HealthTech) for supporting the health camp and mental health awareness seminar at BUFT.',
+    /* portrait photograph of the framed certificate — letterbox, do not crop */
+    fit: 'contain',
+    cover: 'assets/achievements/shukhee-seminar-2026/1-1024.webp',
+    coverSrcSet:
+      'assets/achievements/shukhee-seminar-2026/1-640.webp 640w, assets/achievements/shukhee-seminar-2026/1-1024.webp 1024w, assets/achievements/shukhee-seminar-2026/1-1600.webp 1600w',
+    coverBlur: GALLERY_BLUR['achievements/shukhee-seminar-2026-1'],
+    photos: [
+      {
+        src: 'assets/achievements/shukhee-seminar-2026/1-1024.webp',
+        srcSet:
+          'assets/achievements/shukhee-seminar-2026/1-640.webp 640w, assets/achievements/shukhee-seminar-2026/1-1024.webp 1024w, assets/achievements/shukhee-seminar-2026/1-1600.webp 1600w',
+        blur: GALLERY_BLUR['achievements/shukhee-seminar-2026-1'],
+        alt: 'Certificate of Appreciation from Shukhee for the BUFT Social Welfare Club',
+      },
+    ],
+    article: {
+      title: 'Shukhee Mental Health Awareness Seminar',
+      blocks: [
+        { t: 'h3', v: 'Certificate of Appreciation · Shukhee (Grameen HealthTech)' },
+        {
+          t: 'p',
+          v: 'I had the opportunity to participate in the <strong>Shukhee Mental Health Awareness Seminar</strong>, where the discussion focused on creating awareness about important health and social issues that affect people in their everyday lives. The seminar provided a platform to learn about the importance of health awareness and how proper knowledge can help individuals make better decisions for themselves and their families.',
+        },
+        {
+          t: 'p',
+          v: 'Being part of this seminar was a valuable experience for me because it allowed me to learn beyond the classroom and listen to different perspectives on health and social well-being. I realized that many health-related problems can become more manageable when people have access to the right information and feel comfortable discussing these issues.',
+        },
+        {
+          t: 'p',
+          v: 'The seminar also helped me understand the importance of communication when working with people from different backgrounds. Listening to the speakers and interacting with others gave me a better understanding of how awareness programs can encourage people to be more conscious about their health and well-being.',
+        },
+        {
+          t: 'p',
+          v: 'For me, the experience was meaningful because it connected learning with real-life social issues. It encouraged me to become more aware of the people and communities around me and reminded me that sharing knowledge and creating awareness can be a simple but meaningful way to contribute to society.',
         },
       ],
     },

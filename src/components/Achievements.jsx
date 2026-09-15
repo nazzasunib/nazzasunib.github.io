@@ -6,9 +6,10 @@ import { Shot, StoryModal } from './ui/Gallery';
 import Icon from './ui/Icon';
 import './achievements.css';
 
-/* Same card-opens-a-story model as Events, but the photos are certificates:
-   portrait scans that must not be cropped, so the modal frames them with
-   `fit="contain"` on a taller viewport. */
+/* Same card-opens-a-story model as Events, but the photo shape varies per
+   entry: certificate scans are portrait and must be letterboxed rather than
+   cropped, while programme photographs are landscape and fill the frame. Each
+   entry carries its own `fit`, defaulting to 'cover'. */
 export default function Achievements() {
   const [open, setOpen] = useState(null);
 
@@ -31,13 +32,13 @@ export default function Achievements() {
                 onClick={() => setOpen(a)}
                 aria-label={`Open achievement: ${a.name}`}
               >
-                <div className="ach-thumb">
+                <div className="ach-thumb" data-fit={a.fit}>
                   <Shot
                     shot={{
                       src: a.cover,
                       srcSet: a.coverSrcSet,
                       blur: a.coverBlur,
-                      alt: `${a.name} certificate`,
+                      alt: `${a.name} cover`,
                     }}
                     sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 400px"
                   />
@@ -52,7 +53,7 @@ export default function Achievements() {
                   <span className="ach-date mono">{a.date}</span>
                   <p>{a.blurb}</p>
                   <span className="ach-hint">
-                    View certificate
+                    {a.fit === 'contain' ? 'View certificate' : 'View the story'}
                     <Icon name="arrowRight" size={15} />
                   </span>
                 </div>
@@ -64,8 +65,8 @@ export default function Achievements() {
             <Icon name="spark" size={26} stroke={1.3} />
             <h4>Next achievement goes here</h4>
             <p>
-              Drop the certificate into <code>public/assets/</code>, add it to{' '}
-              <code>scripts/optimize-achievements.mjs</code>, run the script and append an entry to{' '}
+              Drop the certificate into <code>source-photos/</code>, add a group to{' '}
+              <code>scripts/optimize-gallery.mjs</code>, run the script and append an entry to{' '}
               <code>ACHIEVEMENTS</code> in <code>src/data/content.js</code>.
             </p>
           </motion.div>
@@ -74,7 +75,12 @@ export default function Achievements() {
 
       <AnimatePresence>
         {open && (
-          <StoryModal entry={open} onClose={() => setOpen(null)} fit="contain" tall />
+          <StoryModal
+            entry={open}
+            onClose={() => setOpen(null)}
+            fit={open.fit ?? 'cover'}
+            tall={open.fit === 'contain'}
+          />
         )}
       </AnimatePresence>
     </>

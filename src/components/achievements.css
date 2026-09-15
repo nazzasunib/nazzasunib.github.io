@@ -24,8 +24,8 @@
   color: inherit;
 }
 
-/* The thumbnail crops the portrait scan on purpose — it reads as a preview
-   here; the modal is where the full certificate is shown uncropped. */
+/* Thumbnails always crop to one tidy row of cards; the modal is where a
+   photo is shown at its true shape. */
 .ach-thumb {
   position: relative;
   aspect-ratio: 16 / 10;
@@ -34,9 +34,11 @@
 }
 .ach-thumb .shot { position: absolute; inset: 0; }
 .ach-thumb .shot-full {
-  object-position: center 32%;
   transition: opacity 0.5s var(--ease), transform 1s var(--ease), filter 0.6s var(--ease);
 }
+/* A tall certificate cropped to 16/10 would land mid-page; bias the crop
+   upward so the heading and seal survive. Landscape photos stay centred. */
+.ach-thumb[data-fit='contain'] .shot-full { object-position: center 30%; }
 .ach:hover .ach-thumb .shot-full { transform: scale(1.08); filter: saturate(1.15); }
 .ach-thumb-veil {
   position: absolute;

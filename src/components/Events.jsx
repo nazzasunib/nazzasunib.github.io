@@ -58,9 +58,10 @@ export default function Events() {
             <Icon name="spark" size={26} stroke={1.3} />
             <h4>Next event goes here</h4>
             <p>
-              Drop photos into <code>public/assets/</code>, run{' '}
-              <code>node scripts/optimize-images.mjs</code> and add an entry to{' '}
-              <code>src/data/content.js</code> — it renders with the same story layout.
+              Drop photos into <code>source-photos/</code>, add a group to{' '}
+              <code>scripts/optimize-gallery.mjs</code>, run it and add an entry to{' '}
+              <code>EVENTS</code> in <code>src/data/content.js</code> — it renders with the same
+              story layout.
             </p>
           </motion.div>
         </Stagger>
