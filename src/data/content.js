@@ -672,13 +672,13 @@ export const ACHIEVEMENTS = [
     },
   },
   {
-    id: 'kpl-football-tournament-2025-season-3',
-    name: 'Referee – KPL Football Tournament 2025 | Season 3',
+    id: 'kpl-football-tournament-2025-season-2',
+    name: 'Referee – KPL Football Tournament 2025 | Season 2',
     role: 'Football Referee',
     date: '2025',
     meta: '2025 · KPL Football Tournament',
     blurb:
-      'Served as football referee in KPL Football Tournament 2025 | Season 3, ensuring fair play, discipline and calm decisions under pressure.',
+      'Served as football referee in KPL Football Tournament 2025 | Season 2, ensuring fair play, discipline and calm decisions under pressure.',
     fit: 'cover',
     cover: 'assets/achievements/Football/2.jpeg',
     coverSrcSet: 'assets/achievements/Football/2.jpeg 1x',
@@ -686,16 +686,16 @@ export const ACHIEVEMENTS = [
       {
         src: 'assets/achievements/Football/2.jpeg',
         srcSet: 'assets/achievements/Football/2.jpeg 1x',
-        alt: 'KPL Football Tournament 2025 | Season 3 referee moment',
+        alt: 'KPL Football Tournament 2025 | Season 2 referee moment',
       },
     ],
     article: {
-      title: 'Referee – KPL Football Tournament 2025 | Season 3',
+      title: 'Referee – KPL Football Tournament 2025 | Season 2',
       blocks: [
-        { t: 'h3', v: 'Football Referee • KPL Football Tournament 2025 | Season 3' },
+        { t: 'h3', v: 'Football Referee • KPL Football Tournament 2025 | Season 2' },
         {
           t: 'p',
-          v: 'I had the privilege of working as a <strong>Football Referee at KPL Football Tournament 2025 | Season 3</strong>. It was a meaningful experience where I got the chance to contribute to the tournament from the field and take responsibility for ensuring that the matches were conducted fairly and according to the rules.',
+          v: 'I had the privilege of working as a <strong>Football Referee at KPL Football Tournament 2025 | Season 2</strong>. It was a meaningful experience where I got the chance to contribute to the tournament from the field and take responsibility for ensuring that the matches were conducted fairly and according to the rules.',
         },
         {
           t: 'p',
