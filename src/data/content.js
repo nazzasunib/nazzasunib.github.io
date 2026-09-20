@@ -657,6 +657,47 @@ export const ACHIEVEMENTS = [
       ],
     },
   },
+  {
+    id: 'kpl-football-tournament-2026-season-3',
+    name: 'Referee – KPL Football Tournament 2026 | Season 3',
+    role: 'Football Referee',
+    date: '2026',
+    meta: '2026 · KPL Football Tournament',
+    blurb:
+      'Served as football referee in KPL Football Tournament 2026 | Season 3, managing fair play, discipline and decision-making under pressure.',
+    fit: 'cover',
+    cover: 'assets/achievements/Football/1.jpeg',
+    coverSrcSet: 'assets/achievements/Football/1.jpeg 1x',
+    photos: [
+      {
+        src: 'assets/achievements/Football/1.jpeg',
+        srcSet: 'assets/achievements/Football/1.jpeg 1x',
+        alt: 'KPL Football Tournament 2026 | Season 3 referee moment',
+      },
+    ],
+    article: {
+      title: 'Referee – KPL Football Tournament 2026 | Season 3',
+      blocks: [
+        { t: 'h3', v: 'Football Referee • KPL Football Tournament 2026 | Season 3' },
+        {
+          t: 'p',
+          v: 'I had the opportunity to serve as a <strong>Football Referee at KPL Football Tournament 2026 | Season 3</strong>. Being on the field as a referee was a memorable experience that allowed me to take responsibility for maintaining fair play, following the rules and making decisions under pressure.',
+        },
+        {
+          t: 'p',
+          v: 'Football has always been more than just a game to me. Being part of the tournament from a different role gave me a new perspective on the sport. Managing the match, staying focused throughout the game and handling different situations on the field helped me build confidence, discipline and a stronger sense of responsibility.',
+        },
+        {
+          t: 'p',
+          v: 'I am grateful to the KPL organizers for giving me the opportunity to be part of the tournament. It was a valuable experience and a memory I will always be happy to carry forward. ❤️',
+        },
+        {
+          t: 'p',
+          v: '<strong>🎥 My Vlog:</strong> <a href="https://www.facebook.com/share/v/14s2exX5dQC/" target="_blank" rel="noreferrer">KPL Football Tournament 2026 | Season 3</a> | <a href="https://www.facebook.com/share/v/14s2exX5dQC/" target="_blank" rel="noreferrer">Watch the Vlog on Facebook</a>',
+        },
+      ],
+    },
+  },
 ];
 
 export const SOCIALS = [
