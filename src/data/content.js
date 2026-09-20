@@ -744,7 +744,7 @@ export const ACHIEVEMENTS = [
         },
         {
           t: 'p',
-          v: '<strong>🎥 My Vlog:</strong><br />KPL Football Tournament 2026 | Season 3<br /><a href="https://www.facebook.com/share/v/14s2exX5dQC/" target="_blank" rel="noreferrer">Watch the Vlog on Facebook</a>',
+          v: '<strong>🎥 My Vlog:</strong><br />KPL Football Tournament 2026 | Season 3<br /><a href="https://www.facebook.com/share/v/14s2exX5dQC/" target="_blank" rel="noreferrer">Watch the Vlog on Facebook : https://www.facebook.com/share/v/14s2exX5dQC/</a>',
         },
       ],
     },
