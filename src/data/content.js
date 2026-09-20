@@ -672,13 +672,13 @@ export const ACHIEVEMENTS = [
     },
   },
   {
-    id: 'kpl-football-tournament-2025-season-2',
-    name: 'Referee – KPL Football Tournament 2025 | Season 2',
+    id: 'kpl-football-tournament-2026-season-3',
+    name: 'Referee – KPL Football Tournament 2026 | Season 3',
     role: 'Football Referee',
-    date: '2025',
-    meta: '2025 · KPL Football Tournament',
+    date: '2026',
+    meta: '2026 · KPL Football Tournament',
     blurb:
-      'Served as football referee in KPL Football Tournament 2025 | Season 2, ensuring fair play, discipline and calm decisions under pressure.',
+      'Served as football referee in KPL Football Tournament 2026 | Season 3, ensuring fair play, discipline and calm decisions under pressure.',
     fit: 'cover',
     cover: 'assets/achievements/Football/2.jpeg',
     coverSrcSet: 'assets/achievements/Football/2.jpeg 1x',
@@ -686,24 +686,28 @@ export const ACHIEVEMENTS = [
       {
         src: 'assets/achievements/Football/2.jpeg',
         srcSet: 'assets/achievements/Football/2.jpeg 1x',
-        alt: 'KPL Football Tournament 2025 | Season 2 referee moment',
+        alt: 'KPL Football Tournament 2026 | Season 3 referee moment',
       },
     ],
     article: {
-      title: 'Referee – KPL Football Tournament 2025 | Season 2',
+      title: 'Referee – KPL Football Tournament 2026 | Season 3',
       blocks: [
-        { t: 'h3', v: 'Football Referee • KPL Football Tournament 2025 | Season 2' },
+        { t: 'h3', v: 'Football Referee • KPL Football Tournament 2026 | Season 3' },
         {
           t: 'p',
-          v: 'I had the privilege of working as a <strong>Football Referee at KPL Football Tournament 2025 | Season 2</strong>. It was a meaningful experience where I got the chance to contribute to the tournament from the field and take responsibility for ensuring that the matches were conducted fairly and according to the rules.',
+          v: 'I had the opportunity to serve as a <strong>Football Referee at KPL Football Tournament 2026 | Season 3</strong>. Being on the field as a referee was a memorable experience that allowed me to take responsibility for maintaining fair play, following the rules and making decisions under pressure.',
         },
         {
           t: 'p',
-          v: 'Being a referee taught me that football is not only about the players on the field. It also requires concentration, quick decision-making, patience and the ability to remain calm in challenging situations. Every match brought a different experience and helped me become more confident in handling responsibility.',
+          v: 'Football has always been more than just a game to me. Being part of the tournament from a different role gave me a new perspective on the sport. Managing the match, staying focused throughout the game and handling different situations on the field helped me build confidence, discipline and a stronger sense of responsibility.',
         },
         {
           t: 'p',
-          v: 'I truly enjoyed being part of the tournament and the atmosphere surrounding it. Looking back, it remains one of those experiences that gave me both great memories and valuable lessons beyond the classroom. ❤️',
+          v: 'I am grateful to the KPL organizers for giving me the opportunity to be part of the tournament. It was a valuable experience and a memory I will always be happy to carry forward. ❤️',
+        },
+        {
+          t: 'p',
+          v: '<strong>🎥 My Vlog:</strong><br />KPL Football Tournament 2026 | Season 3<br /><a href="https://www.facebook.com/share/v/14s2exX5dQC/" target="_blank" rel="noreferrer">Watch the Vlog on Facebook</a>',
         },
       ],
     },
