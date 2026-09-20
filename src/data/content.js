@@ -680,12 +680,12 @@ export const ACHIEVEMENTS = [
     blurb:
       'Served as football referee in KPL Football Tournament 2025 | Season 2, ensuring fair play, discipline and calm decisions under pressure.',
     fit: 'cover',
-    cover: 'assets/achievements/Football/2.jpeg',
-    coverSrcSet: 'assets/achievements/Football/2.jpeg 1x',
+    cover: 'assets/achievements/Football/1.jpeg',
+    coverSrcSet: 'assets/achievements/Football/1.jpeg 1x',
     photos: [
       {
-        src: 'assets/achievements/Football/2.jpeg',
-        srcSet: 'assets/achievements/Football/2.jpeg 1x',
+        src: 'assets/achievements/Football/1.jpeg',
+        srcSet: 'assets/achievements/Football/1.jpeg 1x',
         alt: 'KPL Football Tournament 2025 | Season 2 referee moment',
       },
     ],
