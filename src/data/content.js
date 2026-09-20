@@ -525,43 +525,57 @@ export const EVENTS = [
     },
   },
   {
-    id: 'shukhee-seminar-2026',
-    name: 'Shukhee Mental Health Awareness Seminar',
-    meta: '9 April 2026 · BUFT Social Welfare Club',
+    id: 'dhaka-north-marathon-2025-season-1',
+    name: 'Organizer – Dhaka North Marathon 2025 | Season 1',
+    meta: '2025 · Dhaka North Marathon',
     blurb:
-      'A mental health awareness seminar at BUFT, run with Shukhee (Grameen HealthTech) alongside a campus health camp.',
-    cover: 'assets/events/shukhee-seminar-2026/1-1024.webp',
-    coverSrcSet:
-      'assets/events/shukhee-seminar-2026/1-640.webp 640w, assets/events/shukhee-seminar-2026/1-1024.webp 1024w, assets/events/shukhee-seminar-2026/1-1600.webp 1600w',
-    coverBlur: GALLERY_BLUR['events/shukhee-seminar-2026-1'],
+      'Served as organizer for Dhaka North Marathon 2025 | Season 1, supporting coordination, planning, communication and smooth event execution.',
+    cover: 'assets/events/Dhaka North/1.jpeg',
+    coverSrcSet: 'assets/events/Dhaka North/1.jpeg 1x',
     photos: [
       {
-        src: 'assets/events/shukhee-seminar-2026/1-1024.webp',
-        srcSet:
-          'assets/events/shukhee-seminar-2026/1-640.webp 640w, assets/events/shukhee-seminar-2026/1-1024.webp 1024w, assets/events/shukhee-seminar-2026/1-1600.webp 1600w',
-        blur: GALLERY_BLUR['events/shukhee-seminar-2026-1'],
-        alt: 'Shukhee mental health awareness seminar at BUFT',
+        src: 'assets/events/Dhaka North/1.jpeg',
+        srcSet: 'assets/events/Dhaka North/1.jpeg 1x',
+        alt: 'Dhaka North Marathon 2025 | Season 1 cover photo',
+      },
+      {
+        src: 'assets/events/Dhaka North/2.jpeg',
+        srcSet: 'assets/events/Dhaka North/2.jpeg 1x',
+        alt: 'Dhaka North Marathon 2025 | Season 1 event setup',
+      },
+      {
+        src: 'assets/events/Dhaka North/3.jpeg',
+        srcSet: 'assets/events/Dhaka North/3.jpeg 1x',
+        alt: 'Dhaka North Marathon 2025 | Season 1 organizing moment',
       },
     ],
     article: {
-      title: 'Shukhee Mental Health Awareness Seminar',
+      title: 'Organizer – Dhaka North Marathon 2025 | Season 1',
       blocks: [
-        { t: 'h3', v: 'Shukhee Health Camp & Mental Health Awareness Seminar' },
+        { t: 'h3', v: 'Organizer • Dhaka North Marathon 2025 | Season 1' },
         {
           t: 'p',
-          v: 'I had the opportunity to participate in the <strong>Shukhee Mental Health Awareness Seminar</strong>, where the discussion focused on creating awareness about important health and social issues that affect people in their everyday lives. The seminar provided a platform to learn about the importance of health awareness and how proper knowledge can help individuals make better decisions for themselves and their families.',
+          v: 'I had the opportunity to work as an <strong>Organizer at Dhaka North Marathon 2025 | Season 1</strong>, an experience that gave me the chance to be involved in a large-scale public event beyond my regular academic and professional activities.',
         },
         {
           t: 'p',
-          v: 'Being part of this seminar was a valuable experience for me because it allowed me to learn beyond the classroom and listen to different perspectives on health and social well-being. I realized that many health-related problems can become more manageable when people have access to the right information and feel comfortable discussing these issues.',
+          v: 'Being part of the organizing team taught me how much planning, coordination and teamwork are required to successfully manage an event where a large number of participants, volunteers and organizers come together. From supporting event preparation to coordinating activities and helping ensure that everything was running smoothly, I had the opportunity to take responsibility in different parts of the event.',
         },
         {
           t: 'p',
-          v: 'The seminar also helped me understand the importance of communication when working with people from different backgrounds. Listening to the speakers and interacting with others gave me a better understanding of how awareness programs can encourage people to be more conscious about their health and well-being.',
+          v: 'Working behind the scenes of a marathon was a completely different experience from simply participating in one. There were many things that required attention at the same time, and sometimes quick decisions were necessary to handle situations effectively. It helped me improve my communication, teamwork, time management and problem-solving skills while working with people from different backgrounds.',
         },
         {
           t: 'p',
-          v: 'For me, the experience was meaningful because it connected learning with real-life social issues. It encouraged me to become more aware of the people and communities around me and reminded me that sharing knowledge and creating awareness can be a simple but meaningful way to contribute to society.',
+          v: 'One of the most memorable parts of the experience was seeing the energy and enthusiasm of the participants on the event day. Watching people of different ages and backgrounds come together with a common goal made the experience even more meaningful. Being able to contribute to that environment, even from behind the scenes, gave me a strong sense of satisfaction.',
+        },
+        {
+          t: 'p',
+          v: 'The experience also taught me that successful events are built through the combined effort of many people. Every small responsibility matters when a large event is being organized. Working with the organizing team allowed me to understand this firsthand and gave me valuable experience in event management, coordination and working under pressure.',
+        },
+        {
+          t: 'p',
+          v: 'I am grateful for the opportunity to be part of <strong>Dhaka North Marathon 2025 | Season 1</strong>. It remains a memorable experience that helped me grow personally, develop practical skills and understand the importance of responsibility, teamwork and coordination in real-world events.',
         },
       ],
     },
@@ -658,42 +672,38 @@ export const ACHIEVEMENTS = [
     },
   },
   {
-    id: 'kpl-football-tournament-2026-season-3',
-    name: 'Referee – KPL Football Tournament 2026 | Season 3',
+    id: 'kpl-football-tournament-2025-season-3',
+    name: 'Referee – KPL Football Tournament 2025 | Season 3',
     role: 'Football Referee',
-    date: '2026',
-    meta: '2026 · KPL Football Tournament',
+    date: '2025',
+    meta: '2025 · KPL Football Tournament',
     blurb:
-      'Served as football referee in KPL Football Tournament 2026 | Season 3, managing fair play, discipline and decision-making under pressure.',
+      'Served as football referee in KPL Football Tournament 2025 | Season 3, ensuring fair play, discipline and calm decisions under pressure.',
     fit: 'cover',
-    cover: 'assets/achievements/Football/1.jpeg',
-    coverSrcSet: 'assets/achievements/Football/1.jpeg 1x',
+    cover: 'assets/achievements/Football/2.jpeg',
+    coverSrcSet: 'assets/achievements/Football/2.jpeg 1x',
     photos: [
       {
-        src: 'assets/achievements/Football/1.jpeg',
-        srcSet: 'assets/achievements/Football/1.jpeg 1x',
-        alt: 'KPL Football Tournament 2026 | Season 3 referee moment',
+        src: 'assets/achievements/Football/2.jpeg',
+        srcSet: 'assets/achievements/Football/2.jpeg 1x',
+        alt: 'KPL Football Tournament 2025 | Season 3 referee moment',
       },
     ],
     article: {
-      title: 'Referee – KPL Football Tournament 2026 | Season 3',
+      title: 'Referee – KPL Football Tournament 2025 | Season 3',
       blocks: [
-        { t: 'h3', v: 'Football Referee • KPL Football Tournament 2026 | Season 3' },
+        { t: 'h3', v: 'Football Referee • KPL Football Tournament 2025 | Season 3' },
         {
           t: 'p',
-          v: 'I had the opportunity to serve as a <strong>Football Referee at KPL Football Tournament 2026 | Season 3</strong>. Being on the field as a referee was a memorable experience that allowed me to take responsibility for maintaining fair play, following the rules and making decisions under pressure.',
+          v: 'I had the privilege of working as a <strong>Football Referee at KPL Football Tournament 2025 | Season 3</strong>. It was a meaningful experience where I got the chance to contribute to the tournament from the field and take responsibility for ensuring that the matches were conducted fairly and according to the rules.',
         },
         {
           t: 'p',
-          v: 'Football has always been more than just a game to me. Being part of the tournament from a different role gave me a new perspective on the sport. Managing the match, staying focused throughout the game and handling different situations on the field helped me build confidence, discipline and a stronger sense of responsibility.',
+          v: 'Being a referee taught me that football is not only about the players on the field. It also requires concentration, quick decision-making, patience and the ability to remain calm in challenging situations. Every match brought a different experience and helped me become more confident in handling responsibility.',
         },
         {
           t: 'p',
-          v: 'I am grateful to the KPL organizers for giving me the opportunity to be part of the tournament. It was a valuable experience and a memory I will always be happy to carry forward. ❤️',
-        },
-        {
-          t: 'p',
-          v: '<strong>🎥 My Vlog:</strong> <a href="https://www.facebook.com/share/v/14s2exX5dQC/" target="_blank" rel="noreferrer">KPL Football Tournament 2026 | Season 3</a> | <a href="https://www.facebook.com/share/v/14s2exX5dQC/" target="_blank" rel="noreferrer">Watch the Vlog on Facebook</a>',
+          v: 'I truly enjoyed being part of the tournament and the atmosphere surrounding it. Looking back, it remains one of those experiences that gave me both great memories and valuable lessons beyond the classroom. ❤️',
         },
       ],
     },
