@@ -43,7 +43,7 @@
 .bloom-rose { background: radial-gradient(circle, var(--w3), transparent 68%); }
 
 /* ---------- Section head ---------- */
-.sec-head { margin-bottom: clamp(36px, 4.4vw, 58px); }
+.sec-head { margin-bottom: clamp(28px, 3.4vw, 44px); }
 .sec-head-center { text-align: center; }
 .sec-head-center .section-title,
 .sec-head-center .section-sub { margin-inline: auto; }

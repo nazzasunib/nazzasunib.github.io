@@ -11,7 +11,7 @@
 
 /* stat strip — tiles separated by hairlines, like a ledger */
 .statstrip {
-  margin-top: clamp(40px, 5vw, 64px);
+  margin-top: clamp(32px, 4vw, 48px);
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1px;
@@ -41,7 +41,7 @@
 .stt-l { font-size: 0.86rem; color: var(--ink3); }
 
 /* education steps */
-.edu { margin-top: clamp(48px, 6vw, 80px); }
+.edu { margin-top: clamp(36px, 4.4vw, 56px); }
 .edu-head .eyebrow { gap: 10px; }
 .edu-head .eyebrow svg { color: var(--acc); }
 .edu-rail {

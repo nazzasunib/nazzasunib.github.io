@@ -90,7 +90,7 @@
   --fm: 'Geist Mono', 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
   /* rhythm */
-  --pad-section: clamp(84px, 10vw, 140px);
+  --pad-section: clamp(52px, 6vw, 84px);
   --radius: 20px;
   --radius-sm: 14px;
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
