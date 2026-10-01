@@ -4,12 +4,19 @@ import './preloader.css';
 
 const WORDS = ['Warping', 'Threading', 'Weaving', 'Finishing'];
 
+/* N·I·S → Nazzas Ibn Shams (non-breaking spaces travel with each word) */
+const INITIALS = [
+  ['N', 'azzas\u00a0'],
+  ['I', 'bn\u00a0'],
+  ['S', 'hams'],
+];
+
 export default function Preloader({ onDone }) {
   const [pct, setPct] = useState(0);
 
   useEffect(() => {
     const started = performance.now();
-    const DURATION = 1750;
+    const DURATION = 2500;
     let raf;
     const tick = (now) => {
       const p = Math.min(1, (now - started) / DURATION);
@@ -22,6 +29,7 @@ export default function Preloader({ onDone }) {
     return () => cancelAnimationFrame(raf);
   }, [onDone]);
 
+  const grown = pct >= 34;
   const wordIndex = Math.min(WORDS.length - 1, Math.floor((pct / 100) * WORDS.length));
 
   return (
@@ -74,8 +82,23 @@ export default function Preloader({ onDone }) {
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.15 }}
+          aria-label="Nazzas Ibn Shams Unib."
         >
-          NIS<span>Unib.</span>
+          {/* "NIS" opens up letter by letter into the full name */}
+          {INITIALS.map(([first, rest], i) => (
+            <span className="pre-word" key={first + i}>
+              {first}
+              <motion.span
+                className="pre-rest"
+                initial={{ width: 0, opacity: 0 }}
+                animate={grown ? { width: 'auto', opacity: 1 } : { width: 0, opacity: 0 }}
+                transition={{ duration: 0.75, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
+              >
+                {rest}
+              </motion.span>
+            </span>
+          ))}
+          <span className="pre-tail">Unib.</span>
         </motion.div>
 
         <div className="pre-bar">

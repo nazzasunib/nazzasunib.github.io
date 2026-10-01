@@ -34,18 +34,28 @@
 
 .pre-mark {
   font-family: var(--fd);
-  font-size: clamp(1.9rem, 5.5vw, 2.9rem);
+  font-size: clamp(1.45rem, 5.2vw, 3.1rem);
+  display: flex;
+  align-items: baseline;
+  white-space: nowrap;
   font-weight: 800;
   color: var(--ink);
   letter-spacing: -0.045em;
 }
-.pre-mark span {
+.pre-word { display: inline-flex; white-space: nowrap; }
+.pre-rest {
+  display: inline-block;
+  overflow: hidden;
+  white-space: pre;
+  vertical-align: bottom;
+}
+.pre-tail {
   background: var(--grad);
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  margin-left: 6px;
+  margin-left: 0.24em;
 }
 
 .pre-bar {

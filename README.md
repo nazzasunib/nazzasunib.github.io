@@ -41,6 +41,8 @@ Type is Geist (display + body) and Geist Mono (labels).
 
 | Where | Effect |
 | --- | --- |
+| Preloader | "NIS Unib." opens letter by letter into "Nazzas Ibn Shams Unib." |
+| Name reveal (top of page) | pinned scroll scene: the framed portrait grows, then condenses into the letters of the name (SVG mask), an outline traces the letters and the tagline rises; plays in reverse when scrolling back |
 | Hero background | 2D-canvas particle network; particles within 160px of the cursor draw a line to it; cursor spotlight; glowing horizon arc (dark only); rotating wireframe cubes |
 | Hero cards | glass card rig that tilts toward the pointer (±12° / ±9°); live chat demo that types answers from `content.js`; voice-note waveform + role typewriter; approval card that flips between "waiting" and "available" |
 | Hero foot | live ticker of experience entries with status-coloured dots |
@@ -75,6 +77,7 @@ src/
     fx/HeroField.jsx    hero particle network + cursor lines
     fx/Globe.jsx        wireframe globe          fx/VoiceOrb.jsx  voice orb
     fx/Stack3D.jsx      LayerStack, TileFlow, Ring3D (CSS 3D)
+    NameReveal.jsx      scroll-pinned portrait → name opener
     Preloader.jsx  Navbar.jsx  Hero.jsx  About.jsx  Skills.jsx
     Experience.jsx  Projects.jsx  GitHubPanel.jsx  Expertise.jsx
     Events.jsx  Achievements.jsx  Social.jsx  Contact.jsx  Footer.jsx

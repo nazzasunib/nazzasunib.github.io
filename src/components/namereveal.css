@@ -1,0 +1,135 @@
+/* ============================================================
+   NAME REVEAL — pinned scroll opener (see NameReveal.jsx)
+   ============================================================ */
+.nr {
+  position: relative;
+  height: 340vh;
+  z-index: 2;
+}
+.nr-still { height: 100vh; }
+
+.nr-stage {
+  --out: 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  isolation: isolate;
+  transform: scale(calc(1 - var(--out) * 0.04));
+  opacity: calc(1 - var(--out) * 0.85);
+}
+
+/* colour washes behind the portrait */
+.nr-wash {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(40% 50% at 50% 40%, var(--w1), transparent 70%),
+    radial-gradient(36% 44% at 88% 22%, var(--w2), transparent 70%),
+    radial-gradient(30% 40% at 8% 70%, var(--w3), transparent 70%);
+}
+
+.nr-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.nr-text {
+  font-family: var(--fd);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+}
+.nr-measure {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+/* thin frame that follows the photo while it is still a portrait */
+.nr-edge {
+  stroke: var(--acc-br);
+  stroke-width: 1.2;
+}
+
+/* outline traced over the photo-filled letters */
+.nr-outline text {
+  fill: none;
+  stroke: var(--acc);
+  stroke-width: 1.2;
+  stroke-opacity: 0.85;
+}
+:root:not([data-mode='light']) .nr-outline { filter: drop-shadow(0 0 10px rgba(19, 239, 147, 0.35)); }
+
+.nr-tag {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: clamp(70px, 13vh, 130px);
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+  text-align: center;
+  opacity: 0;
+  padding: 0 20px;
+}
+.nr-tag .eyebrow { margin-bottom: 4px; }
+.nr-tag p {
+  font-size: clamp(0.72rem, 1.4vw, 0.9rem);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ink2);
+}
+
+.nr-cue {
+  position: absolute;
+  left: 50%;
+  bottom: 28px;
+  translate: -50% 0;
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+}
+.nr-cue-rail {
+  position: relative;
+  width: 1px;
+  height: 38px;
+  background: var(--rule);
+  overflow: hidden;
+}
+.nr-cue-rail i {
+  position: absolute;
+  left: 0;
+  top: -40%;
+  width: 1px;
+  height: 40%;
+  background: var(--acc);
+  animation: nrCue 1.8s var(--ease) infinite;
+}
+@keyframes nrCue { 0% { top: -40%; } 100% { top: 100%; } }
+
+/* fog that carries the stage into the hero */
+.nr-fog {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 34%;
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent, var(--ground) 92%);
+  opacity: 0.35;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}

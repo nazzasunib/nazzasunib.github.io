@@ -5,6 +5,7 @@ import Lenis from 'lenis';
 import Preloader from './components/Preloader';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import NameReveal from './components/NameReveal';
 import About from './components/About';
 import Skills from './components/Skills';
 import Experience from './components/Experience';
@@ -72,6 +73,7 @@ export default function App() {
       <Navbar />
 
       <main>
+        <NameReveal />
         <Hero />
         <About />
         <Skills />
