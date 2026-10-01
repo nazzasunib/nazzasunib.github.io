@@ -1,8 +1,6 @@
-import { useEffect, useState } from 'react';
-import { AnimatePresence } from 'framer-motion';
+import { useEffect } from 'react';
 import Lenis from 'lenis';
 
-import Preloader from './components/Preloader';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import NameReveal from './components/NameReveal';
@@ -20,12 +18,11 @@ import Footer from './components/Footer';
 import { BackToTop, CardGlow, ScrollProgress } from './components/Ambient';
 
 import useGitHub from './components/useGitHub';
-import { useReducedMotion, useScrollLock } from './hooks';
+import { useReducedMotion } from './hooks';
 import { registerLenis } from './lib/scroll';
 import { BUSINESS, TEXTILE } from './data/content';
 
 export default function App() {
-  const [loading, setLoading] = useState(true);
   const gh = useGitHub();
   const reduced = useReducedMotion();
 
@@ -34,10 +31,11 @@ export default function App() {
   useEffect(() => {
     if (reduced) return;
     const lenis = new Lenis({
-      duration: 1.05,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      /* lower lerp = longer, softer glide after each wheel tick */
+      lerp: 0.075,
       smoothWheel: true,
-      touchMultiplier: 1.6,
+      wheelMultiplier: 0.9,
+      touchMultiplier: 1.4,
     });
     registerLenis(lenis);
 
@@ -55,14 +53,9 @@ export default function App() {
     };
   }, [reduced]);
 
-  /* hold the page at the top while the preloader is up */
-  useScrollLock(loading);
 
   return (
     <>
-      <AnimatePresence>
-        {loading && <Preloader onDone={() => setLoading(false)} />}
-      </AnimatePresence>
 
       {/* ambient layers */}
       <span className="tex-grid" aria-hidden="true" />

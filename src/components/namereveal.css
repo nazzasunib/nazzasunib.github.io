@@ -3,7 +3,7 @@
    ============================================================ */
 .nr {
   position: relative;
-  height: 340vh;
+  height: 190vh;
   z-index: 2;
 }
 .nr-still { height: 100vh; }
@@ -51,11 +51,9 @@
   visibility: hidden;
 }
 
-/* thin frame that follows the photo while it is still a portrait */
-.nr-edge {
-  stroke: var(--acc-br);
-  stroke-width: 1.2;
-}
+/* wash + solid name shown over the full photo at the start */
+.nr-veil { fill: var(--ground); }
+.nr-ink text { fill: var(--ink); }
 
 /* outline traced over the photo-filled letters */
 .nr-outline text {

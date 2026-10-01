@@ -1,5 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { useScroll } from 'framer-motion';
+import { useScroll, useSpring } from 'framer-motion';
 import { PROFILE } from '../data/content';
 import { useReducedMotion } from '../hooks';
 import './namereveal.css';
@@ -10,10 +10,9 @@ import './namereveal.css';
    The section is several screens tall and its stage sticks to the
    viewport. One SVG holds the portrait and a mask made of the name:
 
-     start   → the portrait sits in a tall rounded frame
-     scroll  → the frame grows to cover the screen while the mask
-               crossfades from "frame" to "letters of the name", so
-               the photo condenses into the name itself
+     start   → the portrait fills the screen with the name over it
+     scroll  → the full photo fades out of everywhere except the
+               letters, so the photo condenses into the name itself
      hold    → photo-filled name, an outline traces the letters, the
                tagline rises in
      leave   → the stage softens and a fog fades it into the hero
@@ -43,7 +42,8 @@ export default function NameReveal() {
   const stage = useRef(null);
   const img = useRef(null);
   const frameMask = useRef(null);
-  const frameEdge = useRef(null);
+  const veil = useRef(null);
+  const ink = useRef(null);
   const textMask = useRef(null);
   const outline = useRef(null);
   const tag = useRef(null);
@@ -84,7 +84,9 @@ export default function NameReveal() {
     if (document.fonts?.ready) document.fonts.ready.then(fit);
   }, [box.W, box.H, lines.length]);
 
-  const { scrollYProgress } = useScroll({ target: sec, offset: ['start start', 'end end'] });
+  const { scrollYProgress: raw } = useScroll({ target: sec, offset: ['start start', 'end end'] });
+  /* a soft spring between the scrollbar and the scene, so every step glides */
+  const scrollYProgress = useSpring(raw, { stiffness: 110, damping: 24, mass: 0.5, restDelta: 0.0005 });
 
   /* drive every layer from progress */
   useEffect(() => {
@@ -94,16 +96,6 @@ export default function NameReveal() {
     const cx = W / 2;
     const cy = H * 0.47;
 
-    /* framed portrait */
-    let h0 = H * 0.7;
-    let w0 = h0 * (IMG_W / IMG_H);
-    if (w0 > W * 0.78) {
-      w0 = W * 0.78;
-      h0 = w0 / (IMG_W / IMG_H);
-    }
-    const x0 = (W - w0) / 2;
-    const y0 = (H - h0) / 2;
-
     /* portrait covering the stage, face kept near the centre */
     const s = Math.max(W / IMG_W, H / IMG_H) * 1.08;
     const w1 = IMG_W * s;
@@ -111,50 +103,46 @@ export default function NameReveal() {
     const x1 = clamp(cx - FACE.x * w1, W - w1, 0);
     const y1 = clamp(cy - FACE.y * h1, H - h1, 0);
 
+    /* full-screen frame mask, set once */
+    frameMask.current?.setAttribute('width', W);
+    frameMask.current?.setAttribute('height', H);
+    veil.current?.setAttribute('width', W);
+    veil.current?.setAttribute('height', H);
+
     const render = (pRaw) => {
       const p = reduced ? 0.7 : pRaw;
-      const k = ease(span(p, 0.08, 0.5)); // frame → letters
-      const hold = span(p, 0.52, 0.66); // outline + tagline
-      const out = ease(span(p, 0.82, 1)); // hand-off to the hero
+      const k = ease(span(p, 0.02, 0.5)); // full photo → photo inside the letters
+      const hold = span(p, 0.42, 0.62); // outline + tagline
+      const out = ease(span(p, 0.74, 1)); // hand-off to the hero
 
-      const ix = lerp(x0, x1, k);
-      const iy = lerp(y0, y1, k);
-      const iw = lerp(w0, w1, k);
-      const ih = lerp(h0, h1, k);
-      img.current?.setAttribute('x', ix);
-      img.current?.setAttribute('y', iy);
+      /* slow push-in on the photo while it condenses */
+      const zoom = lerp(1.06, 1, k);
+      const iw = w1 * zoom;
+      const ih = h1 * zoom;
+      img.current?.setAttribute('x', x1 - (iw - w1) / 2);
+      img.current?.setAttribute('y', y1 - (ih - h1) / 2);
       img.current?.setAttribute('width', iw);
       img.current?.setAttribute('height', ih);
 
-      /* the frame mask grows with the photo and fades as the letters take over */
-      for (const r of [frameMask.current, frameEdge.current]) {
-        if (!r) continue;
-        r.setAttribute('x', ix);
-        r.setAttribute('y', iy);
-        r.setAttribute('width', iw);
-        r.setAttribute('height', ih);
-        r.setAttribute('rx', lerp(28, 0, k));
-      }
+      /* the whole photo fades away, leaving it only inside the name */
       frameMask.current?.setAttribute('opacity', (1 - k).toFixed(3));
-      frameEdge.current?.setAttribute('opacity', (0.9 * (1 - k * 1.6)).toFixed(3));
+      veil.current?.setAttribute('opacity', (0.42 * (1 - k)).toFixed(3));
+      ink.current?.setAttribute('opacity', (0.82 * (1 - k)).toFixed(3));
 
-      /* letters zoom down from 1.6× while they fade in */
-      const sc = lerp(1.6, 1, k) * lerp(1, 0.92, out);
+      const sc = lerp(1.04, 1, k) * lerp(1, 0.94, out);
       const tf = `translate(${cx} ${cy}) scale(${sc.toFixed(4)}) translate(${-cx} ${-cy})`;
       textMask.current?.setAttribute('transform', tf);
-      textMask.current?.setAttribute('opacity', k.toFixed(3));
+      ink.current?.setAttribute('transform', tf);
       outline.current?.setAttribute('transform', tf);
-      outline.current?.setAttribute('opacity', (0.06 + 0.94 * hold).toFixed(3));
+      outline.current?.setAttribute('opacity', (0.9 * hold).toFixed(3));
 
       if (tag.current) {
         tag.current.style.opacity = (hold * (1 - out)).toFixed(3);
         tag.current.style.transform = `translateY(${lerp(24, 0, hold)}px)`;
       }
-      if (cue.current) cue.current.style.opacity = (1 - span(p, 0, 0.08)).toFixed(3);
-      if (stage.current) {
-        stage.current.style.setProperty('--out', out.toFixed(3));
-      }
-      if (fog.current) fog.current.style.opacity = (0.35 + 0.65 * out).toFixed(3);
+      if (cue.current) cue.current.style.opacity = (1 - span(p, 0, 0.1)).toFixed(3);
+      if (stage.current) stage.current.style.setProperty('--out', out.toFixed(3));
+      if (fog.current) fog.current.style.opacity = (0.3 + 0.7 * out).toFixed(3);
     };
 
     render(scrollYProgress.get());
@@ -189,7 +177,7 @@ export default function NameReveal() {
           <defs>
             <mask id="nr-mask" maskUnits="userSpaceOnUse" x="0" y="0" width={W} height={H}>
               <rect x="0" y="0" width={W} height={H} fill="black" />
-              <rect ref={frameMask} fill="white" />
+              <rect ref={frameMask} x="0" y="0" fill="white" />
               <g ref={textMask} fill="white">
                 {textNodes('mask')}
               </g>
@@ -202,7 +190,11 @@ export default function NameReveal() {
             preserveAspectRatio="xMidYMid slice"
             mask="url(#nr-mask)"
           />
-          <rect ref={frameEdge} className="nr-edge" fill="none" />
+          {/* soft wash so the name reads over the full photo */}
+          <rect ref={veil} className="nr-veil" x="0" y="0" />
+          <g ref={ink} className="nr-ink">
+            {textNodes('ink')}
+          </g>
           <g ref={outline} className="nr-outline">
             {textNodes('outline')}
           </g>
