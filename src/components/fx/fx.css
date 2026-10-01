@@ -278,6 +278,7 @@
   box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.7);
   transform: rotateY(calc(var(--i) * 360deg / var(--n))) translateZ(clamp(190px, 24vw, 260px));
   backface-visibility: hidden;
+  overflow: hidden;
 }
 .rg-kind {
   font-size: 0.58rem;
@@ -285,12 +286,20 @@
   text-transform: uppercase;
   color: var(--tone, var(--acc));
 }
-.rg-card b { font-size: 0.98rem; font-weight: 600; letter-spacing: -0.02em; color: var(--ink); }
+.rg-card b {
+  font-size: 0.86rem;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  min-width: 0;
+  overflow-wrap: anywhere; /* long handles/URLs wrap instead of spilling out */
+}
 
 @media (max-width: 620px) {
   .rg-spin { width: 132px; height: 88px; }
   .rg-card { transform: rotateY(calc(var(--i) * 360deg / var(--n))) translateZ(165px); padding: 11px 12px; }
-  .rg-card b { font-size: 0.8rem; }
+  .rg-card b { font-size: 0.72rem; }
   .fx-tiles { --tw: 52px; --gap: 14px; }
   .tf-lbl { font-size: 0.64rem; width: 96px; margin-left: -48px; }
   .ls-plane { width: 190px; height: 132px; }
