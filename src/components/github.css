@@ -1,5 +1,5 @@
-.gh-link { color: var(--jade); border-bottom: 1px solid rgba(35, 211, 176, 0.35); }
-.gh-link:hover { color: var(--saffron); border-color: rgba(255, 176, 32, 0.5); }
+.gh-link { color: var(--acc); border-bottom: 1px solid color-mix(in srgb, var(--acc) 35%, transparent); }
+.gh-link:hover { color: var(--acc); border-color: color-mix(in srgb, var(--acc) 50%, transparent); }
 
 .gh-panel {
   display: grid;
@@ -17,8 +17,8 @@
   transition: border-color 0.4s var(--ease), box-shadow 0.4s var(--ease);
 }
 .gh-stat:hover {
-  border-color: rgba(138, 107, 255, 0.35);
-  box-shadow: 0 22px 50px -30px rgba(138, 107, 255, 0.6);
+  border-color: color-mix(in srgb, var(--blue) 35%, transparent);
+  box-shadow: 0 22px 50px -30px color-mix(in srgb, var(--blue) 60%, transparent);
 }
 .gh-stat-icon {
   display: grid;
@@ -26,13 +26,13 @@
   width: 30px;
   height: 30px;
   border-radius: 9px;
-  color: var(--iris);
-  background: rgba(138, 107, 255, 0.11);
-  border: 1px solid rgba(138, 107, 255, 0.22);
+  color: var(--blue);
+  background: color-mix(in srgb, var(--blue) 11%, transparent);
+  border: 1px solid color-mix(in srgb, var(--blue) 22%, transparent);
   margin-bottom: 8px;
 }
 .gh-stat-n {
-  font-family: var(--display);
+  font-family: var(--fd);
   font-size: clamp(1.6rem, 3vw, 2.15rem);
   font-weight: 700;
   letter-spacing: -0.04em;
@@ -62,11 +62,11 @@
   text-transform: uppercase;
   padding: 5px 11px;
   border-radius: 100px;
-  border: 1px solid var(--line-2);
+  border: 1px solid var(--line);
 }
-.gh-pill-ready { color: var(--jade); border-color: rgba(35, 211, 176, 0.35); background: rgba(35, 211, 176, 0.08); }
-.gh-pill-loading { color: var(--saffron); border-color: rgba(255, 176, 32, 0.32); background: rgba(255, 176, 32, 0.07); }
-.gh-pill-error { color: var(--vermilion); border-color: rgba(255, 92, 57, 0.32); background: rgba(255, 92, 57, 0.07); }
+.gh-pill-ready { color: var(--acc); border-color: color-mix(in srgb, var(--acc) 35%, transparent); background: color-mix(in srgb, var(--acc) 8%, transparent); }
+.gh-pill-loading { color: var(--acc); border-color: color-mix(in srgb, var(--acc) 32%, transparent); background: color-mix(in srgb, var(--acc) 7%, transparent); }
+.gh-pill-error { color: var(--acc); border-color: color-mix(in srgb, var(--acc) 32%, transparent); background: color-mix(in srgb, var(--acc) 7%, transparent); }
 
 .lang-rows { display: flex; flex-direction: column; gap: 13px; }
 .lang-row {
@@ -85,7 +85,7 @@
 .lang-track {
   height: 6px;
   border-radius: 6px;
-  background: rgba(245, 242, 234, 0.07);
+  background: color-mix(in srgb, var(--ink) 7%, transparent);
   overflow: hidden;
 }
 .lang-fill {
@@ -104,9 +104,9 @@
   border-radius: 6px;
   background: linear-gradient(
     90deg,
-    rgba(245, 242, 234, 0.05) 0%,
-    rgba(245, 242, 234, 0.14) 50%,
-    rgba(245, 242, 234, 0.05) 100%
+    color-mix(in srgb, var(--ink) 5%, transparent) 0%,
+    color-mix(in srgb, var(--ink) 14%, transparent) 50%,
+    color-mix(in srgb, var(--ink) 5%, transparent) 100%
   );
   background-size: 220% 100%;
   animation: shimmerSlide 1.4s ease-in-out infinite;

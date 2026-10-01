@@ -2,7 +2,7 @@
   position: relative;
   z-index: 3;
   padding-top: 60px;
-  background: linear-gradient(180deg, #0f0d1c, #08070f 70%);
+  background: linear-gradient(180deg, var(--pane), var(--ground) 70%);
   overflow: hidden;
 }
 .foot::before {
@@ -13,7 +13,7 @@
   translate: -50% 0;
   width: 70%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 176, 32, 0.4), transparent);
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--acc) 40%, transparent), transparent);
 }
 .foot-wave {
   position: absolute;
@@ -43,14 +43,14 @@
 
 .foot-logo {
   display: inline-block;
-  font-family: var(--display);
+  font-family: var(--fd);
   font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: -0.045em;
   margin-bottom: 12px;
 }
 .foot-logo span {
-  background: var(--grad-warm);
+  background: var(--grad);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -68,10 +68,10 @@
   gap: 7px;
   font-size: 0.88rem;
   font-weight: 500;
-  color: var(--jade);
+  color: var(--acc);
   transition: gap 0.35s var(--ease), color 0.3s;
 }
-.foot-mail:hover { gap: 11px; color: var(--saffron); }
+.foot-mail:hover { gap: 11px; color: var(--acc); }
 
 .foot-col h5 {
   font-size: 0.63rem;
@@ -125,3 +125,4 @@
 @media (max-width: 460px) {
   .foot-grid { grid-template-columns: 1fr; }
 }
+:root[data-mode='light'] .foot-socials a { color: color-mix(in srgb, var(--tone) 70%, #000); }

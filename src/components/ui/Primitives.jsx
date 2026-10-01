@@ -39,7 +39,6 @@ export function SectionHead({ index, eyebrow, title, accent, sub, align = 'left'
     <div className={`sec-head sec-head-${align}`}>
       <Reveal>
         <span className="eyebrow">
-          {index != null && <span className="idx">{String(index).padStart(2, '0')} /</span>}
           {eyebrow}
         </span>
       </Reveal>

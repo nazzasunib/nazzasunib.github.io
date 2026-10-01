@@ -1,7 +1,8 @@
 # Nazzas Ibn Shams Unib — Portfolio
 
 React + Vite rebuild of the original single-file `index.html`, with a new
-visual identity and per-section motion. All copy, links and data from the
+visual identity inspired by a dark/light SaaS look — two themes, canvas
+and CSS-3D figures, and cursor-reactive effects. All copy, links and data from the
 original page were carried over.
 
 The original file is preserved untouched at `legacy/index.original.html`.
@@ -17,22 +18,42 @@ npm run preview  # serve the production build
 
 ## Design system
 
-A single palette drives everything, defined as tokens in
-[src/styles/global.css](src/styles/global.css):
+Two themes, one set of tokens in [src/styles/global.css](src/styles/global.css).
+Dark is the default; `<html data-mode="light">` switches to light. The toggle
+in the navbar saves the choice to `localStorage` (`nis-mode`), and a tiny
+script in `index.html` applies it before first paint so there is no flash.
 
-| Token | Value | Role |
-| --- | --- | --- |
-| `--ink` / `--ink-2` / `--ink-3` | `#08070f` → `#16132b` | ink-plum ground |
-| `--saffron` | `#ffb020` | primary accent |
-| `--vermilion` | `#ff5c39` | secondary accent |
-| `--jade` | `#23d3b0` | cool counterpoint |
-| `--iris` | `#8a6bff` | tertiary accent |
-| `--rose` | `#ff7db0` | events accent |
-| `--chalk` / `--ash` | `#f5f2ea` / `#948da8` | text, muted text |
+| Token | Dark | Light | Role |
+| --- | --- | --- | --- |
+| `--ground` | `#06070A` | `#F5F4F0` | page background |
+| `--paper` | `#0C0E13` | `#FFFFFF` | solid card surface |
+| `--ink` / `--ink2` / `--ink3` | `#F3F5F9` → `#9AA2B1` | `#101010` → `#66635D` | text, muted text |
+| `--acc` | `#13EF93` neon green | `#D02F24` signal red | accent, links, live dots |
+| `--lg1` → `--lg2` | green → blue | red → violet | gradient words |
+| `--btn1-bg` | green | near-black | primary button |
+| `--w1/--w2/--w3` | green / blue / violet | peach / sage / sand | background washes |
+| `--done/--wait/--stop` | green / amber / coral | darker equivalents | status chips |
 
-The idea is a dye-lot against an indigo vat: warm saffron/vermilion carrying
-the brand, jade and iris cooling it, all on near-black plum. Type is
-Bricolage Grotesque (display), Inter (body), JetBrains Mono (labels).
+Canvases read `--fx-*` tokens (RGB triplets) and redraw when the theme flips.
+Type is Geist (display + body) and Geist Mono (labels).
+
+## Motion and effects
+
+| Where | Effect |
+| --- | --- |
+| Hero background | 2D-canvas particle network; particles within 160px of the cursor draw a line to it; cursor spotlight; glowing horizon arc (dark only); rotating wireframe cubes |
+| Hero cards | glass card rig that tilts toward the pointer (±12° / ±9°); live chat demo that types answers from `content.js`; voice-note waveform + role typewriter; approval card that flips between "waiting" and "available" |
+| Hero foot | live ticker of experience entries with status-coloured dots |
+| About | rotating wireframe globe (230 points, light pulses, leans to the cursor); ledger-style stat strip; education steps with a scroll-filled rail |
+| Experience | pipeline strip whose steps light one after another; scroll-filled centre spine |
+| Business | 3D tile pipeline — a light packet travels research → partnership, last tile glows amber |
+| Textile | stacked glass layers on a tilted plane with check tags popping in |
+| Social | 3D ring carousel of platforms |
+| Contact | voice orb — a lit sphere inside two rings of level bars |
+| Everywhere | cursor-following glow inside every `.card`, scroll reveal, 2px progress bar, button sheen, grid + grain texture |
+
+Everything is gated behind `prefers-reduced-motion`, and every canvas stops
+drawing while it is off screen.
 
 ## Structure
 
@@ -43,38 +64,21 @@ src/
   App.jsx               section order, Lenis smooth scroll, preloader gate
   data/content.js       ALL copy, links, skills, events — edit here
   lib/scroll.js         single scroll authority (Lenis-aware)
+  lib/theme.js          light/dark mode: setMode, useTheme, onThemeChange
   hooks/index.js        typewriter, count-up, tilt, active-section, scroll lock
-  styles/global.css     tokens, base, buttons
+  styles/global.css     dark + light tokens, base, buttons, chips
   components/
     ui/Primitives.jsx   Section, SectionHead, SplitWords, GradientLine, …
     ui/Icon.jsx         one inline SVG icon set (no icon library)
-    Ambient.jsx         cursor, floating glyphs, scroll progress, back-to-top
+    Ambient.jsx         scroll progress, back-to-top, page-wide card glow
+    fx/useCanvas.js     shared canvas loop (DPR, off-screen pause, theme)
+    fx/HeroField.jsx    hero particle network + cursor lines
+    fx/Globe.jsx        wireframe globe          fx/VoiceOrb.jsx  voice orb
+    fx/Stack3D.jsx      LayerStack, TileFlow, Ring3D (CSS 3D)
     Preloader.jsx  Navbar.jsx  Hero.jsx  About.jsx  Skills.jsx
     Experience.jsx  Projects.jsx  GitHubPanel.jsx  Expertise.jsx
-    Events.jsx  Certificates.jsx  Social.jsx  Contact.jsx  Footer.jsx
+    Events.jsx  Achievements.jsx  Social.jsx  Contact.jsx  Footer.jsx
 ```
-
-## Motion, by section
-
-| Section | Treatment |
-| --- | --- |
-| Preloader | loom warp/weft threads draw in, progress counter, clip-path wipe out |
-| Hero | per-character name reveal, typewriter role, conic portrait ring + orbit, scroll parallax & fade, keyword marquee |
-| Nav | blur-in on scroll, spring-sliding active pill (`layoutId`), circular-reveal mobile menu |
-| About | per-word title masks, count-up stats, scroll-linked education rail fill |
-| Skills | domain constellation wired to a hub, filter chips with spring pill, hover/focus/click drives a readout panel; no proficiency ratings by design |
-| Experience | scroll-linked centre spine, cards slide in from alternating sides |
-| Projects | staggered entry, 3D tilt, spotlight, grid drift on hover |
-| GitHub | count-up stats, language bars spring open, shimmer skeleton while loading |
-| Business / Textile | dye-band swatch panels, scroll-drifting glyph, SVG stitch draws in, staggered feature cards |
-| Events | hover zoom → spring modal with swipeable slideshow + autoplay |
-| Certificates | native scroll-snap carousel with pointer drag and edge fades |
-| Social | per-brand hover glow keyed to each platform's colour |
-| Contact | floating labels, gradient underline sweep, copy-to-clipboard, themed map |
-| Footer | outlined keyword marquee, wave divider |
-
-Everything is gated behind `prefers-reduced-motion`, which also disables
-Lenis so native scrolling is untouched.
 
 ## Deploying
 

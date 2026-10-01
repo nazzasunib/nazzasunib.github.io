@@ -3,17 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#08070F" />
+    <meta name="theme-color" content="#06070A" />
     <title>Nazzas Ibn Shams Unib — Textile Engineer &amp; Business Development</title>
     <meta
       name="description"
       content="Portfolio of Nazzas Ibn Shams Unib — Textile Engineering graduate from BUFT and Business Development Executive at NidusLab, bridging textile manufacturing, business development and technology."
     />
     <link rel="icon" href="./assets/portrait.jpg" />
+    <!-- Apply the saved theme before first paint so there is no dark→light flash. -->
+    <script>
+      try {
+        if (localStorage.getItem('nis-mode') === 'light') {
+          document.documentElement.setAttribute('data-mode', 'light');
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#F5F4F0');
+        }
+      } catch (e) {}
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@300..800&family=Geist+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
   </head>

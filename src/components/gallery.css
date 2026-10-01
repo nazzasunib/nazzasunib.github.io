@@ -14,9 +14,9 @@
   text-align: center;
   color: var(--ash-2);
   background:
-    repeating-linear-gradient(90deg, rgba(245, 242, 234, 0.05) 0 1px, transparent 1px 12px),
-    repeating-linear-gradient(0deg, rgba(245, 242, 234, 0.05) 0 1px, transparent 1px 12px),
-    linear-gradient(150deg, rgba(30, 26, 58, 0.9), rgba(8, 7, 15, 0.95));
+    repeating-linear-gradient(90deg, color-mix(in srgb, var(--ink) 5%, transparent) 0 1px, transparent 1px 12px),
+    repeating-linear-gradient(0deg, color-mix(in srgb, var(--ink) 5%, transparent) 0 1px, transparent 1px 12px),
+    linear-gradient(150deg, color-mix(in srgb, var(--paper) 90%, transparent), color-mix(in srgb, var(--ground) 95%, transparent));
 }
 .shot-fallback .mono { font-size: 0.68rem; max-width: 26ch; line-height: 1.5; }
 
@@ -25,7 +25,7 @@
   position: fixed;
   inset: 0;
   z-index: 9600;
-  background: rgba(4, 3, 9, 0.82);
+  background: color-mix(in srgb, var(--ground) 82%, transparent);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   display: grid;
@@ -38,7 +38,7 @@
   position: relative;
   width: min(880px, 100%);
   border-radius: 24px;
-  background: var(--glass-2);
+  background: var(--solid);
   overflow: hidden;
 }
 
@@ -53,16 +53,16 @@
   display: grid;
   place-items: center;
   color: var(--chalk);
-  background: rgba(8, 7, 15, 0.7);
-  border: 1px solid var(--line-2);
+  background: color-mix(in srgb, var(--ground) 70%, transparent);
+  border: 1px solid var(--line);
   transition: background 0.3s, transform 0.35s var(--ease);
 }
-.modal-close:hover { background: var(--vermilion); color: var(--ink); transform: rotate(90deg); }
+.modal-close:hover { background: var(--acc); color: var(--on-acc); transform: rotate(90deg); }
 
 .slideshow {
   position: relative;
   aspect-ratio: 16 / 9;
-  background: var(--ink-2);
+  background: var(--pane);
   overflow: hidden;
   cursor: grab;
   /* only sideways gestures are captured — a vertical wheel must still scroll
@@ -99,10 +99,10 @@
   pointer-events: none;
   background: linear-gradient(
     90deg,
-    rgba(8, 7, 15, 0.5) 0,
-    rgba(8, 7, 15, 0) 6%,
-    rgba(8, 7, 15, 0) 94%,
-    rgba(8, 7, 15, 0.5) 100%
+    color-mix(in srgb, var(--ground) 50%, transparent) 0,
+    color-mix(in srgb, var(--ground) 0%, transparent) 6%,
+    color-mix(in srgb, var(--ground) 0%, transparent) 94%,
+    color-mix(in srgb, var(--ground) 50%, transparent) 100%
   );
 }
 
@@ -120,7 +120,7 @@
   color: var(--ash);
   padding: 4px 10px;
   border-radius: 100px;
-  background: rgba(8, 7, 15, 0.66);
+  background: color-mix(in srgb, var(--ground) 66%, transparent);
   opacity: 0;
   transition: opacity 0.4s var(--ease);
 }
@@ -132,7 +132,7 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: var(--ink-2);
+  background: var(--pane);
 }
 .shot img {
   position: absolute;
@@ -176,11 +176,11 @@
   display: grid;
   place-items: center;
   color: var(--chalk);
-  background: rgba(8, 7, 15, 0.62);
-  border: 1px solid var(--line-2);
+  background: color-mix(in srgb, var(--ground) 62%, transparent);
+  border: 1px solid var(--line);
   transition: background 0.3s, transform 0.3s var(--ease);
 }
-.slide-nav button:hover { background: var(--saffron); color: var(--ink); transform: scale(1.1); }
+.slide-nav button:hover { background: var(--acc); color: var(--on-acc); transform: scale(1.1); }
 
 .slide-count {
   position: absolute;
@@ -192,7 +192,7 @@
   color: var(--chalk);
   padding: 4px 10px;
   border-radius: 100px;
-  background: rgba(8, 7, 15, 0.66);
+  background: color-mix(in srgb, var(--ground) 66%, transparent);
 }
 
 .dots {
@@ -207,11 +207,11 @@
   height: 7px;
   border-radius: 100px;
   overflow: hidden;
-  background: rgba(245, 242, 234, 0.22);
+  background: color-mix(in srgb, var(--ink) 22%, transparent);
   transition: width 0.45s var(--ease), background 0.45s var(--ease);
 }
-.dot:hover { background: rgba(245, 242, 234, 0.4); }
-.dot-on { width: 30px; background: rgba(245, 242, 234, 0.18); }
+.dot:hover { background: color-mix(in srgb, var(--ink) 40%, transparent); }
+.dot-on { width: 30px; background: color-mix(in srgb, var(--ink) 18%, transparent); }
 
 /* the active dot fills across as the 3s autoplay timer runs */
 .dot-fill {
@@ -219,7 +219,7 @@
   inset: 0;
   transform-origin: left center;
   border-radius: inherit;
-  background: var(--grad-warm);
+  background: var(--grad);
   animation: dot-sweep linear forwards;
 }
 @keyframes dot-sweep {
@@ -242,7 +242,7 @@
 }
 .story h3 {
   font-size: 1.02rem;
-  color: var(--saffron);
+  color: var(--acc);
   margin: 26px 0 10px;
 }
 .story p {
@@ -251,8 +251,8 @@
   margin-bottom: 13px;
 }
 .story strong { color: var(--chalk-dim); font-weight: 600; }
-.story a { color: var(--jade); border-bottom: 1px solid rgba(35, 211, 176, 0.35); }
-.story a:hover { color: var(--saffron); }
+.story a { color: var(--acc); border-bottom: 1px solid color-mix(in srgb, var(--acc) 35%, transparent); }
+.story a:hover { color: var(--acc); }
 
 .story-list {
   display: flex;
@@ -266,7 +266,7 @@
   font-size: 0.9rem;
   color: var(--ash);
 }
-.story-list li svg { color: var(--jade); flex: none; margin-top: 4px; }
+.story-list li svg { color: var(--acc); flex: none; margin-top: 4px; }
 
 @media (max-width: 620px) {
   .slideshow { aspect-ratio: 4 / 3; }

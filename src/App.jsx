@@ -16,7 +16,7 @@ import Achievements from './components/Achievements';
 import Social from './components/Social';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import { BackToTop, Cursor, FloatingGlyphs, ScrollProgress } from './components/Ambient';
+import { BackToTop, CardGlow, ScrollProgress } from './components/Ambient';
 
 import useGitHub from './components/useGitHub';
 import { useReducedMotion, useScrollLock } from './hooks';
@@ -64,12 +64,11 @@ export default function App() {
       </AnimatePresence>
 
       {/* ambient layers */}
-      <FloatingGlyphs count={28} />
-      <span className="tex-weave" aria-hidden="true" />
+      <span className="tex-grid" aria-hidden="true" />
       <span className="tex-noise" aria-hidden="true" />
 
       <ScrollProgress />
-      <Cursor />
+      <CardGlow />
       <Navbar />
 
       <main>
@@ -79,8 +78,8 @@ export default function App() {
         <Experience />
         <Projects gh={gh} />
         <GitHubPanel gh={gh} />
-        <Expertise id="business" index={6} data={BUSINESS} tone="saffron" />
-        <Expertise id="textile" index={7} data={TEXTILE} tone="jade" flip />
+        <Expertise id="business" data={BUSINESS} tone="saffron" visual="flow" />
+        <Expertise id="textile" data={TEXTILE} tone="jade" visual="layers" flip />
         <Events />
         <Achievements />
         <Social />

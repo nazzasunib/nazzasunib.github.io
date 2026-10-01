@@ -11,11 +11,12 @@ const CY = 160;
 const R_NODE = 112;
 const R_ARC = 142;
 
+/* tones resolve through CSS variables so they follow the light/dark theme */
 const TONE_HEX = {
-  saffron: '#ffb020',
-  vermilion: '#ff5c39',
-  jade: '#23d3b0',
-  iris: '#8a6bff',
+  saffron: 'var(--t-amber)',
+  vermilion: 'var(--t-coral)',
+  jade: 'var(--t-green)',
+  iris: 'var(--t-blue)',
 };
 
 const groupOf = (id) => SKILL_GROUPS.find((g) => g.id === id);
@@ -70,8 +71,8 @@ function SkillConstellation({ activeName, dimmed, onPick }) {
       <svg viewBox="0 0 320 320" role="img" aria-label="Skills grouped by domain">
         <defs>
           <radialGradient id="consHub" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#ffb020" stopOpacity="0.35" />
-            <stop offset="100%" stopColor="#ffb020" stopOpacity="0" />
+            <stop offset="0%" style={{ stopColor: 'var(--acc)', stopOpacity: 0.35 }} />
+            <stop offset="100%" style={{ stopColor: 'var(--acc)', stopOpacity: 0 }} />
           </radialGradient>
         </defs>
 
@@ -202,7 +203,6 @@ export default function Skills() {
   return (
     <Section id="skills" bloom="jade" bloomAt="left">
       <SectionHead
-        index={2}
         eyebrow="Skills"
         title="What I bring to"
         accent="the table."
@@ -214,6 +214,7 @@ export default function Skills() {
         <div className="sk-visual">
           <Reveal>
             <div className="sk-panel glass">
+              <span className="sk-live livedot"><i />Skill map</span>
               <SkillConstellation
                 activeName={activeName}
                 dimmed={dimmed}
@@ -251,7 +252,7 @@ export default function Skills() {
         <div className="sk-list">
           <Reveal delay={0.08}>
             <div className="sk-filters" role="group" aria-label="Filter skills by domain">
-              {[{ id: 'all', short: 'All', tone: 'saffron' }, ...SKILL_GROUPS].map((g) => {
+              {[{ id: 'all', short: 'All', tone: 'jade' }, ...SKILL_GROUPS].map((g) => {
                 const on = filter === g.id;
                 return (
                   <button

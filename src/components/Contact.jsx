@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { PROFILE } from '../data/content';
 import { Magnetic, Reveal, Section, SectionHead } from './ui/Primitives';
 import Icon from './ui/Icon';
+import VoiceOrb from './fx/VoiceOrb';
 import './contact.css';
 
 const FIELDS = [
@@ -47,7 +48,7 @@ function DetailCard({ item, index }) {
 
   return (
     <motion.div
-      className="detail glass"
+      className="detail glass card"
       initial={{ opacity: 0, x: 26 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true, margin: '-8% 0px' }}
@@ -88,7 +89,6 @@ export default function Contact() {
   return (
     <Section id="contact" bloom="vermilion" bloomAt="left">
       <SectionHead
-        index={11}
         eyebrow="Contact"
         title="Let's"
         accent="start a conversation."
@@ -140,6 +140,13 @@ export default function Contact() {
         </Reveal>
 
         <div className="contact-side">
+          <Reveal>
+            <VoiceOrb
+              speakers={['You', PROFILE.first.split(' ')[0]]}
+              states={['Listening', 'Replying']}
+              note="Say hello — the conversation starts here."
+            />
+          </Reveal>
           {DETAILS.map((d, i) => (
             <DetailCard item={d} index={i} key={d.label} />
           ))}

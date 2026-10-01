@@ -2,7 +2,7 @@
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: var(--ink);
+  background: var(--ground);
   display: grid;
   place-items: center;
   overflow: hidden;
@@ -11,7 +11,7 @@
   content: '';
   position: absolute;
   inset: -30%;
-  background: radial-gradient(circle at 50% 60%, rgba(255, 176, 32, 0.12), transparent 55%);
+  background: radial-gradient(circle at 50% 60%, var(--acc-bg), transparent 55%);
   pointer-events: none;
 }
 
@@ -33,13 +33,15 @@
 }
 
 .pre-mark {
-  font-family: var(--display);
+  font-family: var(--fd);
   font-size: clamp(1.9rem, 5.5vw, 2.9rem);
-  font-weight: 700;
+  font-weight: 800;
+  color: var(--ink);
   letter-spacing: -0.045em;
 }
 .pre-mark span {
-  background: var(--grad-warm);
+  background: var(--grad);
+  -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -49,14 +51,14 @@
 .pre-bar {
   width: min(280px, 62vw);
   height: 2px;
-  background: rgba(245, 242, 234, 0.1);
+  background: var(--rule);
   border-radius: 4px;
   overflow: hidden;
 }
 .pre-fill {
   height: 100%;
-  background: var(--grad-full);
-  box-shadow: 0 0 14px rgba(255, 176, 32, 0.6);
+  background: var(--grad);
+  box-shadow: 0 0 14px var(--acc-br);
 }
 
 .pre-meta {
@@ -68,4 +70,4 @@
   text-transform: uppercase;
   color: var(--ash);
 }
-.pre-pct { color: var(--saffron); }
+.pre-pct { color: var(--acc); }

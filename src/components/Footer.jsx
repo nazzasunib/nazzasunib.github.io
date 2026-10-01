@@ -2,6 +2,7 @@ import { NAV, PROFILE, SOCIALS } from '../data/content';
 import { Marquee, Reveal } from './ui/Primitives';
 import Icon from './ui/Icon';
 import { scrollToId } from '../lib/scroll';
+import { toneOf } from './Social';
 import './footer.css';
 
 const TICKER = ['Textile', 'Business', 'Technology', 'Innovation', 'Growth'];
@@ -15,7 +16,7 @@ export default function Footer() {
   return (
     <footer className="foot">
       <svg className="foot-wave" viewBox="0 0 1200 90" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M0,0 C300,88 900,2 1200,58 L1200,0 L0,0 Z" fill="#08070f" />
+        <path d="M0,0 C300,88 900,2 1200,58 L1200,0 L0,0 Z" style={{ fill: 'var(--ground)' }} />
       </svg>
 
       <div className="foot-marquee">
@@ -72,7 +73,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.name}
-                  style={{ '--tone': s.tone }}
+                  style={{ '--tone': toneOf(s.tone) }}
                 >
                   <Icon name={s.icon} size={17} />
                 </a>

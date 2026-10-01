@@ -61,9 +61,9 @@ export default function Preloader({ onDone }) {
         ))}
         <defs>
           <linearGradient id="preGrad" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#23d3b0" />
-            <stop offset="45%" stopColor="#ffb020" />
-            <stop offset="100%" stopColor="#8a6bff" />
+            <stop offset="0%" style={{ stopColor: 'var(--lg1)' }} />
+            <stop offset="55%" style={{ stopColor: 'var(--lg2)' }} />
+            <stop offset="100%" style={{ stopColor: 'var(--violet)' }} />
           </linearGradient>
         </defs>
       </svg>

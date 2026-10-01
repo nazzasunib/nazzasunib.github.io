@@ -13,7 +13,6 @@ export default function Events() {
     <>
       <Section id="events" bloom="rose" bloomAt="left">
         <SectionHead
-          index={8}
           eyebrow="Events"
           title="Moments from"
           accent="my events."
@@ -22,7 +21,7 @@ export default function Events() {
 
         <Stagger className="events-grid" stagger={0.1}>
           {EVENTS.map((ev) => (
-            <motion.article className="event glass" key={ev.id} variants={staggerItem}>
+            <motion.article className="event glass card" key={ev.id} variants={staggerItem}>
               <button
                 className="event-btn"
                 onClick={() => setOpen(ev)}

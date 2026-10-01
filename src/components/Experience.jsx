@@ -14,6 +14,17 @@ const TAG_ICON = {
   Academic: 'cap',
 };
 
+/* distinct tags, in the order they first appear */
+const PIPE = [...new Set(EXPERIENCE.map((x) => x.tag))];
+
+const TAG_CLASS = {
+  Industry: 'chip-acc',
+  Leadership: 'chip-ok',
+  Volunteer: 'chip-wait',
+  Events: 'chip-stop',
+  Academic: '',
+};
+
 export default function Experience() {
   const trackRef = useRef(null);
   const reduced = useReducedMotion();
@@ -27,12 +38,24 @@ export default function Experience() {
   return (
     <Section id="experience" bloom="vermilion" bloomAt="right">
       <SectionHead
-        index={3}
         eyebrow="Experience"
         title="Where I've"
         accent="put in the work."
         sub="Industry placement, four club leadership roles and the academic project that connected them."
       />
+
+      {/* pipeline strip — each kind of work lights up in turn */}
+      <div className="xp-pipe glass" style={{ '--n': PIPE.length }}>
+        {PIPE.map((tag, i) => (
+          <div className="xp-step" key={tag} style={{ '--i': i }}>
+            <span className="xp-step-ic">
+              <Icon name={TAG_ICON[tag] || 'spark'} size={15} />
+            </span>
+            <span className="xp-step-l">{tag}</span>
+            {i < PIPE.length - 1 && <span className="xp-step-wire" aria-hidden="true" />}
+          </div>
+        ))}
+      </div>
 
       <div className={`xp ${narrow ? 'xp-narrow' : ''}`} ref={trackRef}>
         <span className="xp-track" aria-hidden="true" />
@@ -64,8 +87,8 @@ export default function Experience() {
                 <Icon name={TAG_ICON[item.tag] || 'spark'} size={13} stroke={2} />
               </motion.span>
 
-              <div className="xp-card glass">
-                <span className="xp-tag chip">{item.tag}</span>
+              <div className="xp-card glass card">
+                <span className={`xp-tag chip ${TAG_CLASS[item.tag] || ''}`}>{item.tag}</span>
                 <h4>{item.title}</h4>
                 <span className="xp-org mono">{item.org}</span>
                 <p>{item.desc}</p>

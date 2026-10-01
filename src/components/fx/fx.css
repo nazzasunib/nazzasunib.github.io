@@ -1,0 +1,298 @@
+/* ============================================================
+   FX panels — the animated figures beside section copy.
+   ============================================================ */
+.fx-panel {
+  position: relative;
+  border-radius: 22px;
+  border: 1px solid var(--glass-br);
+  background:
+    radial-gradient(600px 300px at 15% 0%, var(--acc-bg), transparent 62%),
+    radial-gradient(560px 320px at 100% 100%, color-mix(in srgb, var(--blue) 14%, transparent), transparent 60%),
+    var(--glass);
+  box-shadow: var(--glass-in), var(--glass-sh);
+  overflow: hidden;
+  min-height: 360px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  isolation: isolate;
+}
+:root[data-mode='light'] .fx-panel {
+  background:
+    radial-gradient(600px 300px at 15% 0%, rgba(242, 185, 174, 0.35), transparent 62%),
+    radial-gradient(560px 320px at 100% 100%, rgba(201, 215, 209, 0.5), transparent 60%),
+    rgba(255, 255, 255, 0.7);
+}
+.fx-panel canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.fx-cap {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  gap: 4px;
+  justify-items: center;
+  text-align: center;
+  padding: 0 18px 18px;
+}
+.fx-stage {
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--acc);
+  animation: swap 0.55s var(--ease-out) both;
+}
+.fx-stage b { font-weight: 500; color: var(--acc); }
+.fx-orb .fx-stage { color: var(--ink3); }
+.fx-note { font-size: 0.84rem; color: var(--ink3); }
+
+/* ---------- layer stack ---------- */
+.fx-layers { min-height: 380px; }
+.ls-scene {
+  position: absolute;
+  inset: 0;
+  perspective: 1100px;
+  display: grid;
+  place-items: center;
+  padding-bottom: 40px;
+}
+.ls-plane {
+  position: relative;
+  width: 230px;
+  height: 160px;
+  transform-style: preserve-3d;
+  transform: rotateX(58deg) rotateZ(-38deg);
+}
+.ls-sheet {
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  border: 1px solid var(--acc-br);
+  background: linear-gradient(160deg, color-mix(in srgb, var(--acc) 22%, transparent), color-mix(in srgb, var(--acc) 6%, transparent));
+  box-shadow: 0 0 40px -10px var(--acc-br);
+  transform: translateZ(calc((3 - var(--i)) * 30px));
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  padding: 22px 20px;
+  overflow: hidden;
+  animation: lsBob 5s ease-in-out infinite;
+  animation-delay: calc(var(--i) * -0.6s);
+}
+.ls-sheet.ls-3 {
+  background: color-mix(in srgb, var(--paper) 92%, transparent);
+  border-color: var(--glass-br);
+  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.55);
+}
+.ls-line {
+  height: 8px;
+  border-radius: 6px;
+  border: 1px solid color-mix(in srgb, var(--acc) 55%, transparent);
+  background: color-mix(in srgb, var(--acc) 12%, transparent);
+}
+.ls-3 .ls-line { border-color: var(--rule); background: var(--hover); }
+.ls-scan {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 40%;
+  background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--acc) 30%, transparent), transparent);
+  animation: scan 2.6s linear infinite;
+}
+@keyframes lsBob {
+  0%, 100% { translate: 0 0 0; }
+  50% { translate: 0 0 8px; }
+}
+.ls-tags {
+  position: absolute;
+  top: 22px;
+  right: 18px;
+  z-index: 3;
+  display: grid;
+  gap: 7px;
+  justify-items: end;
+}
+.ls-tags li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.74rem;
+  color: var(--ink);
+  padding: 5px 10px;
+  border-radius: 9px;
+  background: var(--solid);
+  border: 1px solid var(--acc-br);
+  box-shadow: var(--glass-sh);
+  opacity: 0;
+  animation: tagCycle 7s var(--ease) infinite;
+  animation-delay: var(--d);
+}
+.ls-tick { color: var(--acc); font-weight: 700; }
+@keyframes tagCycle {
+  0% { opacity: 0; transform: translateY(8px) scale(0.98); }
+  6%, 78% { opacity: 1; transform: none; }
+  88%, 100% { opacity: 0; transform: translateY(-4px); }
+}
+
+/* ---------- tile flow ---------- */
+.fx-tiles { min-height: 360px; --tw: 74px; --gap: 22px; --step: calc(var(--tw) + var(--gap)); }
+.tf-scene {
+  position: absolute;
+  inset: 0;
+  perspective: 1200px;
+  display: grid;
+  place-items: center;
+  padding-bottom: 46px;
+}
+.tf-floor {
+  position: relative;
+  display: flex;
+  gap: var(--gap);
+  transform-style: preserve-3d;
+  transform: rotateX(56deg) rotateZ(-30deg) translateY(10px);
+}
+.tf-wire {
+  position: absolute;
+  left: calc(var(--tw) / 2);
+  right: calc(var(--tw) / 2);
+  top: 50%;
+  height: 2px;
+  background: repeating-linear-gradient(90deg, var(--acc-br) 0 6px, transparent 6px 12px);
+  transform: translateZ(1px);
+}
+.tf-tile {
+  position: relative;
+  width: var(--tw);
+  height: var(--tw);
+  transform-style: preserve-3d;
+}
+.tf-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  background: var(--paper);
+  border: 1px solid var(--glass-br);
+  box-shadow: 0 9px 0 -1px color-mix(in srgb, var(--ink) 18%, transparent), 0 26px 30px -14px rgba(0, 0, 0, 0.6);
+  animation: tfLit 6s var(--ease) infinite;
+  animation-delay: calc(var(--i) * 1.1s);
+}
+.tf-face::after {
+  content: '';
+  position: absolute;
+  inset: 34%;
+  border-radius: 4px;
+  background: var(--ink4);
+  opacity: 0.5;
+}
+.tf-last .tf-face { animation-name: tfLitAmber; }
+@keyframes tfLit {
+  0%, 22%, 100% { transform: translateZ(0); background: var(--paper); border-color: var(--glass-br); }
+  4%, 16% { transform: translateZ(10px); background: color-mix(in srgb, var(--acc) 22%, var(--paper)); border-color: var(--acc); box-shadow: 0 0 34px -4px var(--acc-br), 0 9px 0 -1px color-mix(in srgb, var(--acc) 40%, #000); }
+}
+@keyframes tfLitAmber {
+  0%, 30%, 100% { transform: translateZ(0); background: var(--paper); border-color: var(--glass-br); }
+  4%, 24% { transform: translateZ(10px); background: color-mix(in srgb, var(--wait) 24%, var(--paper)); border-color: var(--wait); box-shadow: 0 0 34px -4px var(--cw-br), 0 9px 0 -1px color-mix(in srgb, var(--wait) 40%, #000); }
+}
+.tf-packet {
+  position: absolute;
+  left: calc(var(--tw) / 2 - 7px);
+  top: calc(50% - 7px);
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0 0 18px 4px var(--acc);
+  transform: translateZ(16px);
+  animation: tfPacket 6s linear infinite;
+  z-index: 2;
+}
+@keyframes tfPacket {
+  0% { transform: translate3d(0, 0, 16px); opacity: 0; }
+  3% { opacity: 1; }
+  73% { transform: translate3d(calc(var(--step) * (var(--n) - 1)), 0, 16px); opacity: 1; }
+  80%, 100% { transform: translate3d(calc(var(--step) * (var(--n) - 1)), 0, 16px); opacity: 0; }
+}
+.tf-lbl {
+  position: absolute;
+  left: 50%;
+  bottom: 70%;
+  width: 120px;
+  margin-left: -60px;
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  font-size: 0.74rem;
+  font-weight: 560;
+  color: var(--ink);
+  line-height: 1.2;
+  transform-origin: 50% 100%;
+  transform: translateZ(34px) rotateZ(30deg) rotateX(-56deg);
+  text-shadow: 0 1px 10px var(--ground);
+}
+.tf-lbl small {
+  font-size: 0.56rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--acc);
+  margin-bottom: 2px;
+}
+.tf-last .tf-lbl small { color: var(--wait); }
+
+/* ---------- ring carousel ---------- */
+.fx-ring { min-height: 300px; }
+.rg-scene {
+  position: absolute;
+  inset: 0;
+  perspective: 1300px;
+  display: grid;
+  place-items: center;
+  padding-bottom: 40px;
+}
+.rg-spin {
+  position: relative;
+  width: 168px;
+  height: 104px;
+  transform-style: preserve-3d;
+  animation: rgSpin 46s linear infinite;
+}
+@keyframes rgSpin {
+  0% { transform: rotateX(-10deg) rotateY(0deg); }
+  100% { transform: rotateX(-10deg) rotateY(-360deg); }
+}
+.rg-card {
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  padding: 14px 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--paper) 92%, transparent), color-mix(in srgb, var(--tint) 92%, transparent));
+  border: 1px solid var(--glass-br);
+  box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.7);
+  transform: rotateY(calc(var(--i) * 360deg / var(--n))) translateZ(clamp(190px, 24vw, 260px));
+  backface-visibility: hidden;
+}
+.rg-kind {
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--tone, var(--acc));
+}
+.rg-card b { font-size: 0.98rem; font-weight: 600; letter-spacing: -0.02em; color: var(--ink); }
+
+@media (max-width: 620px) {
+  .rg-spin { width: 132px; height: 88px; }
+  .rg-card { transform: rotateY(calc(var(--i) * 360deg / var(--n))) translateZ(165px); padding: 11px 12px; }
+  .rg-card b { font-size: 0.8rem; }
+  .fx-tiles { --tw: 52px; --gap: 14px; }
+  .tf-lbl { font-size: 0.64rem; width: 96px; margin-left: -48px; }
+  .ls-plane { width: 190px; height: 132px; }
+  .ls-tags li { font-size: 0.68rem; }
+}

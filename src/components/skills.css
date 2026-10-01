@@ -28,7 +28,7 @@
 }
 
 .cons-spoke {
-  stroke: rgba(245, 242, 234, 0.09);
+  stroke: color-mix(in srgb, var(--ink) 9%, transparent);
   stroke-width: 1;
   transition: stroke 0.35s var(--ease), stroke-width 0.35s var(--ease), opacity 0.35s var(--ease);
 }
@@ -51,19 +51,19 @@
 .cons-arc.is-faded { opacity: 0.12; filter: none; }
 
 .cons-hub {
-  fill: rgba(8, 7, 15, 0.82);
-  stroke: rgba(255, 176, 32, 0.34);
+  fill: color-mix(in srgb, var(--ground) 82%, transparent);
+  stroke: color-mix(in srgb, var(--acc) 34%, transparent);
   stroke-width: 1;
 }
 .cons-hub-a,
 .cons-hub-b {
   text-anchor: middle;
-  font-family: var(--display);
+  font-family: var(--fd);
   fill: var(--chalk);
   letter-spacing: -0.03em;
 }
 .cons-hub-a { font-size: 13px; font-weight: 700; }
-.cons-hub-b { font-size: 9px; fill: var(--saffron); font-weight: 600; }
+.cons-hub-b { font-size: 9px; fill: var(--acc); font-weight: 600; }
 
 .cons-node { cursor: pointer; outline: none; }
 .cons-node-hit { fill: transparent; }
@@ -75,7 +75,7 @@
 .cons-node.is-faded .cons-node-dot { opacity: 0.2; filter: none; }
 .cons-node:focus-visible .cons-node-dot { r: 7; }
 .cons-node:focus-visible .cons-node-hit {
-  stroke: var(--saffron);
+  stroke: var(--acc);
   stroke-width: 1.5;
   fill: none;
 }
@@ -107,7 +107,7 @@
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  font-family: var(--mono);
+  font-family: var(--fm);
   font-size: 0.66rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -128,7 +128,7 @@
   padding: 18px 18px 16px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--line);
-  background: rgba(8, 7, 15, 0.42);
+  background: color-mix(in srgb, var(--ground) 42%, transparent);
   overflow: hidden;
 }
 .sk-readout::before {
@@ -194,15 +194,15 @@
   padding: 9px 17px;
   border-radius: 100px;
   border: 1px solid var(--line);
-  background: rgba(245, 242, 234, 0.025);
+  background: color-mix(in srgb, var(--ink) 2%, transparent);
   font-size: 0.82rem;
   font-weight: 500;
   color: var(--ash);
   isolation: isolate;
   transition: color 0.3s var(--ease), border-color 0.3s var(--ease);
 }
-.sk-chip:hover { color: var(--chalk); border-color: var(--line-2); }
-.sk-chip.is-on { color: var(--ink); font-weight: 600; border-color: transparent; }
+.sk-chip:hover { color: var(--chalk); border-color: var(--line); }
+.sk-chip.is-on { color: var(--on-acc); font-weight: 600; border-color: transparent; }
 .sk-chip-pill {
   position: absolute;
   inset: 0;
@@ -263,7 +263,7 @@
   flex-wrap: wrap;
 }
 .sk-row-name {
-  font-family: var(--display);
+  font-family: var(--fd);
   font-size: 0.97rem;
   font-weight: 600;
   letter-spacing: -0.02em;
@@ -334,3 +334,4 @@
   .sk-row-main { flex-direction: column; gap: 3px; align-items: flex-start; }
   .sk-row-go { display: none; }
 }
+.sk-live { align-self: flex-start; }

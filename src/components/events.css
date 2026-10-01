@@ -13,8 +13,8 @@
 }
 .event:hover {
   transform: translateY(-7px);
-  border-color: rgba(255, 125, 176, 0.34);
-  box-shadow: 0 34px 74px -40px rgba(255, 125, 176, 0.55);
+  border-color: var(--acc-br);
+  box-shadow: 0 34px 74px -40px var(--acc-br);
 }
 
 .event-btn {
@@ -28,7 +28,7 @@
   position: relative;
   aspect-ratio: 16 / 10;
   overflow: hidden;
-  background: var(--ink-3);
+  background: var(--tint);
 }
 .event-thumb .shot { position: absolute; inset: 0; }
 .event-thumb .shot-full {
@@ -38,7 +38,7 @@
 .event-thumb-veil {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(8, 7, 15, 0) 40%, rgba(8, 7, 15, 0.72));
+  background: linear-gradient(180deg, color-mix(in srgb, var(--ground) 0%, transparent) 40%, color-mix(in srgb, var(--ground) 72%, transparent));
 }
 .event-badge {
   position: absolute;
@@ -50,8 +50,8 @@
   text-transform: uppercase;
   padding: 5px 11px;
   border-radius: 100px;
-  color: var(--ink);
-  background: var(--grad-warm);
+  color: var(--on-acc);
+  background: var(--grad);
 }
 
 .event-body { padding: 20px 22px 22px; }
@@ -59,7 +59,7 @@
 .event-meta {
   display: block;
   font-size: 0.71rem;
-  color: var(--rose);
+  color: var(--violet);
   margin-bottom: 10px;
 }
 .event-body p { font-size: 0.88rem; color: var(--ash); margin-bottom: 14px; }
@@ -69,7 +69,7 @@
   gap: 7px;
   font-size: 0.79rem;
   font-weight: 600;
-  color: var(--saffron);
+  color: var(--acc);
   transition: gap 0.35s var(--ease);
 }
 .event:hover .event-hint { gap: 12px; }
@@ -84,14 +84,14 @@
   border-style: dashed;
   color: var(--ash);
 }
-.event-slot > svg { color: var(--iris); }
+.event-slot > svg { color: var(--blue); }
 .event-slot h4 { font-size: 0.98rem; color: var(--chalk-dim); }
 .event-slot p { font-size: 0.83rem; }
 .event-slot code {
-  font-family: var(--mono);
+  font-family: var(--fm);
   font-size: 0.78em;
   padding: 1px 5px;
   border-radius: 5px;
-  background: rgba(245, 242, 234, 0.06);
-  color: var(--jade);
+  background: color-mix(in srgb, var(--ink) 6%, transparent);
+  color: var(--acc);
 }

@@ -19,7 +19,7 @@ function ProjectCard({ repo, index }) {
     <motion.article className="proj" variants={staggerItem}>
       <div
         ref={ref}
-        className="proj-inner glass"
+        className="proj-inner glass card"
         {...handlers}
         style={{
           transform: `perspective(900px) rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg) translateZ(0)`,
@@ -82,7 +82,6 @@ export default function Projects({ gh }) {
   return (
     <Section id="projects" bloom="saffron" bloomAt="left">
       <SectionHead
-        index={4}
         eyebrow="Projects"
         title="Things I've"
         accent="built & explored."

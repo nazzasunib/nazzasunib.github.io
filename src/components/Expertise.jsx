@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { useReducedMotion } from '../hooks';
 import { GradientLine, Reveal, Section, SplitWords, Stagger, staggerItem } from './ui/Primitives';
 import Icon from './ui/Icon';
+import { LayerStack, TileFlow } from './fx/Stack3D';
 import './expertise.css';
 
 /* A visual "swatch" panel: a stack of dye bands + a huge line glyph
@@ -53,11 +54,34 @@ function SwatchVisual({ glyph, tone }) {
   );
 }
 
+/* Business reads as a pipeline (research → partnership, with the deal
+   itself as the human gate); textile reads as layers checked one by one. */
+const FLOW_KINDS = ['Research', 'Plan', 'Reach', 'Negotiate', 'Close'];
+const FLOW_ORDER = ['Market Research', 'Sales Strategy', 'Client Acquisition', 'Negotiation', 'Business Growth & Partnerships'];
+
+function Visual({ kind, data, glyph, tone }) {
+  if (kind === 'flow') {
+    const steps = FLOW_ORDER.map((t) => data.items.find((x) => x.title === t))
+      .filter(Boolean)
+      .map((x, i) => ({ kind: FLOW_KINDS[i], label: x.title.replace('Business Growth & ', '') }));
+    return <TileFlow steps={steps} caption="From first research to a partnership that lasts." />;
+  }
+  if (kind === 'layers') {
+    return (
+      <LayerStack
+        checks={data.items.slice(0, 4).map((x) => x.title)}
+        caption="Fibre, fabric, colour, garment — each layer checked before it moves on."
+      />
+    );
+  }
+  return <SwatchVisual glyph={glyph} tone={tone} />;
+}
+
 export default function Expertise({
   id,
-  index,
   data,
   tone = 'saffron',
+  visual,
   flip = false,
 }) {
   return (
@@ -65,10 +89,7 @@ export default function Expertise({
       <div className={`xpert ${flip ? 'xpert-flip' : ''}`}>
         <div className="xpert-copy">
           <Reveal>
-            <span className="eyebrow">
-              <span className="idx">{String(index).padStart(2, '0')} /</span>
-              {data.eyebrow}
-            </span>
+            <span className="eyebrow">{data.eyebrow}</span>
           </Reveal>
 
           <h2 className="section-title">
@@ -84,7 +105,7 @@ export default function Expertise({
 
           <Stagger className="feature-grid" stagger={0.075} delay={0.1}>
             {data.items.map((item) => (
-              <motion.div className="feat glass" key={item.title} variants={staggerItem}>
+              <motion.div className="feat glass card" key={item.title} variants={staggerItem}>
                 <span className={`feat-icon feat-icon-${tone}`}>
                   <Icon name={item.icon} size={19} />
                 </span>
@@ -97,7 +118,9 @@ export default function Expertise({
         </div>
 
         <div className="xpert-visual">
-          <SwatchVisual glyph={data.glyph} tone={tone} />
+          <Reveal>
+            <Visual kind={visual} data={data} glyph={data.glyph} tone={tone} />
+          </Reveal>
         </div>
       </div>
     </Section>

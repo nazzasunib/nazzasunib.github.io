@@ -45,7 +45,7 @@
   z-index: 2;
 }
 .social-name {
-  font-family: var(--display);
+  font-family: var(--fd);
   font-size: 0.97rem;
   font-weight: 600;
 }
@@ -79,3 +79,7 @@
   pointer-events: none;
 }
 .social:hover .social-glow { opacity: 1; }
+
+.fx-ring { margin-bottom: 18px; }
+:root[data-mode='light'] .social-icon,
+:root[data-mode='light'] .social:hover .social-go { color: color-mix(in srgb, var(--tone) 70%, #000); }

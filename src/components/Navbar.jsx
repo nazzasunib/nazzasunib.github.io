@@ -5,6 +5,7 @@ import { useActiveSection, useScrollLock } from '../hooks';
 import { Magnetic } from './ui/Primitives';
 import { scrollToId } from '../lib/scroll';
 import Icon from './ui/Icon';
+import { useTheme } from '../lib/theme';
 import './navbar.css';
 
 const IDS = ['home', ...NAV.map((n) => n.id)];
@@ -13,6 +14,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const active = useActiveSection(IDS);
+  const { light, toggle } = useTheme();
   useScrollLock(open);
 
   useEffect(() => {
@@ -44,9 +46,13 @@ export default function Navbar() {
       >
         <div className="container nav-inner">
           <a href="#home" className="nav-logo" onClick={(e) => go(e, 'home')}>
+            <span className="nav-logo-glyph" aria-hidden="true">
+              <i />
+              <i />
+              <i />
+            </span>
             <span className="nav-logo-mark">{PROFILE.logo.mark}</span>
             <span className="nav-logo-tail">{PROFILE.logo.tail}</span>
-            <span className="nav-logo-thread" />
           </a>
 
           <nav className="nav-links" aria-label="Sections">
@@ -70,6 +76,22 @@ export default function Navbar() {
           </nav>
 
           <div className="nav-right">
+            <button
+              className="tgl"
+              onClick={toggle}
+              aria-label={light ? 'Switch to dark theme' : 'Switch to light theme'}
+              title={light ? 'Dark theme' : 'Light theme'}
+            >
+              <motion.span
+                key={light ? 'sun' : 'moon'}
+                initial={{ rotate: -90, scale: 0.4, opacity: 0 }}
+                animate={{ rotate: 0, scale: 1, opacity: 1 }}
+                transition={{ type: 'spring', stiffness: 320, damping: 18 }}
+                style={{ display: 'grid' }}
+              >
+                <Icon name={light ? 'sun' : 'moon'} size={16} stroke={1.8} />
+              </motion.span>
+            </button>
             <Magnetic strength={0.2}>
               <a href="#contact" className="btn btn-primary nav-cta" onClick={(e) => go(e, 'contact')}>
                 Let&rsquo;s Talk

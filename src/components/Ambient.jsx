@@ -192,3 +192,23 @@ export function BackToTop() {
     </motion.button>
   );
 }
+
+/* =========================================================
+   CardGlow — one pointer listener for the whole page. Any element
+   with class .card gets --mx/--my so its ::before glow can sit
+   under the cursor.
+   ========================================================= */
+export function CardGlow() {
+  useEffect(() => {
+    const on = (e) => {
+      const c = e.target && e.target.closest ? e.target.closest('.card') : null;
+      if (!c) return;
+      const r = c.getBoundingClientRect();
+      c.style.setProperty('--mx', `${e.clientX - r.left}px`);
+      c.style.setProperty('--my', `${e.clientY - r.top}px`);
+    };
+    document.addEventListener('pointermove', on, { passive: true });
+    return () => document.removeEventListener('pointermove', on);
+  }, []);
+  return null;
+}

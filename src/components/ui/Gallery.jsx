@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, useMotionValue, useSpring, useTransform, animate } from 'framer-motion';
 import { useReducedMotion, useScrollLock } from '../../hooks';
 import Icon from './Icon';
@@ -304,7 +305,9 @@ export function StoryModal({ entry, onClose, fit = 'cover', tall = false }) {
 
   useScrollLock(true);
 
-  return (
+  /* Portalled to <body>: inside a section it would be trapped in that
+     section's stacking context and render under the fixed navbar. */
+  return createPortal(
     <motion.div
       className="modal-scrim"
       /* Lenis owns the wheel globally; without this it swallows the event and
@@ -395,6 +398,7 @@ export function StoryModal({ entry, onClose, fit = 'cover', tall = false }) {
           ))}
         </article>
       </motion.div>
-    </motion.div>
+    </motion.div>,
+    document.body
   );
 }

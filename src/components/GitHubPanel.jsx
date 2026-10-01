@@ -10,7 +10,7 @@ const LANG_TONES = ['#ffb020', '#ff5c39', '#23d3b0', '#8a6bff', '#ff7db0', '#f5f
 function GhStat({ label, value, icon }) {
   const [ref, shown] = useCountUp(value ?? 0, { duration: 1500 });
   return (
-    <motion.div className="gh-stat glass" variants={staggerItem} whileHover={{ y: -6 }} ref={ref}>
+    <motion.div className="gh-stat glass card" variants={staggerItem} whileHover={{ y: -6 }} ref={ref}>
       <span className="gh-stat-icon">
         <Icon name={icon} size={16} />
       </span>
@@ -26,7 +26,6 @@ export default function GitHubPanel({ gh }) {
   return (
     <Section id="github" bloom="iris" bloomAt="center">
       <SectionHead
-        index={5}
         eyebrow="GitHub"
         title="Activity &"
         accent="tech stack."

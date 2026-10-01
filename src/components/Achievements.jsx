@@ -17,7 +17,6 @@ export default function Achievements() {
     <>
       <Section id="achievements" bloom="saffron" bloomAt="right">
         <SectionHead
-          index={9}
           eyebrow="Achievements"
           title="Recognition"
           accent="earned."
@@ -26,7 +25,7 @@ export default function Achievements() {
 
         <Stagger className="ach-grid" stagger={0.1}>
           {ACHIEVEMENTS.map((a) => (
-            <motion.article className="ach glass" key={a.id} variants={staggerItem}>
+            <motion.article className="ach glass card" key={a.id} variants={staggerItem}>
               <button
                 className="ach-btn"
                 onClick={() => setOpen(a)}
