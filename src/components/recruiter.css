@@ -1,0 +1,118 @@
+/* ============================================================
+   Recruiter sections: Now, Case study, Fabric project
+   ============================================================ */
+
+/* ---------- Now ---------- */
+.sec-tight { padding: clamp(36px, 5vw, 64px) 0; }
+.now { padding: 22px 24px; }
+.now-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 14px;
+  margin-bottom: 6px;
+  border-bottom: 1px solid var(--rule);
+}
+.now-upd { font-size: 0.66rem; letter-spacing: 0.08em; color: var(--ink4); }
+.now-list { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+.now-list li {
+  display: grid;
+  gap: 6px;
+  align-content: start;
+  padding: 14px 18px 4px 0;
+}
+.now-list li + li { padding-left: 18px; border-left: 1px solid var(--rule); }
+.now-k { font-size: 0.64rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--acc); }
+.now-v { font-size: 0.92rem; color: var(--ink2); line-height: 1.5; }
+
+/* ---------- Case study ---------- */
+.cs-list { display: grid; gap: 18px; }
+.cs {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  padding: 0;
+}
+.cs-media { position: relative; min-height: 320px; }
+.cs-media .shot { position: absolute; inset: 0; }
+.cs-chips {
+  position: absolute;
+  left: 14px;
+  top: 14px;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.cs-chips .chip { background: var(--solid); }
+.cs-body { display: grid; gap: 14px; align-content: start; padding: clamp(22px, 3vw, 34px); }
+.cs-client { font-size: 0.68rem; letter-spacing: 0.08em; color: var(--acc); }
+.cs-body h3 { font-size: clamp(1.4rem, 2.6vw, 1.9rem); letter-spacing: -0.04em; margin-top: -4px; }
+.cs-role { font-size: 0.86rem; color: var(--ink3); margin-top: -8px; }
+.cs-block h4 {
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink4);
+  margin-bottom: 8px;
+}
+.cs-block p { color: var(--ink2); font-size: 0.95rem; line-height: 1.6; }
+.cs-steps { list-style: none; display: grid; gap: 9px; }
+.cs-steps li {
+  display: grid;
+  grid-template-columns: 26px 1fr;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: var(--ink2);
+  line-height: 1.5;
+}
+.cs-n { font-size: 0.68rem; color: var(--acc); padding-top: 3px; }
+.cs-facts { margin-top: 4px; }
+.cs-facts .stt { padding: 16px 14px; }
+.cs-facts .stt-n { font-size: clamp(1.4rem, 2.4vw, 1.9rem); }
+.cs-facts .stt-l { font-size: 0.76rem; }
+.cs-open { justify-self: start; margin-top: 4px; }
+
+/* ---------- Fabric project ---------- */
+.fp-org {
+  display: inline-block;
+  margin: -18px 0 22px;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: var(--ink4);
+}
+.fp-scope {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+.fp-step { padding: 20px; display: grid; gap: 8px; align-content: start; }
+.fp-ic {
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  display: grid;
+  place-items: center;
+  color: var(--acc);
+  background: var(--acc-bg);
+  border: 1px solid var(--acc-br);
+  margin-bottom: 6px;
+}
+.fp-n { position: absolute; top: 18px; right: 18px; font-size: 0.66rem; color: var(--ink4); }
+.fp-step h4 { font-size: 1rem; letter-spacing: -0.02em; }
+.fp-step p { font-size: 0.86rem; color: var(--ink3); }
+
+@media (max-width: 960px) {
+  .cs { grid-template-columns: 1fr; }
+  .cs-media { min-height: 0; aspect-ratio: 16 / 10; }
+  .fp-scope { grid-template-columns: repeat(2, 1fr); }
+  .now-list { grid-template-columns: repeat(2, 1fr); }
+  .now-list li:nth-child(3) { padding-left: 0; border-left: 0; }
+}
+@media (max-width: 560px) {
+  .fp-scope { grid-template-columns: 1fr; }
+  .now-list { grid-template-columns: 1fr; }
+  .now-list li + li { padding-left: 0; border-left: 0; border-top: 1px solid var(--rule); }
+  .cs-facts { grid-template-columns: repeat(2, 1fr); }
+}

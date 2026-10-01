@@ -37,6 +37,8 @@ export const NAV = [
   { id: 'achievements', label: 'Achievements' },
   { id: 'social', label: 'Social' },
   { id: 'contact', label: 'Contact' },
+  { id: 'now', label: 'Now' },
+  { id: 'casestudy', label: 'Case Study' },
 ];
 
 export const ABOUT_PARAGRAPHS = [
@@ -809,3 +811,74 @@ export const SOCIALS = [
     tone: '#ffb020',
   },
 ];
+
+/* =====================================================================
+   RECRUITER SECTIONS — Now, Case study, Project deep dive.
+
+   Everything here comes from facts already in this file.
+   ===================================================================== */
+
+/* ---------- Now: what I'm doing at the moment (update every few months) ---------- */
+export const NOW = {
+  updated: 'October 2026',
+  items: [
+    {
+      label: 'Working on',
+      text: 'Business development at NidusLab, including university partnerships and campus outreach for NidusJob.',
+    },
+    { label: 'Studying', text: 'Final year of B.Sc. Textile Engineering at BUFT (Batch 222).' },
+    {
+      label: 'Learning',
+      text: 'Web technologies and AI tools, starting with building and maintaining this site.',
+    },
+    {
+      label: 'Open to',
+      text: 'Internships, entry-level roles and collaborations across textile, business development and tech.',
+    },
+  ],
+};
+
+/* ---------- Case studies: business development work with real outcomes ---------- */
+export const CASE_STUDIES = [
+  {
+    id: 'gub-campus-outreach',
+    eventId: 'gub-2026', // opens this event's full story
+    title: 'Taking NidusJob to campus',
+    client: 'Green University of Bangladesh · Center for Career Development',
+    type: 'University partnership',
+    date: '23 August 2026',
+    role: 'Business Development Executive, NidusLab',
+    cover: 'assets/gub/4-1024.webp',
+    coverSrcSet:
+      'assets/gub/4-640.webp 640w, assets/gub/4-1024.webp 1024w, assets/gub/4-1600.webp 1600w',
+    coverBlur: GUB_BLUR['4'],
+    challenge:
+      'Students wanted to understand how AI is changing hiring, and NidusLab wanted a direct line to young job seekers for NidusJob.',
+    approach: [
+      "Partnered with the university's Center for Career Development to host an AI & Career Guidance Seminar on campus.",
+      'Ran a NidusLab booth from 9:00 AM so students could meet the team and try NidusJob first-hand.',
+      'Held a 2:00–4:30 PM session on the AI job market, changing career paths and the skills employers look for.',
+      'Introduced NidusJob: AI job matching, CV match score, skills-gap analysis and smarter applications.',
+    ],
+    facts: [
+      { value: '1', label: 'University partnership' },
+      { value: '9 AM', label: 'Booth opened' },
+      { value: '2.5 h', label: 'Seminar session' },
+      { value: '4', label: 'NidusJob features shown' },
+    ],
+  },
+];
+
+/* ---------- Project deep dive: the fabric analysis project ---------- */
+export const FABRIC_PROJECT = {
+  title: 'Textile Fabric Analysis',
+  org: 'BUFT · Academic project',
+  summary:
+    'An academic project analysing fabric types, yarn counts and fabric quality, written up as a technical report with the team.',
+  scope: [
+    { icon: 'weave', title: 'Fabric type', text: 'Identified the type and structure of each fabric sample.' },
+    { icon: 'spool', title: 'Yarn count', text: 'Measured the yarn count of each sample.' },
+    { icon: 'check', title: 'Fabric quality', text: 'Assessed the quality of each fabric against the brief.' },
+    { icon: 'users', title: 'Technical report', text: 'Wrote up the method and findings as a team report.' },
+  ],
+};

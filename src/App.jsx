@@ -13,6 +13,7 @@ import Expertise from './components/Expertise';
 import Events from './components/Events';
 import Achievements from './components/Achievements';
 import Social from './components/Social';
+import { CaseStudies, FabricProject, Now } from './components/Recruiter';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import { BackToTop, CardGlow, ScrollProgress } from './components/Ambient';
@@ -69,9 +70,12 @@ export default function App() {
         <NameReveal />
         <Hero />
         <About />
+        <Now />
         <Skills />
         <Experience />
+        <CaseStudies />
         <Projects gh={gh} />
+        <FabricProject />
         <GitHubPanel gh={gh} />
         <Expertise id="business" data={BUSINESS} tone="saffron" visual="flow" />
         <Expertise id="textile" data={TEXTILE} tone="jade" visual="layers" flip />
