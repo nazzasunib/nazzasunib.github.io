@@ -32,11 +32,9 @@ export default function App() {
   useEffect(() => {
     if (reduced) return;
     const lenis = new Lenis({
-      /* lower lerp = longer, softer glide after each wheel tick */
-      lerp: 0.075,
+      /* Lenis defaults, the same feel as the reference site */
+      lerp: 0.1,
       smoothWheel: true,
-      wheelMultiplier: 0.9,
-      touchMultiplier: 1.4,
     });
     registerLenis(lenis);
 
@@ -70,15 +68,15 @@ export default function App() {
         <NameReveal />
         <Hero />
         <About />
-        <Now />
-        <Skills />
         <Experience />
+        <Skills />
+        <Expertise id="textile" data={TEXTILE} tone="jade" visual="layers" flip />
+        <Now />
         <CaseStudies />
         <Projects gh={gh} />
         <FabricProject />
         <GitHubPanel gh={gh} />
         <Expertise id="business" data={BUSINESS} tone="saffron" visual="flow" />
-        <Expertise id="textile" data={TEXTILE} tone="jade" visual="layers" flip />
         <Events />
         <Achievements />
         <Social />

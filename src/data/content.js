@@ -28,11 +28,11 @@ export const PROFILE = {
 
 export const NAV = [
   { id: 'about', label: 'About' },
-  { id: 'skills', label: 'Skills' },
   { id: 'experience', label: 'Experience' },
+  { id: 'skills', label: 'Skills' },
+  { id: 'textile', label: 'Textile' },
   { id: 'projects', label: 'Projects' },
   { id: 'business', label: 'Business' },
-  { id: 'textile', label: 'Textile' },
   { id: 'events', label: 'Events' },
   { id: 'achievements', label: 'Achievements' },
   { id: 'social', label: 'Social' },
