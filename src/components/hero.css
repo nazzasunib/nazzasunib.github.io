@@ -406,6 +406,7 @@
 .it b { font-weight: 500; color: var(--ink2); }
 .it i { width: 6px; height: 6px; border-radius: 50%; background: var(--done); flex: none; }
 .it.t-leadership i { background: var(--blue); }
+.it.t-work i { background: var(--acc); }
 .it.t-volunteer i, .it.t-events i { background: var(--wait); }
 .it.t-academic i { background: var(--violet); }
 :root:not([data-mode='light']) .it i { box-shadow: 0 0 8px currentColor; }

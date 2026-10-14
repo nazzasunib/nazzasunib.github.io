@@ -16,11 +16,14 @@ const ROTATE = [
   'web technologies',
 ];
 
+/* the textile internship, for the chat card's industry answer */
+const INTERN = EXPERIENCE.find((x) => x.tag === 'Industry') || EXPERIENCE[0];
+
 /* the hero chat card answers from the portfolio's own data */
 const CHAT = [
   { q: 'What do you do right now?', a: `${PROFILE.badge.title} ${PROFILE.badge.sub}.` },
   { q: 'Where did you study?', a: `${EDUCATION[0].title} — ${EDUCATION[0].org.split(' · ')[0]}.` },
-  { q: 'Any industry experience?', a: `${EXPERIENCE[0].title.split(' — ')[0]} at ${EXPERIENCE[0].org}: ${EXPERIENCE[0].desc.split(';')[0].toLowerCase()}.` },
+  { q: 'Any industry experience?', a: `${INTERN.title.split(' — ')[0]} at ${INTERN.org}: ${INTERN.desc.split(';')[0].toLowerCase()}.` },
   { q: 'How can I reach you?', a: `Email ${PROFILE.email} — or use the contact form below.` },
 ];
 

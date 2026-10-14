@@ -153,6 +153,12 @@ export const SKILLS = [
 ];
 export const EXPERIENCE = [
   {
+    title: 'Business Development Executive',
+    org: 'NidusLab',
+    desc: 'Building partnerships and pipeline for NidusLab products, including the AI-powered job marketplace NidusJob, and running campus outreach such as the AI & Career Guidance Seminar at Green University of Bangladesh.',
+    tag: 'Work',
+  },
+  {
     title: 'Internship — Integrated Workflow & Merchandising',
     org: 'Rising Knit Textiles Ltd',
     desc: 'Covered spinning, knitting, dyeing and apparel units; handled order costing, buyer communication and marketing.',
@@ -198,6 +204,123 @@ export const PROJECT_IMAGES = {
 
 export const projectImage = (name) =>
   PROJECT_IMAGES[String(name || '').trim().toLowerCase()] || null;
+
+/* ---------- Featured apps: click a card to read the full details ---------- */
+export const FEATURED_PROJECTS = [
+  {
+    id: 'task-management',
+    repoName: 'task-management',
+    name: 'Task Management',
+    tagline: 'Plan your day, get reminded, finish the work.',
+    logo: 'assets/Task Management.png',
+    tags: ['Web', 'Android', 'Offline', 'Reminders'],
+    about: [
+      'Task Management helps you plan your day and finish your work. Add tasks, set a time, and get a reminder on your phone before the work is due.',
+      'It works on the web and as an Android app. It also works with no internet: whatever you change offline saves on your phone and syncs when you go back online.',
+    ],
+    features: [
+      { t: 'Simple tasks', d: 'Add a task with a title, date and optional time. Mark it done when finished.' },
+      { t: 'Meetings', d: 'Put a time on a meeting and get an early warning.' },
+      { t: 'Long tasks', d: 'Pick a start and end date for work that takes many days.' },
+      {
+        t: 'Smart reminders on your phone',
+        d: 'They show even when the app is closed:',
+        sub: [
+          'Meeting: 20 minutes and 2 minutes before.',
+          'Task with a time: 15 minutes before.',
+          'Task with no time: a list of what is left at 9:00 AM, 2:30 PM, 5:00 PM and 11:40 PM.',
+          'Overdue task: every morning at 8:30 AM until you finish it.',
+          'Done tasks never remind you again.',
+        ],
+      },
+      { t: 'Your own times', d: 'Change every reminder time in Settings.' },
+      { t: 'Works offline', d: 'Add and edit tasks with no internet. They sync when you reconnect.' },
+      { t: 'Sync across devices', d: 'Log in on your phone and your computer to see the same tasks.' },
+      { t: 'Private login', d: 'Your tasks belong only to you.' },
+    ],
+    links: [
+      { label: 'Open website', url: 'https://task-management-indol-eta.vercel.app', kind: 'web' },
+      { label: 'Android download page', url: 'https://task-management-indol-eta.vercel.app/download', kind: 'android' },
+      { label: 'Direct APK', url: 'https://github.com/nazzasunib/Task-Management/releases/download/latest-apk/TaskManagement.apk', kind: 'apk' },
+      { label: 'Source code', url: 'https://github.com/nazzasunib/Task-Management', kind: 'code' },
+    ],
+    install:
+      'To install the app, open the APK and tap Install. The first time, Android asks you to allow "Install unknown apps". Allow it and go back.',
+  },
+  {
+    id: 'money-keeper',
+    repoName: 'money-keeper',
+    name: 'Money Keeper',
+    tagline: 'A simple money app made for people in Bangladesh.',
+    logo: 'assets/MoneyKeeper.webp',
+    tags: ['Web', 'Android', 'bKash · Nagad', 'Offline sync'],
+    about: [
+      'Money Keeper helps you see all your money in one place: cash, bank accounts, bKash, Nagad, Rocket, savings and DPS. You always know how much you have, how much you spent, and what bills are coming.',
+      'It works on the web and as an Android app. Your data is saved online, so you can use the same account on your phone and your computer.',
+    ],
+    features: [
+      { t: 'All accounts in one place', d: 'Cash, bank, bKash, Nagad, Rocket, savings, DPS, cards.' },
+      { t: 'Track spending and income', d: 'Pick a category and sub-category. Transfer money between accounts.' },
+      { t: 'Balance can go below zero', d: '500 in cash, spend 700, it shows -200. The app never blocks you.' },
+      { t: 'Budgets', d: 'Set a monthly limit per category and get a warning when you are close.' },
+      { t: 'Savings goals', d: 'Set a goal and watch progress grow.' },
+      { t: 'DPS and automatic payments', d: 'Instalments and repeating bills are paid on time.' },
+      { t: 'Loans', d: 'Record money you borrowed or lent. The account balance updates by itself. Paid loans move to the History tab.' },
+      { t: 'Reports and charts', d: 'Income vs expense, spending by category, cash flow, net worth.' },
+      { t: 'Monthly view and calendar', d: 'See any month at a glance.' },
+      { t: 'Works without internet', d: 'Add data offline. It syncs when you are back online.' },
+      { t: 'Phone friendly', d: 'Compact cards, quick "+" button, light and dark mode, profile photo.' },
+      { t: 'Search, export and import', d: 'Find any entry and move your data in or out.' },
+    ],
+    audience: 'Students, job holders, business owners and families. Anyone who wants to know where their money goes.',
+    links: [
+      { label: 'Open web app', url: 'https://money-keeper-theta.vercel.app', kind: 'web' },
+      { label: 'Android download page', url: 'https://money-keeper-theta.vercel.app/download', kind: 'android' },
+      { label: 'Direct APK', url: 'https://money-keeper-theta.vercel.app/downloads/money-keeper.apk', kind: 'apk' },
+    ],
+    install:
+      'To install on Android: open the download page on your phone, tap "Download for Android", then open the file. If your phone asks, allow installs from this source. No account yet? Tap "Try the demo" on the login page.',
+  },
+  {
+    id: 'mealmate',
+    repoName: 'mealmate',
+    name: 'MealMate',
+    tagline: 'Meals, bazar and money for shared houses (messes).',
+    logo: 'assets/MealMate.png',
+    tags: ['Web', 'Android', 'iPhone (PWA)', 'Offline'],
+    about: [
+      'MealMate is an app for shared houses (messes) in Bangladesh. It helps everyone in the house track meals, bazar costs, money and shopping, so nobody has to keep a notebook or argue about who owes what.',
+    ],
+    features: [
+      { t: 'Daily meals', d: 'Mark Breakfast, Lunch and Dinner as on or off for each day. Add guest meals when a friend eats with you.' },
+      { t: 'Expenses', d: 'Add, edit or delete bazar costs. Each expense shows who added it and when.' },
+      { t: 'Money', d: "Record each member's deposits. See how much money is in hand." },
+      { t: 'Shopping list', d: 'Make the bazar list. An Admin or Moderator can assign the list to specific members with a close date, and those members get a phone notification.' },
+      { t: 'Store stock', d: 'Track what is left at home.' },
+      { t: 'Settlement', d: 'See who needs to pay whom at the end of the month.' },
+      { t: 'Monthly summary', d: "See the month's totals and download them as a PDF." },
+      { t: 'Meal-off and guest requests', d: 'Members ask for a meal off or a guest meal. Admins and Moderators approve or reject it.' },
+      { t: 'Notices', d: 'Admins and Moderators post house notices. Everyone sees them, and the newest one shows on the Dashboard for 7 days.' },
+      { t: 'Notifications', d: 'A bell shows recent activity. On the Android app, important changes also send a phone notification.' },
+      { t: 'Themes', d: 'Light, Dark, or System (follows your phone).' },
+      { t: 'Offline use', d: 'After one visit with internet, the app still works without internet. Changes you make offline save and sync when you are back online.' },
+      { t: 'Bengali text', d: 'Names and labels can show in Bangla.' },
+    ],
+    roles: [
+      { t: 'Admin', d: 'Full control, including managing members and roles.' },
+      { t: 'Moderator', d: 'Handles meals, expenses and shopping.' },
+      { t: 'Member', d: 'Sees the mess data and makes requests.' },
+    ],
+    links: [
+      { label: 'Open website', url: 'https://meal-mate-woad.vercel.app', kind: 'web' },
+      { label: 'Android download page', url: 'https://meal-mate-woad.vercel.app/download', kind: 'android' },
+      { label: 'Direct APK', url: 'https://github.com/nazzasunib/MealMate/releases/download/latest-apk/MealMate.apk', kind: 'apk' },
+      { label: 'Source code', url: 'https://github.com/nazzasunib/MealMate', kind: 'code' },
+    ],
+    install:
+      'Android: open the download page, install the APK, and allow notifications when asked. iPhone: open the website in Safari and choose Add to Home Screen.',
+  },
+];
 
 export const FALLBACK_PROJECTS = [
   {

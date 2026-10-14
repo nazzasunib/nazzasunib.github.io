@@ -154,3 +154,145 @@
 }
 .proj-thumb { height: 150px; }
 .proj-index { z-index: 4; }
+
+/* ---------- featured (clickable) cards ---------- */
+.proj-featured .proj-inner { cursor: pointer; }
+.proj-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 560;
+  color: var(--acc);
+}
+.proj-featured .proj-inner:hover .proj-more svg { transform: translateX(3px); }
+.proj-more svg { transition: transform 0.3s var(--ease); }
+.proj-more-head {
+  margin: clamp(30px, 4vw, 44px) 0 14px;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink4);
+}
+.projects-grid-sm .proj-thumb-sm { height: 92px; }
+
+/* ---------- details popup ---------- */
+.pm-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 9600;
+  display: grid;
+  place-items: start center;
+  padding: clamp(14px, 3vw, 40px);
+  overflow-y: auto;
+  background: color-mix(in srgb, var(--ground) 78%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.pm {
+  position: relative;
+  width: min(860px, 100%);
+  padding: clamp(22px, 3.4vw, 38px);
+  background: var(--solid);
+  border-radius: 24px;
+}
+.pm-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--glass-br);
+  background: var(--glass);
+  color: var(--ink);
+  transition: transform 0.35s var(--ease), border-color 0.3s;
+}
+.pm-close:hover { transform: rotate(90deg); border-color: var(--acc-br); }
+
+.pm-head {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 18px;
+  align-items: center;
+  padding-right: 48px;
+}
+.pm-logo {
+  width: 84px;
+  height: 84px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #fff;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 10px 30px -14px rgba(0, 0, 0, 0.6);
+}
+.pm-logo img { width: 100%; height: 100%; object-fit: contain; }
+.pm-head h3 { font-size: clamp(1.5rem, 3vw, 2.1rem); letter-spacing: -0.04em; }
+.pm-tagline { color: var(--ink3); margin: 4px 0 10px; }
+.pm-head .proj-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.pm-links { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 6px; }
+.pm-links .btn { padding: 11px 16px; font-size: 0.86rem; }
+
+.pm-body { display: grid; gap: 22px; margin-top: 18px; }
+.pm-h {
+  font-size: 0.64rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--acc);
+  margin-bottom: 10px;
+}
+.pm-p { color: var(--ink2); line-height: 1.7; max-width: 68ch; }
+.pm-p + .pm-p { margin-top: 10px; }
+
+.pm-feats { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.pm-feats > li {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  gap: 10px;
+  padding: 13px 14px;
+  border-radius: 14px;
+  border: 1px solid var(--rule);
+  background: var(--glass);
+}
+.pm-tick {
+  width: 24px;
+  height: 24px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  color: var(--acc);
+  background: var(--acc-bg);
+  border: 1px solid var(--acc-br);
+}
+.pm-feats b { display: block; font-weight: 600; font-size: 0.92rem; margin-bottom: 2px; }
+.pm-feats span { font-size: 0.86rem; color: var(--ink3); line-height: 1.5; }
+.pm-sub { margin: 8px 0 0 2px; display: grid; gap: 4px; list-style: none; }
+.pm-sub li { position: relative; padding-left: 14px; font-size: 0.82rem; color: var(--ink3); line-height: 1.45; }
+.pm-sub li::before { content: ''; position: absolute; left: 0; top: 0.6em; width: 5px; height: 5px; border-radius: 50%; background: var(--acc); }
+.pm-feats > li:has(.pm-sub) { grid-column: 1 / -1; }
+
+.pm-roles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.pm-role { padding: 13px 14px; border-radius: 14px; border: 1px solid var(--rule); background: var(--glass); display: grid; gap: 3px; }
+.pm-role b { font-size: 0.92rem; }
+.pm-role span { font-size: 0.84rem; color: var(--ink3); }
+
+.pm-install {
+  padding: 16px 18px;
+  border-radius: 14px;
+  border: 1px solid var(--cw-br);
+  background: var(--cw-bg);
+}
+.pm-install .pm-h { color: var(--cw-fg); }
+
+@media (max-width: 640px) {
+  .pm-head { grid-template-columns: 1fr; padding-right: 40px; }
+  .pm-logo { width: 64px; height: 64px; border-radius: 16px; }
+  .pm-feats { grid-template-columns: 1fr; }
+  .pm-roles { grid-template-columns: 1fr; }
+  .pm-links .btn { flex: 1 1 auto; }
+}

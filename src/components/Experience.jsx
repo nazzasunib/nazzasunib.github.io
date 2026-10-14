@@ -7,6 +7,7 @@ import Icon from './ui/Icon';
 import './experience.css';
 
 const TAG_ICON = {
+  Work: 'trend',
   Industry: 'shirt',
   Leadership: 'users',
   Volunteer: 'spark',
@@ -18,6 +19,7 @@ const TAG_ICON = {
 const PIPE = [...new Set(EXPERIENCE.map((x) => x.tag))];
 
 const TAG_CLASS = {
+  Work: 'chip-acc',
   Industry: 'chip-acc',
   Leadership: 'chip-ok',
   Volunteer: 'chip-wait',
@@ -41,7 +43,7 @@ export default function Experience() {
         eyebrow="Experience"
         title="Where I've"
         accent="put in the work."
-        sub="Industry placement, four club leadership roles and the academic project that connected them."
+        sub="Business development at NidusLab, an industry placement, club leadership roles and the academic project that connected them."
       />
 
       {/* pipeline strip — each kind of work lights up in turn */}
