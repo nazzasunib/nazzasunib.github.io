@@ -157,7 +157,7 @@
 /* once the full photo is in, the blurred copy becomes a soft backdrop
    for the letterbox bands */
 .shot:has(.shot-in) .shot-blur { filter: blur(26px) saturate(1.1) brightness(0.55); }
-.shot-in { opacity: 1; }
+.shot .shot-in { opacity: 1; }
 
 .slide-nav {
   position: absolute;
