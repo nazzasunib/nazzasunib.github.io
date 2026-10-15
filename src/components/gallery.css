@@ -159,7 +159,7 @@
 .shot:has(.shot-in) .shot-blur { filter: blur(26px) saturate(1.1) brightness(0.55); }
 .shot .shot-in { opacity: 1; }
 /* an entry can opt back into a filled, cropped frame */
-.shot[data-fit='cover'] .shot-full { object-fit: cover; }
+.shot[data-fit='fill'] .shot-full { object-fit: cover; }
 
 .slide-nav {
   position: absolute;

@@ -433,18 +433,18 @@ export const EVENTS = [
     meta: '10 October 2026 · Suvarna Grama Amusement Park',
     blurb:
       'A team outing organized by NidusLab at Suvarna Grama Amusement Park — a day of rides, laughter and time together beyond the office.',
-    cover: 'assets/events/nidus-team-day-out-2026/1-1024.webp',
+    cover: 'assets/events/nidus-team-day-out-2026/3-1024.webp',
     coverSrcSet:
-      'assets/events/nidus-team-day-out-2026/1-640.webp 640w, assets/events/nidus-team-day-out-2026/1-1024.webp 1024w, assets/events/nidus-team-day-out-2026/1-1600.webp 1600w',
-    coverBlur: GALLERY_BLUR['events/nidus-team-day-out-2026-1'],
-    coverFit: 'cover',
+      'assets/events/nidus-team-day-out-2026/3-640.webp 640w, assets/events/nidus-team-day-out-2026/3-1024.webp 1024w, assets/events/nidus-team-day-out-2026/3-1600.webp 1600w',
+    coverBlur: GALLERY_BLUR['events/nidus-team-day-out-2026-3'],
+    coverFit: 'fill',
     photos: [
       {
-        src: 'assets/events/nidus-team-day-out-2026/1-1024.webp',
+        src: 'assets/events/nidus-team-day-out-2026/3-1024.webp',
         srcSet:
-          'assets/events/nidus-team-day-out-2026/1-640.webp 640w, assets/events/nidus-team-day-out-2026/1-1024.webp 1024w, assets/events/nidus-team-day-out-2026/1-1600.webp 1600w',
-        blur: GALLERY_BLUR['events/nidus-team-day-out-2026-1'],
-        alt: 'Nidus team lined up by the lake at Suvarna Grama',
+          'assets/events/nidus-team-day-out-2026/3-640.webp 640w, assets/events/nidus-team-day-out-2026/3-1024.webp 1024w, assets/events/nidus-team-day-out-2026/3-1600.webp 1600w',
+        blur: GALLERY_BLUR['events/nidus-team-day-out-2026-3'],
+        alt: 'Three teammates in life jackets giving a thumbs-up',
       },
       {
         src: 'assets/events/nidus-team-day-out-2026/2-1024.webp',
@@ -454,11 +454,11 @@ export const EVENTS = [
         alt: 'Posing in a life jacket at the water park',
       },
       {
-        src: 'assets/events/nidus-team-day-out-2026/3-1024.webp',
+        src: 'assets/events/nidus-team-day-out-2026/1-1024.webp',
         srcSet:
-          'assets/events/nidus-team-day-out-2026/3-640.webp 640w, assets/events/nidus-team-day-out-2026/3-1024.webp 1024w, assets/events/nidus-team-day-out-2026/3-1600.webp 1600w',
-        blur: GALLERY_BLUR['events/nidus-team-day-out-2026-3'],
-        alt: 'Three teammates in life jackets giving a thumbs-up',
+          'assets/events/nidus-team-day-out-2026/1-640.webp 640w, assets/events/nidus-team-day-out-2026/1-1024.webp 1024w, assets/events/nidus-team-day-out-2026/1-1600.webp 1600w',
+        blur: GALLERY_BLUR['events/nidus-team-day-out-2026-1'],
+        alt: 'Nidus team lined up by the lake at Suvarna Grama',
       },
       {
         src: 'assets/events/nidus-team-day-out-2026/4-1024.webp',
