@@ -842,13 +842,23 @@ export const ACHIEVEMENTS = [
     blurb:
       'Served as football referee in KPL Football Tournament 2026 | Season 3, ensuring fair play, discipline and calm decisions under pressure.',
     fit: 'cover',
-    cover: 'assets/achievements/Football/2.jpeg',
-    coverSrcSet: 'assets/achievements/Football/2.jpeg 1x',
+    cover: 'assets/achievements/Football/KPL 3..jpeg',
+    coverSrcSet: 'assets/achievements/Football/KPL%203..jpeg 1x',
     photos: [
       {
-        src: 'assets/achievements/Football/2.jpeg',
-        srcSet: 'assets/achievements/Football/2.jpeg 1x',
+        src: 'assets/achievements/Football/FB_IMG_1789439801582.jpg.jpeg',
+        srcSet: 'assets/achievements/Football/FB_IMG_1789439801582.jpg.jpeg 1x',
         alt: 'KPL Football Tournament 2026 | Season 3 referee moment',
+      },
+      {
+        src: 'assets/achievements/Football/KPL3.3.jpeg',
+        srcSet: 'assets/achievements/Football/KPL3.3.jpeg 1x',
+        alt: 'KPL Football Tournament 2026 | Season 3 match moment',
+      },
+      {
+        src: 'assets/achievements/Football/KPL3.4.jpeg',
+        srcSet: 'assets/achievements/Football/KPL3.4.jpeg 1x',
+        alt: 'KPL Football Tournament 2026 | Season 3 on the field',
       },
     ],
     article: {
