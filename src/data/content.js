@@ -437,6 +437,7 @@ export const EVENTS = [
     coverSrcSet:
       'assets/events/nidus-team-day-out-2026/1-640.webp 640w, assets/events/nidus-team-day-out-2026/1-1024.webp 1024w, assets/events/nidus-team-day-out-2026/1-1600.webp 1600w',
     coverBlur: GALLERY_BLUR['events/nidus-team-day-out-2026-1'],
+    coverFit: 'cover',
     photos: [
       {
         src: 'assets/events/nidus-team-day-out-2026/1-1024.webp',

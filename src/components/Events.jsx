@@ -36,6 +36,7 @@ export default function Events() {
                       alt: `${ev.name} cover`,
                     }}
                     sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 400px"
+                    fit={ev.coverFit}
                   />
                   <span className="event-thumb-veil" aria-hidden="true" />
                   <span className="event-badge mono">Story</span>
