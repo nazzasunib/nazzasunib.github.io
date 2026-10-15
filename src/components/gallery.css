@@ -146,16 +146,17 @@
   filter: blur(18px) saturate(1.15);
   transform: scale(1.1);
 }
-.shot-full {
+.shot .shot-full {
+  /* the whole photo is always shown; any spare room is filled by the
+     blurred copy behind it instead of cropping the picture */
+  object-fit: contain;
   opacity: 0;
   transition: opacity 0.5s var(--ease);
 }
 
-/* A portrait certificate cropped to a 16/9 window loses the seal and the
-   signature, so those frames are letterboxed against a blurred copy of
-   themselves rather than cover-cropped. */
-.shot[data-fit='contain'] .shot-full { object-fit: contain; }
-.shot[data-fit='contain'] .shot-blur { filter: blur(26px) saturate(1.1) brightness(0.55); }
+/* once the full photo is in, the blurred copy becomes a soft backdrop
+   for the letterbox bands */
+.shot:has(.shot-in) .shot-blur { filter: blur(26px) saturate(1.1) brightness(0.55); }
 .shot-in { opacity: 1; }
 
 .slide-nav {

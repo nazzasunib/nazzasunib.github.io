@@ -34,7 +34,7 @@
 .event-thumb .shot-full {
   transition: opacity 0.5s var(--ease), transform 1s var(--ease), filter 0.6s var(--ease);
 }
-.event:hover .event-thumb .shot-full { transform: scale(1.08); filter: saturate(1.15); }
+.event:hover .event-thumb .shot-full { transform: scale(1.03); filter: saturate(1.15); }
 .event-thumb-veil {
   position: absolute;
   inset: 0;
