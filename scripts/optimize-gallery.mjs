@@ -31,6 +31,18 @@ const GROUPS = [
       'source-photos/bswc-winter-2026/P3.jpeg',
     ],
   },
+  {
+    section: 'events',
+    slug: 'nidus-team-day-out-2026',
+    sources: [
+      'source-photos/nidus-team-day-out-2026/P1.jpg',
+      'source-photos/nidus-team-day-out-2026/P2.jpg',
+      'source-photos/nidus-team-day-out-2026/P3.jpg',
+      'source-photos/nidus-team-day-out-2026/P4.jpg',
+      'source-photos/nidus-team-day-out-2026/P5.jpg',
+      'source-photos/nidus-team-day-out-2026/P6.jpg',
+    ],
+  },
   /* One seminar, two entries: the room photo carries the event, the framed
      certificate carries the achievement, so each is sized for its own slot. */
   {
