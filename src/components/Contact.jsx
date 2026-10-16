@@ -154,10 +154,10 @@ export default function Contact() {
           <Reveal delay={0.28}>
             <div className="map glass">
               <iframe
-                title="Map of Dhaka, Bangladesh"
+                title="Map of Gulshan 2 Circle, Dhaka"
                 src={`https://www.google.com/maps?q=${encodeURIComponent(
                   PROFILE.mapQuery
-                )}&output=embed`}
+                )}&z=16&output=embed`}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               />

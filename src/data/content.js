@@ -21,7 +21,7 @@ export const PROFILE = {
   email: 'mdnazzas@gmail.com',
   phone: '+880 1312-347482',
   location: 'Gulshan 2, Dhaka, Bangladesh',
-  mapQuery: 'Uttara,Dhaka,Bangladesh',
+  mapQuery: 'Gulshan 2 Circle, Dhaka 1212, Bangladesh',
   github: 'nazzasunib',
   tagline: 'Textile · Business · Technology',
 };
