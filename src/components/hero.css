@@ -425,3 +425,18 @@
   .hx-cube { display: none; }
   .hx-ctas .btn { flex: 1 1 auto; }
 }
+
+/* ---------- snapshot cards (replace the old demo cards) ---------- */
+.hx-rig { height: auto; display: grid; gap: 16px; align-content: center; min-height: 420px; }
+.hx-rig .hvc { position: relative; inset: auto; width: auto; }
+.hv-snap { transform: translateZ(40px); padding: 18px; }
+.hv-links { transform: translateZ(70px); animation-delay: -3s; }
+.hv-facts { list-style: none; margin: 16px 0 14px; padding: 0; display: grid; gap: 14px; }
+.hv-facts li { display: grid; gap: 2px; padding-left: 14px; border-left: 2px solid var(--acc); }
+.hv-facts .mono { font-size: 0.64rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink4); }
+.hv-facts b { font-size: 0.95rem; font-weight: 600; color: var(--ink); }
+.hv-facts li > span:last-child { font-size: 0.78rem; color: var(--ink3); }
+@media (max-width: 640px) {
+  .hx-rig { min-height: 0; }
+  .hv-snap, .hv-links { transform: none; }
+}

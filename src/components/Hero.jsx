@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { EDUCATION, EXPERIENCE, PROFILE, SKILL_GROUPS } from '../data/content';
-import { useReducedMotion, useTypewriter } from '../hooks';
+import { useReducedMotion } from '../hooks';
 import HeroField from './fx/HeroField';
 import Icon from './ui/Icon';
 import { scrollToId } from '../lib/scroll';
@@ -16,18 +16,6 @@ const ROTATE = [
   'web technologies',
 ];
 
-/* the textile internship, for the chat card's industry answer */
-const INTERN = EXPERIENCE.find((x) => x.tag === 'Industry') || EXPERIENCE[0];
-
-/* the hero chat card answers from the portfolio's own data */
-const CHAT = [
-  { q: 'What do you do right now?', a: `${PROFILE.badge.title} ${PROFILE.badge.sub}.` },
-  { q: 'Where did you study?', a: `${EDUCATION[0].title} — ${EDUCATION[0].org.split(' · ')[0]}.` },
-  { q: 'Any industry experience?', a: `${INTERN.title.split(' — ')[0]} at ${INTERN.org}: ${INTERN.desc.split(';')[0].toLowerCase()}.` },
-  { q: 'How can I reach you?', a: `Email ${PROFILE.email} — or use the contact form below.` },
-];
-
-
 /* ---------- rotating gradient word ---------- */
 function useRotator(list, ms = 2600) {
   const [i, setI] = useState(0);
@@ -40,88 +28,11 @@ function useRotator(list, ms = 2600) {
   return [list[i], i];
 }
 
-/* ---------- chat demo: question appears, agent "types" the answer ---------- */
-function useChatLoop(pairs) {
-  const [log, setLog] = useState([]);
-  const [typing, setTyping] = useState(false);
-  const reduced = useReducedMotion();
-
-  useEffect(() => {
-    if (reduced) {
-      setLog([{ who: 'q', text: pairs[0].q }, { who: 'a', text: pairs[0].a }]);
-      return undefined;
-    }
-    let dead = false;
-    const timers = [];
-    const wait = (ms) => new Promise((r) => timers.push(setTimeout(r, ms)));
-
-    (async () => {
-      await wait(1400);
-      for (let k = 0; !dead; k = (k + 1) % pairs.length) {
-        const { q, a } = pairs[k];
-        setLog((l) => [...l.slice(-2), { who: 'q', text: q }]);
-        await wait(650);
-        if (dead) return;
-        setTyping(true);
-        await wait(900);
-        if (dead) return;
-        setTyping(false);
-        setLog((l) => [...l, { who: 'a', text: '' }]);
-        for (let n = 0; n <= a.length && !dead; n += 2) {
-          setLog((l) => {
-            const c = l.slice();
-            c[c.length - 1] = { who: 'a', text: a.slice(0, n) };
-            return c;
-          });
-          await wait(22);
-        }
-        setLog((l) => {
-          const c = l.slice();
-          c[c.length - 1] = { who: 'a', text: a };
-          return c;
-        });
-        await wait(2300);
-      }
-    })();
-
-    return () => {
-      dead = true;
-      timers.forEach(clearTimeout);
-    };
-  }, [pairs, reduced]);
-
-  return { log, typing };
-}
-
-/* ---------- voice-note timer ---------- */
-function useClock() {
-  const [s, setS] = useState(0);
-  useEffect(() => {
-    const id = setInterval(() => setS((v) => (v + 1) % 60), 1000);
-    return () => clearInterval(id);
-  }, []);
-  return `00:${String(s).padStart(2, '0')}`;
-}
-
-const WAVE = Array.from({ length: 22 }, (_, i) => 0.35 + ((Math.sin(i * 1.7) + 1) / 2) * 0.65);
-
 export default function Hero() {
   const ref = useRef(null);
   const rig = useRef(null);
   const reduced = useReducedMotion();
   const [word, wi] = useRotator(ROTATE);
-  const { log, typing } = useChatLoop(CHAT);
-  const clock = useClock();
-  const role = useTypewriter(PROFILE.roles, { type: 48, erase: 22, hold: 1500 });
-  const [open, setOpen] = useState(false);
-
-  /* approval card flips between "waiting on you" and "available" */
-  useEffect(() => {
-    if (reduced) return undefined;
-    const id = setInterval(() => setOpen((v) => !v), 3600);
-    return () => clearInterval(id);
-  }, [reduced]);
-
   /* card rig leans toward the pointer: ±12° yaw, ±9° pitch */
   useEffect(() => {
     const host = ref.current;
@@ -180,7 +91,7 @@ export default function Hero() {
 
           <h1 className="hx-h">
             <span className="hx-big rise" style={{ animationDelay: '.08s' }}>
-              {PROFILE.first} <span className="hx-last">{PROFILE.last}</span>
+              Engineering meets <span className="hx-last">business.</span>
             </span>
             <span className="hx-mid rise" style={{ animationDelay: '.16s' }}>
               working across
@@ -221,80 +132,40 @@ export default function Hero() {
         {/* ---------- tilting card rig ---------- */}
         <div className="hx-r">
           <div className="hx-rig" ref={rig}>
-            {/* chat */}
-            <div className="hvc hv-chat">
-              <div className="hv-head">
-                <span className="hv-av">NU</span>
-                <b>Ask {PROFILE.first.split(' ')[0]}</b>
-                <span className="chip">Chat</span>
-              </div>
-              <div className="hv-log">
-                {log.map((m, i) => (
-                  <p className={`hv-msg hv-${m.who}`} key={`${i}-${m.who}-${log.length}`}>
-                    {m.text}
-                  </p>
-                ))}
-                {typing && (
-                  <p className="hv-msg hv-a hv-typing" aria-label="typing">
-                    <i />
-                    <i />
-                    <i />
-                  </p>
-                )}
-              </div>
-              <div className="hv-compose">
-                <span>Type a message…</span>
-                <i>
-                  <Icon name="arrowUp" size={12} stroke={2.4} />
-                </i>
-              </div>
-            </div>
-
-            {/* voice note */}
-            <div className="hvc hv-voice">
+            {/* snapshot — real facts only */}
+            <div className="hvc hv-snap">
               <div className="hv-row">
-                <span className="chip">Voice note</span>
-                <span className="mono hv-time">{clock}</span>
+                <span className="chip chip-ok">Open to opportunities</span>
+                <span className="hv-sub">{PROFILE.location.split(', ').slice(0, 2).join(', ')}</span>
               </div>
-              <div className="hv-wave" aria-hidden="true">
-                {WAVE.map((h, i) => (
-                  <i key={i} style={{ '--s': h, animationDelay: `${(i % 7) * -0.13}s` }} />
-                ))}
-              </div>
-              <p className="hv-trans">
-                <span className="mono">Role</span> {role}
-                <span className="hv-caret" />
-              </p>
-            </div>
-
-            {/* profile */}
-            <div className="hvc hv-doc">
-              <div className="hv-row">
-                <span className="chip">Profile</span>
-                <span className="hv-sub">{PROFILE.location.split(', ').slice(-2).join(', ')}</span>
-              </div>
-              <div className="hv-port">
-                <img src={PROFILE.portrait} alt={`Portrait of ${PROFILE.name}`} loading="eager" />
-                <span className="hv-scan" aria-hidden="true" />
-              </div>
+              <ul className="hv-facts">
+                <li>
+                  <span className="mono">Now</span>
+                  <b>{PROFILE.badge.title}</b>
+                  <span>{PROFILE.badge.sub}</span>
+                </li>
+                <li>
+                  <span className="mono">Studying</span>
+                  <b>{EDUCATION[0].title}</b>
+                  <span>{EDUCATION[0].org.split(' · ')[0]}</span>
+                </li>
+                <li>
+                  <span className="mono">Industry</span>
+                  <b>Merchandising internship</b>
+                  <span>Rising Knit Textiles Ltd</span>
+                </li>
+              </ul>
               <p className="hv-cap">{PROFILE.tagline}</p>
             </div>
 
-            {/* approval */}
-            <div className={`hvc hv-ap ${open ? 'is-ok' : ''}`}>
-              <div className="hv-row">
-                <span className={`chip ${open ? 'chip-ok' : 'chip-wait'}`}>
-                  {open ? 'Available now' : 'Waiting on you'}
-                </span>
-                <span className="mono hv-sub">Recruiters &amp; partners</span>
-              </div>
-              <p className="hv-ask">{PROFILE.status}</p>
+            {/* quick links */}
+            <div className="hvc hv-links">
               <div className="hv-btns">
                 <a href="#contact" className="hv-btn hv-btn-1" onClick={go('contact')}>
-                  {open ? 'Say hello' : 'Approve'}
+                  Say hello
                 </a>
-                <a href={PROFILE.resume} download className="hv-btn">
-                  Resume
+                <a href={PROFILE.resume} target="_blank" rel="noopener noreferrer" className="hv-btn">
+                  View resume
                 </a>
                 <a href="#projects" className="hv-btn" onClick={go('projects')}>
                   Projects

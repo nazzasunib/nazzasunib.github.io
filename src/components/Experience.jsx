@@ -1,7 +1,9 @@
-import { useRef } from 'react';
-import { motion, useScroll, useSpring } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
+import { AnimatePresence, motion, useScroll, useSpring } from 'framer-motion';
 import { EXPERIENCE } from '../data/content';
-import { useMedia, useReducedMotion } from '../hooks';
+import { useMedia, useReducedMotion, useScrollLock } from '../hooks';
+import { scrollToId } from '../lib/scroll';
 import { Section, SectionHead } from './ui/Primitives';
 import Icon from './ui/Icon';
 import './experience.css';
@@ -27,7 +29,98 @@ const TAG_CLASS = {
   Academic: '',
 };
 
+function ExperienceModal({ item, onClose }) {
+  useScrollLock(true);
+  useEffect(() => {
+    const onKey = (e) => e.key === 'Escape' && onClose();
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [onClose]);
+
+  const jump = (id) => {
+    onClose();
+    setTimeout(() => scrollToId(id), 350);
+  };
+
+  return createPortal(
+    <motion.div
+      className="pm-scrim"
+      data-lenis-prevent
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
+      onClick={(e) => e.target === e.currentTarget && onClose()}
+    >
+      <motion.div
+        className="pm glass"
+        role="dialog"
+        aria-modal="true"
+        aria-label={item.title}
+        initial={{ opacity: 0, y: 40, scale: 0.97 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: 26, scale: 0.98 }}
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <button className="pm-close" onClick={onClose} aria-label="Close details">
+          <Icon name="close" size={18} stroke={2.2} />
+        </button>
+        <header className="pm-head">
+          <span className="pm-logo">
+            <Icon name={TAG_ICON[item.tag] || 'spark'} size={26} />
+          </span>
+          <div>
+            <h3>{item.title}</h3>
+            <p className="pm-tagline">{item.org}</p>
+            <div className="proj-tags">
+              <span className={`chip ${TAG_CLASS[item.tag] || ''}`}>{item.tag}</span>
+            </div>
+          </div>
+        </header>
+        <div className="pm-body">
+          <section>
+            <h4 className="pm-h mono">Overview</h4>
+            <p className="pm-p">{item.desc}</p>
+          </section>
+          {item.points && (
+            <section>
+              <h4 className="pm-h mono">What I did</h4>
+              <ul className="pm-feats">
+                {item.points.map((t) => (
+                  <li key={t}>
+                    <span className="pm-tick">
+                      <Icon name="check" size={13} stroke={2.2} />
+                    </span>
+                    <div>
+                      <span>{t}</span>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+          {item.related && (
+            <section>
+              <h4 className="pm-h mono">Related</h4>
+              <div className="pm-rel">
+                {item.related.map((r) => (
+                  <button key={r.id} className="btn btn-ghost" onClick={() => jump(r.id)}>
+                    {r.label}
+                    <Icon name="arrowRight" size={14} />
+                  </button>
+                ))}
+              </div>
+            </section>
+          )}
+        </div>
+      </motion.div>
+    </motion.div>,
+    document.body
+  );
+}
+
 export default function Experience() {
+  const [open, setOpen] = useState(null);
   const trackRef = useRef(null);
   const reduced = useReducedMotion();
   const narrow = useMedia('(max-width: 860px)');
@@ -89,17 +182,34 @@ export default function Experience() {
                 <Icon name={TAG_ICON[item.tag] || 'spark'} size={13} stroke={2} />
               </motion.span>
 
-              <div className="xp-card glass card">
+              <div
+                className="xp-card glass card"
+                role="button"
+                tabIndex={0}
+                aria-label={`${item.title}: view details`}
+                onClick={() => setOpen(item)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    setOpen(item);
+                  }
+                }}
+              >
                 <span className={`xp-tag chip ${TAG_CLASS[item.tag] || ''}`}>{item.tag}</span>
                 <h4>{item.title}</h4>
                 <span className="xp-org mono">{item.org}</span>
                 <p>{item.desc}</p>
+                <span className="xp-more">
+                  Details
+                  <Icon name="arrowRight" size={13} />
+                </span>
                 <span className="xp-edge" aria-hidden="true" />
               </div>
             </motion.article>
           );
         })}
       </div>
+      <AnimatePresence>{open && <ExperienceModal item={open} onClose={() => setOpen(null)} />}</AnimatePresence>
     </Section>
   );
 }

@@ -161,3 +161,14 @@ a.detail-value:hover { color: var(--acc); }
 @media (max-width: 900px) {
   .contact-grid { grid-template-columns: 1fr; }
 }
+
+/* topic picker */
+.topics { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 6px; }
+.topics-l { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink4); margin-right: 4px; }
+.topic {
+  padding: 7px 14px; border-radius: 999px; font-size: 0.82rem; font-weight: 520; cursor: pointer;
+  color: var(--ink2); background: transparent; border: 1px solid var(--glass-br);
+  transition: background 0.25s, color 0.25s, border-color 0.25s, transform 0.25s;
+}
+.topic:hover { background: var(--hover); transform: translateY(-1px); }
+.topic.is-on { background: var(--ink); color: var(--ground); border-color: var(--ink); }

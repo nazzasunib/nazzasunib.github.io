@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { PROFILE } from '../data/content';
+import { PROFILE, SOCIALS } from '../data/content';
 import { Magnetic, Reveal, Section, SectionHead } from './ui/Primitives';
 import Icon from './ui/Icon';
 import VoiceOrb from './fx/VoiceOrb';
@@ -14,13 +14,17 @@ const FIELDS = [
 
 /* No backend here, so the form composes a prefilled mail draft in the
    visitor's own client — more reliable than form action="mailto:". */
-function buildMailto({ name, email, message }) {
-  const subject = `Portfolio enquiry from ${name || 'a visitor'}`;
-  const body = [`Name: ${name}`, `Email: ${email}`, '', message].join('\n');
+function buildMailto({ name, email, message, topic }) {
+  const subject = `[${topic}] Portfolio enquiry from ${name || 'a visitor'}`;
+  const body = [`Topic: ${topic}`, `Name: ${name}`, `Email: ${email}`, '', message].join('\n');
   return `mailto:${PROFILE.email}?subject=${encodeURIComponent(
     subject
   )}&body=${encodeURIComponent(body)}`;
 }
+
+const TOPICS = ['Job', 'Collaboration', 'Business', 'General'];
+
+const LINKEDIN = SOCIALS.find((x) => x.name === 'LinkedIn');
 
 const DETAILS = [
   { icon: 'mail', label: 'Email', value: PROFILE.email, href: `mailto:${PROFILE.email}` },
@@ -30,6 +34,16 @@ const DETAILS = [
     value: PROFILE.phone,
     href: `tel:${PROFILE.phone.replace(/[^\d+]/g, '')}`,
   },
+  {
+    icon: 'chat',
+    label: 'WhatsApp',
+    value: PROFILE.phone,
+    href: `https://wa.me/${PROFILE.whatsapp}`,
+    external: true,
+  },
+  ...(LINKEDIN
+    ? [{ icon: 'linkedin', label: 'LinkedIn', value: LINKEDIN.handle, href: LINKEDIN.url, external: true }]
+    : []),
   { icon: 'pin', label: 'Location', value: PROFILE.location },
 ];
 
@@ -60,7 +74,11 @@ function DetailCard({ item, index }) {
       <div className="detail-body">
         <span className="detail-label mono">{item.label}</span>
         {item.href ? (
-          <a className="detail-value" href={item.href}>
+          <a
+            className="detail-value"
+            href={item.href}
+            {...(item.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+          >
             {item.value}
           </a>
         ) : (
@@ -76,14 +94,33 @@ function DetailCard({ item, index }) {
 }
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: '', email: '', message: '' });
-  const [sent, setSent] = useState(false);
+  const [form, setForm] = useState({ name: '', email: '', message: '', topic: TOPICS[0] });
+  const [state, setState] = useState('idle'); /* idle | sending | sent | error */
+  const sent = state === 'sent';
 
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault();
-    window.location.href = buildMailto(form);
-    setSent(true);
-    setTimeout(() => setSent(false), 4000);
+    if (!PROFILE.formUrl) {
+      /* no endpoint configured: open a prefilled draft in the visitor's mail app */
+      window.location.href = buildMailto(form);
+      setState('sent');
+      setTimeout(() => setState('idle'), 4000);
+      return;
+    }
+    setState('sending');
+    try {
+      const res = await fetch(PROFILE.formUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({ ...form, _subject: `[${form.topic}] Portfolio enquiry from ${form.name}` }),
+      });
+      if (!res.ok) throw new Error(String(res.status));
+      setState('sent');
+      setForm({ name: '', email: '', message: '', topic: form.topic });
+    } catch {
+      setState('error');
+    }
+    setTimeout(() => setState('idle'), 5000);
   };
 
   return (
@@ -98,6 +135,21 @@ export default function Contact() {
       <div className="contact-grid">
         <Reveal className="contact-form-wrap">
           <form className="contact-form glass" onSubmit={submit}>
+            <div className="topics" role="group" aria-label="What is this about?">
+              <span className="topics-l mono">I'm writing about</span>
+              {TOPICS.map((t) => (
+                <button
+                  type="button"
+                  key={t}
+                  className={`topic ${form.topic === t ? 'is-on' : ''}`}
+                  aria-pressed={form.topic === t}
+                  onClick={() => setForm({ ...form, topic: t })}
+                >
+                  {t}
+                </button>
+              ))}
+            </div>
+
             {FIELDS.map((f, i) => (
               <div className={`field ${f.type === 'textarea' ? 'field-area' : ''}`} key={f.key}>
                 {f.type === 'textarea' ? (
@@ -128,13 +180,21 @@ export default function Contact() {
 
             <Magnetic strength={0.14}>
               <button type="submit" className="btn btn-primary contact-submit">
-                {sent ? 'Opening your mail app…' : 'Send Message'}
+                {state === 'sending'
+                  ? 'Sending…'
+                  : sent
+                    ? PROFILE.formUrl ? 'Message sent' : 'Opening your mail app…'
+                    : state === 'error'
+                      ? 'Failed, try again'
+                      : 'Send Message'}
                 <Icon name={sent ? 'check' : 'send'} size={16} />
               </button>
             </Magnetic>
 
             <p className="contact-fineprint">
-              This opens a prefilled draft in your own mail app — nothing is sent from this page.
+              {PROFILE.formUrl
+                ? `Goes straight to ${PROFILE.email}. You can also use the email, WhatsApp or LinkedIn on the right.`
+                : 'This opens a prefilled draft in your own mail app. Nothing is sent from this page.'}
             </p>
           </form>
         </Reveal>

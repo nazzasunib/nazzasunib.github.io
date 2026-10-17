@@ -3,8 +3,9 @@ import { createPortal } from 'react-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useScrollLock, useTilt } from '../hooks';
 import { Reveal, Section, SectionHead, Stagger, staggerItem } from './ui/Primitives';
-import { FEATURED_PROJECTS, projectImage } from '../data/content';
+import { FEATURED_PROJECTS, PINNED_REPOS, projectImage } from '../data/content';
 import Icon from './ui/Icon';
+import Share from './ui/Share';
 import './projects.css';
 
 const EASE = [0.22, 1, 0.36, 1];
@@ -276,6 +277,8 @@ function ProjectModal({ p, onClose }) {
               <p className="pm-p">{p.install}</p>
             </section>
           )}
+
+          <Share title={`${p.name} by Nazzas Unib`} hash="projects" text={`${p.name}: ${p.tagline}`} />
         </div>
       </motion.div>
     </motion.div>,
@@ -291,7 +294,9 @@ export default function Projects({ gh }) {
   const others = gh.repos
     .filter((r) => {
       const n = String(r.name).toLowerCase();
-      return !featuredNames.has(n) && !isSite(n);
+      if (featuredNames.has(n) || isSite(n)) return false;
+      if (PINNED_REPOS.length) return PINNED_REPOS.includes(n);
+      return !r.fork && Boolean(r.description);
     })
     .slice(0, 6);
 

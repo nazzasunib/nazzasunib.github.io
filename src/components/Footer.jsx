@@ -1,6 +1,7 @@
-import { NAV, PROFILE, SOCIALS } from '../data/content';
+import { NAV, NAV_MORE, PROFILE, SOCIALS } from '../data/content';
 import { Marquee, Reveal } from './ui/Primitives';
 import Icon from './ui/Icon';
+import Share from './ui/Share';
 import { scrollToId } from '../lib/scroll';
 import { toneOf } from './Social';
 import './footer.css';
@@ -40,7 +41,7 @@ export default function Footer() {
           <Reveal delay={0.08} className="foot-col">
             <h5 className="mono">Sections</h5>
             <ul>
-              {NAV.slice(0, 5).map((n) => (
+              {NAV.map((n) => (
                 <li key={n.id}>
                   <a href={`#${n.id}`} onClick={(e) => go(e, n.id)}>
                     {n.label}
@@ -53,7 +54,7 @@ export default function Footer() {
           <Reveal delay={0.14} className="foot-col">
             <h5 className="mono">More</h5>
             <ul>
-              {NAV.slice(5).map((n) => (
+              {NAV_MORE.map((n) => (
                 <li key={n.id}>
                   <a href={`#${n.id}`} onClick={(e) => go(e, n.id)}>
                     {n.label}
@@ -81,6 +82,8 @@ export default function Footer() {
             </div>
           </Reveal>
         </div>
+
+        <Share title={`${PROFILE.name} — Portfolio`} text="Portfolio of Nazzas Ibn Shams Unib" />
 
         <div className="foot-bottom">
           <span>

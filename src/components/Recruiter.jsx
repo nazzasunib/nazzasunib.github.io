@@ -21,7 +21,6 @@ export function Now() {
               <i />
               Now
             </span>
-            <span className="now-upd mono">Updated {NOW.updated}</span>
           </div>
           <ul className="now-list">
             {NOW.items.map((it) => (
@@ -151,13 +150,4 @@ export function FabricProject() {
 
     </Section>
   );
-}
-
-/* Removed sections. Kept as empty exports so an older App.jsx that still
-   imports them keeps building; they render nothing. */
-export function Testimonials() {
-  return null;
-}
-export function Certificates() {
-  return null;
 }

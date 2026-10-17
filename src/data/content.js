@@ -21,6 +21,10 @@ export const PROFILE = {
   email: 'mdnazzas@gmail.com',
   phone: '+880 1312-347482',
   location: 'Gulshan 2, Dhaka, Bangladesh',
+  whatsapp: '8801312347482',
+  /* paste a Formspree / Web3Forms endpoint here to send messages straight to your inbox */
+  formUrl: '',
+  site: 'https://nazzasunib.github.io',
   mapQuery: 'Gulshan 2 Circle, Dhaka 1212, Bangladesh',
   github: 'nazzasunib',
   tagline: 'Textile · Business · Technology',
@@ -30,15 +34,19 @@ export const NAV = [
   { id: 'about', label: 'About' },
   { id: 'experience', label: 'Experience' },
   { id: 'skills', label: 'Skills' },
-  { id: 'textile', label: 'Textile' },
   { id: 'projects', label: 'Projects' },
-  { id: 'business', label: 'Business' },
   { id: 'events', label: 'Events' },
-  { id: 'achievements', label: 'Achievements' },
-  { id: 'social', label: 'Social' },
   { id: 'contact', label: 'Contact' },
-  { id: 'now', label: 'Now' },
+];
+
+/* secondary sections, listed in the footer only */
+export const NAV_MORE = [
+  { id: 'textile', label: 'Textile' },
+  { id: 'business', label: 'Business' },
   { id: 'casestudy', label: 'Case Study' },
+  { id: 'achievements', label: 'Achievements' },
+  { id: 'now', label: 'Now' },
+  { id: 'social', label: 'Social' },
 ];
 
 export const ABOUT_PARAGRAPHS = [
@@ -157,42 +165,78 @@ export const EXPERIENCE = [
     org: 'NidusLab',
     desc: 'Building partnerships and pipeline for NidusLab products, including the AI-powered job marketplace NidusJob, and running campus outreach such as the AI & Career Guidance Seminar at Green University of Bangladesh.',
     tag: 'Work',
+    points: [
+      'Build partnerships and pipeline for NidusLab products.',
+      'Work on NidusJob, the AI-powered job marketplace.',
+      'Run campus outreach, such as the AI & Career Guidance Seminar at Green University of Bangladesh.',
+    ],
+    related: [
+      { label: 'Case study', id: 'casestudy' },
+      { label: 'Events', id: 'events' },
+    ],
   },
   {
     title: 'Internship — Integrated Workflow & Merchandising',
     org: 'Rising Knit Textiles Ltd',
     desc: 'Covered spinning, knitting, dyeing and apparel units; handled order costing, buyer communication and marketing.',
     tag: 'Industry',
+    points: [
+      'Worked across spinning, knitting, dyeing and apparel units.',
+      'Handled order costing and buyer communication.',
+      'Supported marketing work.',
+    ],
+    related: [
+      { label: 'Textile expertise', id: 'textile' },
+      { label: 'Fabric project', id: 'fabric' },
+    ],
   },
   {
     title: 'Assistant Press & Media Secretary',
     org: 'BUFT Textile Club',
     desc: 'Managed social media content and event promotions for the club.',
     tag: 'Leadership',
+    points: ['Managed social media content for the club.', 'Promoted club events.'],
+    related: [{ label: 'Achievements', id: 'achievements' }],
   },
   {
     title: 'Joint Secretary (formerly Press & Media Secretary)',
     org: 'BUFT Social Welfare Club',
     desc: 'Coordinated overall club activities, supported executive decisions and led media coverage for events.',
     tag: 'Leadership',
+    points: [
+      'Coordinated overall club activities.',
+      'Supported executive decisions.',
+      'Led media coverage for events.',
+    ],
+    related: [{ label: 'Achievements', id: 'achievements' }],
   },
   {
     title: 'Volunteer — National Job Fest',
     org: 'BUFT Career Development Club',
     desc: 'Assisted in organizing and managing a national-level job fair.',
     tag: 'Volunteer',
+    points: ['Helped organize and manage a national-level job fair.'],
+    related: [{ label: 'Events', id: 'events' }],
   },
   {
     title: 'Event Organizer & Volunteer — Tarunner Utsob 2025',
     org: 'BUFT Debate Club',
     desc: 'Organized event activities and managed volunteer coordination.',
     tag: 'Events',
+    points: ['Organized event activities.', 'Managed volunteer coordination.'],
+    related: [{ label: 'Achievements', id: 'achievements' }],
   },
   {
     title: 'Academic Project — Textile Fabric Analysis',
     org: 'BUFT',
     desc: 'Analyzed fabric types, yarn counts and fabric quality; built technical reporting and teamwork skills.',
     tag: 'Academic',
+    points: [
+      'Analyzed fabric types and yarn counts.',
+      'Assessed fabric quality.',
+      'Built technical reporting and teamwork skills.',
+    ],
+    related: [{ label: 'Project deep dive', id: 'fabric' }],
   },
 ];
 
@@ -427,96 +471,6 @@ export const TEXTILE = {
 };
 
 export const EVENTS = [
-  {
-    id: 'nidus-team-day-out-2026',
-    name: 'Nidus Team Day-Out 2026',
-    meta: '10 October 2026 · Suvarna Grama Amusement Park',
-    blurb:
-      'A team outing organized by NidusLab at Suvarna Grama Amusement Park — a day of rides, laughter and time together beyond the office.',
-    cover: 'assets/events/nidus-team-day-out-2026/3-1024.webp',
-    coverSrcSet:
-      'assets/events/nidus-team-day-out-2026/3-640.webp 640w, assets/events/nidus-team-day-out-2026/3-1024.webp 1024w, assets/events/nidus-team-day-out-2026/3-1600.webp 1600w',
-    coverBlur: GALLERY_BLUR['events/nidus-team-day-out-2026-3'],
-    coverFit: 'fill',
-    photos: [
-      {
-        src: 'assets/events/nidus-team-day-out-2026/3-1024.webp',
-        srcSet:
-          'assets/events/nidus-team-day-out-2026/3-640.webp 640w, assets/events/nidus-team-day-out-2026/3-1024.webp 1024w, assets/events/nidus-team-day-out-2026/3-1600.webp 1600w',
-        blur: GALLERY_BLUR['events/nidus-team-day-out-2026-3'],
-        alt: 'Three teammates in life jackets giving a thumbs-up',
-      },
-      {
-        src: 'assets/events/nidus-team-day-out-2026/2-1024.webp',
-        srcSet:
-          'assets/events/nidus-team-day-out-2026/2-640.webp 640w, assets/events/nidus-team-day-out-2026/2-1024.webp 1024w, assets/events/nidus-team-day-out-2026/2-1600.webp 1600w',
-        blur: GALLERY_BLUR['events/nidus-team-day-out-2026-2'],
-        alt: 'Posing in a life jacket at the water park',
-      },
-      {
-        src: 'assets/events/nidus-team-day-out-2026/1-1024.webp',
-        srcSet:
-          'assets/events/nidus-team-day-out-2026/1-640.webp 640w, assets/events/nidus-team-day-out-2026/1-1024.webp 1024w, assets/events/nidus-team-day-out-2026/1-1600.webp 1600w',
-        blur: GALLERY_BLUR['events/nidus-team-day-out-2026-1'],
-        alt: 'Nidus team lined up by the lake at Suvarna Grama',
-      },
-      {
-        src: 'assets/events/nidus-team-day-out-2026/4-1024.webp',
-        srcSet:
-          'assets/events/nidus-team-day-out-2026/4-640.webp 640w, assets/events/nidus-team-day-out-2026/4-1024.webp 1024w, assets/events/nidus-team-day-out-2026/4-1600.webp 1600w',
-        blur: GALLERY_BLUR['events/nidus-team-day-out-2026-4'],
-        alt: 'Teammates in the pool with life rings',
-      },
-      {
-        src: 'assets/events/nidus-team-day-out-2026/5-1024.webp',
-        srcSet:
-          'assets/events/nidus-team-day-out-2026/5-640.webp 640w, assets/events/nidus-team-day-out-2026/5-1024.webp 1024w, assets/events/nidus-team-day-out-2026/5-1600.webp 1600w',
-        blur: GALLERY_BLUR['events/nidus-team-day-out-2026-5'],
-        alt: 'Team selfie on the bus ride to the park',
-      },
-      {
-        src: 'assets/events/nidus-team-day-out-2026/6-1024.webp',
-        srcSet:
-          'assets/events/nidus-team-day-out-2026/6-640.webp 640w, assets/events/nidus-team-day-out-2026/6-1024.webp 1024w, assets/events/nidus-team-day-out-2026/6-1600.webp 1600w',
-        blur: GALLERY_BLUR['events/nidus-team-day-out-2026-6'],
-        alt: 'NidusJob team photo in matching polo shirts',
-      },
-    ],
-    article: {
-      title: 'Nidus Team Day-Out 2026',
-      blocks: [
-        { t: 'h3', v: 'Organized by NidusLab • Suvarna Grama Amusement Park' },
-        {
-          t: 'p',
-          v: 'On <strong>October 10, 2026</strong>, I had the opportunity to be part of <strong>Nidus Team Day-Out 2026</strong>, a wonderful team outing organized by <strong>NidusLab</strong> at <strong>Suvarna Grama Amusement Park</strong>. It was a refreshing break from our regular office routine and a great chance to spend quality time with my colleagues outside our usual working environment.',
-        },
-        {
-          t: 'p',
-          v: 'The entire day was filled with excitement, laughter and memorable experiences. From exploring the amusement park and enjoying different rides to sharing funny moments and having conversations with teammates, every activity made the day enjoyable. We spent time together, took photos, shared stories and created memories that will stay with us for a long time.',
-        },
-        {
-          t: 'p',
-          v: 'One of the best parts of this outing was getting to interact with colleagues in a more relaxed and friendly environment. During regular office hours, we are usually focused on our individual responsibilities, meetings and daily tasks. This day gave us the opportunity to connect beyond work, understand each other better and strengthen our relationships as a team.',
-        },
-        {
-          t: 'p',
-          v: 'Personally, I really enjoyed the positive atmosphere and the time spent with everyone. It reminded me how important good relationships, teamwork and a friendly working environment are in professional life. Experiences like this help build stronger connections among colleagues and make working together even more enjoyable.',
-        },
-        {
-          t: 'p',
-          v: 'A special thanks to our <strong>Founder &amp; CEO, Akh Karim Sir</strong>, for arranging this wonderful outing and giving the entire team an opportunity to relax, have fun and spend meaningful time together. I truly appreciate his thoughtful initiative and the effort behind making this day possible.',
-        },
-        {
-          t: 'p',
-          v: 'Overall, Nidus Team Day-Out 2026 was a memorable experience filled with happiness, friendship and team spirit. I am grateful to be part of the NidusLab family and to have shared such a wonderful day with my colleagues.',
-        },
-        {
-          t: 'p',
-          v: 'It was definitely one of those days that I will remember with a smile! 💜',
-        },
-      ],
-    },
-  },
   {
     id: 'gub-2026',
     name: 'GUB 2026',
@@ -932,23 +886,13 @@ export const ACHIEVEMENTS = [
     blurb:
       'Served as football referee in KPL Football Tournament 2026 | Season 3, ensuring fair play, discipline and calm decisions under pressure.',
     fit: 'cover',
-    cover: 'assets/achievements/Football/KPL 3..jpeg',
-    coverSrcSet: 'assets/achievements/Football/KPL%203..jpeg 1x',
+    cover: 'assets/achievements/Football/FB_IMG_1789439801582.jpg.jpeg',
+    coverSrcSet: 'assets/achievements/Football/FB_IMG_1789439801582.jpg.jpeg 1x',
     photos: [
       {
-        src: 'assets/achievements/Football/KPL 3..jpeg',
-        srcSet: 'assets/achievements/Football/KPL%203..jpeg 1x',
-        alt: 'KPL Football Tournament 2026 | Season 3 referee receiving the tournament referee trophy',
-      },
-      {
-        src: 'assets/achievements/Football/KPL3.3.jpeg',
-        srcSet: 'assets/achievements/Football/KPL3.3.jpeg 1x',
-        alt: 'KPL Football Tournament 2026 | Season 3 referee with a player on the field',
-      },
-      {
-        src: 'assets/achievements/Football/KPL3.4.jpeg',
-        srcSet: 'assets/achievements/Football/KPL3.4.jpeg 1x',
-        alt: 'KPL Football Tournament 2026 | Season 3 referee on the field',
+        src: 'assets/achievements/Football/FB_IMG_1789439801582.jpg.jpeg',
+        srcSet: 'assets/achievements/Football/2.jpeg 1x',
+        alt: 'KPL Football Tournament 2026 | Season 3 referee moment',
       },
     ],
     article: {
@@ -1042,8 +986,10 @@ export const SOCIALS = [
    ===================================================================== */
 
 /* ---------- Now: what I'm doing at the moment (update every few months) ---------- */
+/* repo names (lowercase) to show under "More on GitHub". Empty = every public non-fork repo with a description */
+export const PINNED_REPOS = [];
+
 export const NOW = {
-  updated: 'October 2026',
   items: [
     {
       label: 'Working on',
