@@ -128,8 +128,8 @@ export default function Contact() {
       <SectionHead
         eyebrow="Contact"
         title="Let's"
-        accent="start a conversation."
-        sub="Open to internships, entry-level roles and collaborations across textile, business development and tech."
+        accent="talk."
+        sub="Hiring, partnering or simply curious? I am open to roles and collaborations across textiles, business development and tech."
       />
 
       <div className="contact-grid">
@@ -204,7 +204,7 @@ export default function Contact() {
             <VoiceOrb
               speakers={['You', PROFILE.first.split(' ')[0]]}
               states={['Listening', 'Replying']}
-              note="Say hello — the conversation starts here."
+              note="Say hello. I read every message."
             />
           </Reveal>
           {DETAILS.map((d, i) => (

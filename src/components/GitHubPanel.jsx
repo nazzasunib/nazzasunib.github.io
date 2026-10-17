@@ -85,7 +85,7 @@ export default function GitHubPanel({ gh }) {
 
           {status === 'ready' && langs.length === 0 && (
             <p className="gh-note">
-              No language data available yet — add some repositories to see this fill in.
+              Language stats appear once repositories load.
             </p>
           )}
 

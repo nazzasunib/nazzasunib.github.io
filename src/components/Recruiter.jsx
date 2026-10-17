@@ -109,7 +109,7 @@ export function CaseStudies() {
           eyebrow="Case study"
           title="Business development,"
           accent="in practice."
-          sub="What the work actually looked like: the brief, the steps, and what came out of it."
+          sub="One campaign, start to finish: the brief, what I did, and what came out of it."
         />
         <div className="cs-list">
           {list.map((cs) => (

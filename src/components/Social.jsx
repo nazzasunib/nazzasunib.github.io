@@ -15,13 +15,13 @@ export default function Social() {
         eyebrow="Social Media"
         title="Find me"
         accent="around the web."
-        sub="Every platform I'm active on — code, content and everything in between."
+        sub="Code on GitHub, career updates on LinkedIn and the odd post everywhere else."
       />
 
       <Reveal>
         <Ring3D
           items={SOCIALS.map((s) => ({ kind: s.name, title: s.handle, tone: 'var(--acc)' }))}
-          caption="Every platform turns around the same person."
+          caption="Different platforms, same person."
         />
       </Reveal>
 

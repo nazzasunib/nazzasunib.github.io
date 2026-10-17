@@ -14,7 +14,7 @@ export const PROFILE = {
     'Future-Focused Problem Solver',
   ],
   intro:
-    'A Textile Engineering graduate from BGMEA University of Fashion & Technology (BUFT), currently working as a Business Development Executive at NidusLab. Passionate about business development, technology and innovation, with a focus on creating impactful digital solutions, exploring AI-driven opportunities and driving sustainable business growth.',
+    'Textile engineer from BUFT, now a Business Development Executive at NidusLab. I learned how a mill runs from the floor up; today I work on the commercial side, where good products meet the people who need them. In between, I build apps and spend more time with AI tools than I probably should.',
   badge: { title: 'Business Development Executive', sub: 'at NidusLab Ecosystem' },
   resume: 'assets/Nazzas-Ibn-Shams-Unib-Resume.pdf',
   portrait: 'assets/portrait.jpg',
@@ -50,10 +50,10 @@ export const NAV_MORE = [
 ];
 
 export const ABOUT_PARAGRAPHS = [
-  "I'm a Textile Engineering graduate from BGMEA University of Fashion & Technology (BUFT), currently working as a Business Development Executive at NidusLab. My background combines technical knowledge of the textile and apparel industry with hands-on experience in business development, giving me a unique perspective on both industry operations and business growth.",
-  'During my internship at a composite textile factory, I gained practical exposure to spinning, knitting, dyeing and apparel operations while also working on order costing, buyer communication and marketing activities. Alongside my academic journey, I took on leadership roles in four university clubs where I managed media, organized events and coordinated volunteer teams.',
-  "Today, I'm expanding my expertise in business development, web technologies, artificial intelligence and digital innovation. I believe the future of businesses will be driven not only by industry expertise but also by data, automation and intelligent technology.",
-  'My goal is to combine engineering knowledge, business insight and emerging technologies to build smarter digital solutions, create meaningful business opportunities and drive sustainable business growth.',
+  "I studied Textile Engineering at BGMEA University of Fashion & Technology (BUFT), and today I work as a Business Development Executive at NidusLab. The combination is deliberate. Knowing how yarn becomes fabric, and fabric becomes a shipment, makes me a sharper partner whenever the conversation turns to cost, capacity or lead time.",
+  'My internship at Rising Knit Textiles Ltd, a composite mill, took me through spinning, knitting, dyeing and the garment floor, in that order. Alongside production, I sat with the merchandising team on order costing, buyer correspondence and marketing. At university I held leadership roles in four clubs, running media, events and volunteer teams.',
+  "Outside work, I build software. I have designed and shipped three apps and built this site myself. My conviction is simple: the next decade of business belongs to people who understand both the product and the technology wrapped around it.",
+  'Where I am heading is just as clear: bring engineering knowledge, commercial judgement and well-built software together to solve real problems for real customers.',
 ];
 
 export const ABOUT_STATS = [
@@ -96,74 +96,74 @@ export const SKILLS = [
     name: 'Textile Engineering',
     group: 'textile',
     icon: 'weave',
-    note: 'B.Sc. at BUFT plus mill-floor time across spinning, knitting, dyeing and apparel units.',
-  },
-  {
-    name: 'Quality Assurance',
-    group: 'textile',
-    icon: 'check',
-    note: 'Analysed fabric types, yarn counts and fabric quality for an academic project.',
+    note: 'B.Sc. at BUFT, plus mill-floor time in spinning, knitting, dyeing and garments.',
   },
   {
     name: 'Textile Manufacturing',
     group: 'textile',
     icon: 'pulse',
-    note: 'Followed the integrated workflow of a composite factory end to end.',
+    note: 'Followed a composite mill\'s workflow from yarn to finished garment.',
+  },
+  {
+    name: 'Quality Assurance',
+    group: 'textile',
+    icon: 'check',
+    note: 'Measured yarn counts, identified fabric types and assessed quality in an academic project.',
   },
   {
     name: 'Business Development',
     group: 'business',
     icon: 'trend',
-    note: 'Building pipeline and partnerships as Business Development Executive at NidusLab.',
+    note: 'Building pipeline and partnerships for NidusLab products.',
   },
   {
     name: 'Marketing',
     group: 'business',
     icon: 'bars',
-    note: 'Factory marketing support, campus campaigns and event promotion across four clubs.',
+    note: 'Factory marketing support, campus campaigns and event promotion for four clubs.',
   },
   {
     name: 'Sales',
     group: 'business',
     icon: 'compass',
-    note: 'Outreach and pricing planned around real buyer behaviour, not guesswork.',
+    note: 'Outreach and pricing grounded in how buyers actually behave.',
   },
   {
     name: 'GitHub / Git',
     group: 'tech',
     icon: 'code',
-    note: 'Version control for personal projects, experiments and this portfolio.',
+    note: 'Version control for my apps, experiments and this portfolio.',
   },
   {
     name: 'AI & Emerging Tech',
     group: 'tech',
     icon: 'chip',
-    note: 'Working with AI-driven career tooling around the NidusJob platform.',
+    note: 'Hands-on with AI hiring tools through the NidusJob platform.',
   },
   {
     name: 'Web Technologies',
     group: 'tech',
     icon: 'laptop',
-    note: 'HTML, CSS and JavaScript — including the site you are reading.',
+    note: 'HTML, CSS, JavaScript and React. You are looking at the result.',
   },
   {
     name: 'Communication',
     group: 'human',
     icon: 'chat',
-    note: 'Buyer correspondence, B2B follow-up and speaking at university seminars.',
+    note: 'Buyer emails, B2B follow-ups and presenting at university seminars.',
   },
   {
     name: 'Leadership',
     group: 'human',
     icon: 'users',
-    note: 'Four club leadership roles, coordinating media, events and volunteer teams.',
+    note: 'Four club leadership roles across media, events and volunteer teams.',
   },
 ];
 export const EXPERIENCE = [
   {
     title: 'Business Development Executive',
     org: 'NidusLab',
-    desc: 'Building partnerships and pipeline for NidusLab products, including the AI-powered job marketplace NidusJob, and running campus outreach such as the AI & Career Guidance Seminar at Green University of Bangladesh.',
+    desc: 'I build partnerships and pipeline for NidusLab products, including the AI job marketplace NidusJob, and run campus outreach such as the AI & Career Guidance Seminar at Green University of Bangladesh.',
     tag: 'Work',
     points: [
       'Build partnerships and pipeline for NidusLab products.',
@@ -178,7 +178,7 @@ export const EXPERIENCE = [
   {
     title: 'Internship — Integrated Workflow & Merchandising',
     org: 'Rising Knit Textiles Ltd',
-    desc: 'Covered spinning, knitting, dyeing and apparel units; handled order costing, buyer communication and marketing.',
+    desc: 'Rotated through spinning, knitting, dyeing and apparel units; supported merchandising with order costing, buyer communication and marketing.',
     tag: 'Industry',
     points: [
       'Worked across spinning, knitting, dyeing and apparel units.',
@@ -193,7 +193,7 @@ export const EXPERIENCE = [
   {
     title: 'Assistant Press & Media Secretary',
     org: 'BUFT Textile Club',
-    desc: 'Managed social media content and event promotions for the club.',
+    desc: 'Ran the club\'s social media and promoted its events.',
     tag: 'Leadership',
     points: ['Managed social media content for the club.', 'Promoted club events.'],
     related: [{ label: 'Achievements', id: 'achievements' }],
@@ -213,7 +213,7 @@ export const EXPERIENCE = [
   {
     title: 'Volunteer — National Job Fest',
     org: 'BUFT Career Development Club',
-    desc: 'Assisted in organizing and managing a national-level job fair.',
+    desc: 'Helped organise and run a national-level job fair.',
     tag: 'Volunteer',
     points: ['Helped organize and manage a national-level job fair.'],
     related: [{ label: 'Events', id: 'events' }],
@@ -229,11 +229,11 @@ export const EXPERIENCE = [
   {
     title: 'Academic Project — Textile Fabric Analysis',
     org: 'BUFT',
-    desc: 'Analyzed fabric types, yarn counts and fabric quality; built technical reporting and teamwork skills.',
+    desc: 'Measured yarn counts, identified fabric types and assessed quality, then co-wrote the technical report.',
     tag: 'Academic',
     points: [
-      'Analyzed fabric types and yarn counts.',
-      'Assessed fabric quality.',
+      'Measured the yarn count of each sample.',
+      'Identified fabric types and assessed quality.',
       'Built technical reporting and teamwork skills.',
     ],
     related: [{ label: 'Project deep dive', id: 'fabric' }],
@@ -391,40 +391,40 @@ export const FALLBACK_PROJECTS = [
 export const BUSINESS = {
   eyebrow: 'Business Development',
   titleA: 'Turning conversations',
-  titleB: 'into contracts.',
+  titleB: 'into partnerships.',
   sub:
-    "During my internship at Rising Knit Textiles Ltd, I sat close to the merchandising desk — order costing, buyer communication, and the marketing that keeps a factory's pipeline full. That's where the business side of my work took root.",
+    "My commercial instincts took shape at Rising Knit Textiles Ltd, next to the merchandising desk, watching how costing, buyer emails and marketing kept the order book full. At NidusLab I put those lessons to work every day.",
   glyph: 'trend',
   items: [
     {
       icon: 'trend',
       title: 'Sales Strategy',
-      desc: 'Planning outreach and pricing around real buyer behaviour, not guesswork.',
+      desc: 'Outreach and pricing built on how buyers actually behave.',
     },
     {
       icon: 'compass',
       title: 'Market Research',
-      desc: 'Reading demand and competitor moves before committing resources.',
+      desc: 'Reading demand and competitor moves before committing time or money.',
     },
     {
       icon: 'users',
       title: 'Client Acquisition',
-      desc: 'Turning first contact with a buyer into a working relationship.',
+      desc: 'Turning a first conversation into a lasting working relationship.',
     },
     {
       icon: 'chat',
       title: 'B2B Communication',
-      desc: 'Clear, timely correspondence with buyers, factories and vendors.',
+      desc: 'Prompt, clear correspondence with buyers, factories and vendors.',
     },
     {
       icon: 'check',
       title: 'Negotiation',
-      desc: 'Balancing cost, quality and timelines to close deals that hold up.',
+      desc: 'Weighing cost, quality and lead time to land deals that last.',
     },
     {
       icon: 'bars',
       title: 'Business Growth & Partnerships',
-      desc: 'Building the kind of relationships that outlast a single order.',
+      desc: 'Relationships that outlive a single order.',
     },
   ],
 };
@@ -432,41 +432,17 @@ export const BUSINESS = {
 export const TEXTILE = {
   eyebrow: 'Textile Engineering',
   titleA: 'From',
-  titleB: 'fibre to finished garment.',
+  titleB: 'yarn to finished garment.',
   sub:
-    'Hands-on exposure across the full production chain at Rising Knit Textiles Ltd, plus academic work analyzing fabric structure and quality.',
+    'Time on every stage of a composite mill at Rising Knit Textiles Ltd, backed by academic work on fabric structure and quality.',
   glyph: 'weave',
   items: [
-    {
-      icon: 'spool',
-      title: 'Spinning & Knitting',
-      desc: 'Followed yarn from fibre to fabric across the mill floor.',
-    },
-    {
-      icon: 'drop',
-      title: 'Dyeing',
-      desc: 'Exposure to colour processing within an integrated production unit.',
-    },
-    {
-      icon: 'check',
-      title: 'Quality Control',
-      desc: 'Analyzed fabric types, yarn counts and fabric quality for an academic project.',
-    },
-    {
-      icon: 'shirt',
-      title: 'Apparel & Garments',
-      desc: 'Worked through apparel-unit operations end to end during internship.',
-    },
-    {
-      icon: 'pulse',
-      title: 'Textile Manufacturing',
-      desc: 'Understanding the integrated workflow of a composite textile factory.',
-    },
-    {
-      icon: 'cap',
-      title: 'Industrial Experience & Education',
-      desc: 'Rising Knit Textiles Ltd internship, paired with B.Sc. coursework at BUFT.',
-    },
+    { icon: 'spool', title: 'Spinning', desc: 'Saw raw fibre drawn, twisted and wound into yarn.' },
+    { icon: 'weave', title: 'Knitting', desc: 'Followed that yarn onto the knitting floor, where it becomes fabric.' },
+    { icon: 'drop', title: 'Dyeing & Finishing', desc: 'Colour processing and finishing inside an integrated unit.' },
+    { icon: 'shirt', title: 'Apparel & Garments', desc: 'Garment-floor operations, from cut panels to finished pieces.' },
+    { icon: 'check', title: 'Quality Control', desc: 'Measured yarn counts and assessed fabric quality in an academic project.' },
+    { icon: 'cap', title: 'Industry & Education', desc: 'A composite-mill internship paired with B.Sc. coursework at BUFT.' },
   ],
 };
 
@@ -476,7 +452,7 @@ export const EVENTS = [
     name: 'Nidus Team Day-Out 2026',
     meta: '10 October 2026 · Suvarna Grama Amusement Park',
     blurb:
-      'A team outing organized by NidusLab at Suvarna Grama Amusement Park — a day of rides, laughter and time together beyond the office.',
+      'NidusLab\'s team outing at Suvarna Grama Amusement Park: rides, water games and a rare full day together outside the office.',
     cover: 'assets/events/nidus-team-day-out-2026/3-1024.webp',
     coverSrcSet:
       'assets/events/nidus-team-day-out-2026/3-640.webp 640w, assets/events/nidus-team-day-out-2026/3-1024.webp 1024w, assets/events/nidus-team-day-out-2026/3-1600.webp 1600w',
@@ -563,9 +539,9 @@ export const EVENTS = [
   },
   {
     id: 'gub-2026',
-    name: 'GUB 2026',
+    name: 'AI & Career Seminar · GUB 2026',
     meta: '23 August 2026 · Green University of Bangladesh',
-    blurb: "NidusLab's seminar on AI, careers and the future of recruitment.",
+    blurb: "NidusLab's campus seminar on AI, careers and where recruitment is heading.",
     cover: 'assets/gub/1-1024.webp',
     coverSrcSet:
       'assets/gub/1-640.webp 640w, assets/gub/1-1024.webp 1024w, assets/gub/1-1600.webp 1600w',
@@ -732,7 +708,7 @@ export const EVENTS = [
     name: 'Winter Clothes Distribution Program 2026',
     meta: '2026 · BUFT Social Welfare Club',
     blurb:
-      'Planned and coordinated a winter clothes distribution drive with the BUFT Social Welfare Club, from preparing the clothes to running the day itself.',
+      'Planned and ran a winter clothes drive with the BUFT Social Welfare Club, from preparing the clothes to handing them out on the day.',
     cover: 'assets/events/bswc-winter-2026/1-1024.webp',
     coverSrcSet:
       'assets/events/bswc-winter-2026/1-640.webp 640w, assets/events/bswc-winter-2026/1-1024.webp 1024w, assets/events/bswc-winter-2026/1-1600.webp 1600w',
@@ -788,7 +764,7 @@ export const EVENTS = [
     name: 'Organizer – Dhaka North Marathon 2025 | Season 1',
     meta: '2025 · Dhaka North Marathon',
     blurb:
-      'Served as organizer for Dhaka North Marathon 2025 | Season 1, supporting coordination, planning, communication and smooth event execution.',
+      'Organiser for Dhaka North Marathon 2025 (Season 1), handling coordination, planning and communication so race day ran smoothly.',
     cover: 'assets/events/Dhaka North/1.jpeg',
     coverSrcSet: 'assets/events/Dhaka North/1.jpeg 1x',
     photos: [
@@ -849,7 +825,7 @@ export const ACHIEVEMENTS = [
     date: 'August 2025',
     meta: 'August 2025 · BUFT Debate Club',
     blurb:
-      'Organized BUFT Tarunno Utsab 2025 with the BUFT Debate Club — planning, coordination and on-ground activity management.',
+      'Organised BUFT Tarunno Utsab 2025 with the BUFT Debate Club, from planning and coordination to managing the day on the ground.',
     /* portrait certificate scans — letterbox them rather than crop */
     fit: 'contain',
     cover: 'assets/achievements/debate-club/1-1024.webp',
@@ -937,7 +913,7 @@ export const ACHIEVEMENTS = [
     date: '2025',
     meta: '2025 · KPL Football Tournament',
     blurb:
-      'Served as football referee in KPL Football Tournament 2025 | Season 2, ensuring fair play, discipline and calm decisions under pressure.',
+      'Refereed KPL Football Tournament 2025 (Season 2), keeping play fair and decisions calm under pressure.',
     fit: 'cover',
     cover: 'assets/achievements/Football/1.jpeg',
     coverSrcSet: 'assets/achievements/Football/1.jpeg 1x',
@@ -974,7 +950,7 @@ export const ACHIEVEMENTS = [
     date: '2026',
     meta: '2026 · KPL Football Tournament',
     blurb:
-      'Served as football referee in KPL Football Tournament 2026 | Season 3, ensuring fair play, discipline and calm decisions under pressure.',
+      'Refereed KPL Football Tournament 2026 (Season 3), keeping play fair and decisions calm under pressure.',
     fit: 'cover',
     cover: 'assets/achievements/Football/KPL 3..jpeg',
     coverSrcSet: 'assets/achievements/Football/KPL%203..jpeg 1x',
@@ -1093,16 +1069,16 @@ export const NOW = {
   items: [
     {
       label: 'Working on',
-      text: 'Business development at NidusLab, including university partnerships and campus outreach for NidusJob.',
+      text: 'Business development at NidusLab, mainly university partnerships and campus outreach for NidusJob.',
     },
     { label: 'Studying', text: 'Final year of B.Sc. Textile Engineering at BUFT (Batch 222).' },
     {
       label: 'Learning',
-      text: 'Web technologies and AI tools, starting with building and maintaining this site.',
+      text: 'Web development and AI tools. Every new feature on this site is practice.',
     },
     {
       label: 'Open to',
-      text: 'Internships, entry-level roles and collaborations across textile, business development and tech.',
+      text: 'Full-time roles, internships and collaborations in textiles, business development and tech.',
     },
   ],
 };
@@ -1122,7 +1098,7 @@ export const CASE_STUDIES = [
       'assets/gub/4-640.webp 640w, assets/gub/4-1024.webp 1024w, assets/gub/4-1600.webp 1600w',
     coverBlur: GUB_BLUR['4'],
     challenge:
-      'Students wanted to understand how AI is changing hiring, and NidusLab wanted a direct line to young job seekers for NidusJob.',
+      'Students wanted to know how AI is reshaping hiring. NidusLab wanted to meet young job seekers face to face and put NidusJob in their hands.',
     approach: [
       "Partnered with the university's Center for Career Development to host an AI & Career Guidance Seminar on campus.",
       'Ran a NidusLab booth from 9:00 AM so students could meet the team and try NidusJob first-hand.',
@@ -1143,11 +1119,11 @@ export const FABRIC_PROJECT = {
   title: 'Textile Fabric Analysis',
   org: 'BUFT · Academic project',
   summary:
-    'An academic project analysing fabric types, yarn counts and fabric quality, written up as a technical report with the team.',
+    'A team project at BUFT: we tested a set of fabric samples for yarn count, structure and quality, then wrote the findings up as a technical report.',
   scope: [
-    { icon: 'weave', title: 'Fabric type', text: 'Identified the type and structure of each fabric sample.' },
-    { icon: 'spool', title: 'Yarn count', text: 'Measured the yarn count of each sample.' },
-    { icon: 'check', title: 'Fabric quality', text: 'Assessed the quality of each fabric against the brief.' },
-    { icon: 'users', title: 'Technical report', text: 'Wrote up the method and findings as a team report.' },
+    { icon: 'spool', title: 'Yarn count', text: 'Measured the yarn count of every sample.' },
+    { icon: 'weave', title: 'Fabric type', text: 'Identified each sample\'s type and structure.' },
+    { icon: 'check', title: 'Fabric quality', text: 'Checked each fabric\'s quality against the brief.' },
+    { icon: 'users', title: 'Technical report', text: 'Documented our method and findings as a team.' },
   ],
 };

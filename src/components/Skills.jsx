@@ -206,7 +206,7 @@ export default function Skills() {
         eyebrow="Skills"
         title="What I bring to"
         accent="the table."
-        sub="Mill-floor technical grounding, commercial instinct and a growing technology toolkit. Pick a domain, or hover any skill to see the work behind it."
+        sub="A technical base from the mill, a commercial ear from business development and a growing toolkit in tech. Pick a domain, or hover a skill to see where it comes from."
       />
 
       <div className="sk">

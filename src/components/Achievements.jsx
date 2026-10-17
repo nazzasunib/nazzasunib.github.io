@@ -19,8 +19,8 @@ export default function Achievements() {
         <SectionHead
           eyebrow="Achievements"
           title="Recognition"
-          accent="earned."
-          sub="Certificates, organizing roles and awards — open a card to see the certificate and the story behind it."
+          accent="along the way."
+          sub="Certificates, organising roles and awards. Open any card for the certificate and the story behind it."
         />
 
         <Stagger className="ach-grid" stagger={0.1}>

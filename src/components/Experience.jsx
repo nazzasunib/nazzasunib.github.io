@@ -136,7 +136,7 @@ export default function Experience() {
         eyebrow="Experience"
         title="Where I've"
         accent="put in the work."
-        sub="Business development at NidusLab, an industry placement, club leadership roles and the academic project that connected them."
+        sub="From the mill floor to a tech company, with club leadership roles along the way. Tap any card for the details."
       />
 
       {/* pipeline strip — each kind of work lights up in turn */}

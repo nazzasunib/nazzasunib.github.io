@@ -15,8 +15,8 @@ export default function Events() {
         <SectionHead
           eyebrow="Events"
           title="Moments from"
-          accent="my events."
-          sub="Seminars, fairs and campus programmes — open a card to read the full story."
+          accent="the field."
+          sub="Seminars, outings and campus programmes. Open any card for the full story."
         />
 
         <Stagger className="events-grid" stagger={0.1}>
@@ -53,17 +53,6 @@ export default function Events() {
               </button>
             </motion.article>
           ))}
-
-          <motion.div className="event event-slot" variants={staggerItem}>
-            <Icon name="spark" size={26} stroke={1.3} />
-            <h4>Next event goes here</h4>
-            <p>
-              Drop photos into <code>source-photos/</code>, add a group to{' '}
-              <code>scripts/optimize-gallery.mjs</code>, run it and add an entry to{' '}
-              <code>EVENTS</code> in <code>src/data/content.js</code> — it renders with the same
-              story layout.
-            </p>
-          </motion.div>
         </Stagger>
       </Section>
 

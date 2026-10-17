@@ -30,10 +30,10 @@ export default function About() {
   return (
     <Section id="about" bloom="iris" bloomAt="right">
       <SectionHead
-        eyebrow="About"
-        title="Two disciplines,"
-        accent="one thread."
-        sub="Bridging business strategy, technology and innovation to create impactful digital solutions and meaningful business opportunities."
+        eyebrow="My Story"
+        title="Engineering roots,"
+        accent="commercial instinct."
+        sub="How a textile engineer ended up in business development, and why the two fit together better than you might think."
       />
 
       <div className="about-grid">
@@ -48,7 +48,7 @@ export default function About() {
         <Reveal delay={0.1} className="about-visual">
           <Globe
             stages={SKILL_GROUPS.map((g) => g.label)}
-            caption="Every domain wires back to the same profile."
+            caption="Three fields, one way of working."
           />
         </Reveal>
       </div>

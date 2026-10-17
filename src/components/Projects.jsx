@@ -306,8 +306,8 @@ export default function Projects({ gh }) {
         <SectionHead
           eyebrow="Projects"
           title="Things I've"
-          accent="built & explored."
-          sub="Apps I've designed and shipped for real people in Bangladesh. Tap a card to see what each one does."
+          accent="built and shipped."
+          sub="Apps I designed and released for everyday users in Bangladesh. Tap any card for the full rundown."
         />
 
         <Stagger className="projects-grid" stagger={0.09}>

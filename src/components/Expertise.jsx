@@ -70,7 +70,7 @@ function Visual({ kind, data, glyph, tone }) {
     return (
       <LayerStack
         checks={data.items.slice(0, 4).map((x) => x.title)}
-        caption="Fibre, fabric, colour, garment — each layer checked before it moves on."
+        caption="Yarn, fabric, colour, garment: each stage checked before the next."
       />
     );
   }
