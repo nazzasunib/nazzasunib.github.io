@@ -7,32 +7,10 @@ import Icon from './ui/Icon';
 import { scrollToId } from '../lib/scroll';
 import './hero.css';
 
-/* the gradient word under the name cycles through these */
-const ROTATE = [
-  'textile engineering',
-  'business development',
-  'AI & emerging tech',
-  'merchandising',
-  'web technologies',
-];
-
-/* ---------- rotating gradient word ---------- */
-function useRotator(list, ms = 2600) {
-  const [i, setI] = useState(0);
-  const reduced = useReducedMotion();
-  useEffect(() => {
-    if (reduced) return undefined;
-    const id = setInterval(() => setI((v) => (v + 1) % list.length), ms);
-    return () => clearInterval(id);
-  }, [list.length, ms, reduced]);
-  return [list[i], i];
-}
-
 export default function Hero() {
   const ref = useRef(null);
   const rig = useRef(null);
   const reduced = useReducedMotion();
-  const [word, wi] = useRotator(ROTATE);
   /* card rig leans toward the pointer: ±12° yaw, ±9° pitch */
   useEffect(() => {
     const host = ref.current;
@@ -91,21 +69,36 @@ export default function Hero() {
 
           <h1 className="hx-h">
             <span className="hx-big rise" style={{ animationDelay: '.08s' }}>
-              Engineering meets <span className="hx-last">business.</span>
-            </span>
-            <span className="hx-mid rise" style={{ animationDelay: '.16s' }}>
-              working across
-            </span>
-            <span className="hx-rot rise" style={{ animationDelay: '.22s' }}>
-              <span className="hx-word grad-text" key={wi}>
-                {word}
-              </span>
+              About <span className="hx-last">Me</span>
             </span>
           </h1>
 
           <p className="hx-intro rise" style={{ animationDelay: '.3s' }}>
             {PROFILE.intro}
           </p>
+
+          <ul className="hv-facts hx-facts rise" style={{ animationDelay: '.34s' }}>
+            <li>
+              <span className="mono">Now</span>
+              <b>{PROFILE.badge.title}</b>
+              <span>{PROFILE.badge.sub}</span>
+            </li>
+            <li>
+              <span className="mono">Studying</span>
+              <b>{EDUCATION[0].title}</b>
+              <span>{EDUCATION[0].org.split(' · ')[0]}</span>
+            </li>
+            <li>
+              <span className="mono">Industry</span>
+              <b>Merchandising internship</b>
+              <span>Rising Knit Textiles Ltd</span>
+            </li>
+            <li>
+              <span className="mono">Based in</span>
+              <b>{PROFILE.location.split(', ').slice(0, 2).join(', ')}</b>
+              <span>{PROFILE.tagline}</span>
+            </li>
+          </ul>
 
           <div className="hx-ctas rise" style={{ animationDelay: '.38s' }}>
             <a href="#projects" className="btn btn-primary" onClick={go('projects')}>
@@ -132,45 +125,8 @@ export default function Hero() {
         {/* ---------- tilting card rig ---------- */}
         <div className="hx-r">
           <div className="hx-rig" ref={rig}>
-            {/* snapshot — real facts only */}
-            <div className="hvc hv-snap">
-              <div className="hv-row">
-                <span className="chip chip-ok">Open to opportunities</span>
-                <span className="hv-sub">{PROFILE.location.split(', ').slice(0, 2).join(', ')}</span>
-              </div>
-              <ul className="hv-facts">
-                <li>
-                  <span className="mono">Now</span>
-                  <b>{PROFILE.badge.title}</b>
-                  <span>{PROFILE.badge.sub}</span>
-                </li>
-                <li>
-                  <span className="mono">Studying</span>
-                  <b>{EDUCATION[0].title}</b>
-                  <span>{EDUCATION[0].org.split(' · ')[0]}</span>
-                </li>
-                <li>
-                  <span className="mono">Industry</span>
-                  <b>Merchandising internship</b>
-                  <span>Rising Knit Textiles Ltd</span>
-                </li>
-              </ul>
-              <p className="hv-cap">{PROFILE.tagline}</p>
-            </div>
-
-            {/* quick links */}
-            <div className="hvc hv-links">
-              <div className="hv-btns">
-                <a href="#contact" className="hv-btn hv-btn-1" onClick={go('contact')}>
-                  Say hello
-                </a>
-                <a href={PROFILE.resume} target="_blank" rel="noopener noreferrer" className="hv-btn">
-                  View resume
-                </a>
-                <a href="#projects" className="hv-btn" onClick={go('projects')}>
-                  Projects
-                </a>
-              </div>
+            <div className="hvc hv-photo">
+              <img src={PROFILE.portrait} alt={`Portrait of ${PROFILE.name}`} loading="eager" />
             </div>
           </div>
         </div>
