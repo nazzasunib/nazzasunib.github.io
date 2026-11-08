@@ -119,6 +119,110 @@ function ExperienceModal({ item, onClose }) {
   );
 }
 
+function XpCard({ item, onOpen }) {
+  return (
+    <div
+      className="xp-card glass card"
+      role="button"
+      tabIndex={0}
+      aria-label={`${item.title}: view details`}
+      onClick={() => onOpen(item)}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          onOpen(item);
+        }
+      }}
+    >
+      <span className={`xp-tag chip ${TAG_CLASS[item.tag] || ''}`}>{item.tag}</span>
+      <h4>{item.title}</h4>
+      <span className="xp-org mono">{item.org}</span>
+      <p>{item.desc}</p>
+      <span className="xp-more">
+        Details
+        <Icon name="arrowRight" size={13} />
+      </span>
+      <span className="xp-edge" aria-hidden="true" />
+    </div>
+  );
+}
+
+/* =========================================================
+   XpRail — desktop: the section pins and the scroll turns
+   into a sideways journey along one timeline. The thread
+   becomes the rail; each role hangs above or below it.
+   ========================================================= */
+function XpRail({ onOpen }) {
+  const host = useRef(null);
+  const track = useRef(null);
+  const fillRef = useRef(null);
+  const [dist, setDist] = useState(0);
+
+  useEffect(() => {
+    const t = track.current;
+    if (!t) return undefined;
+    const on = () => setDist(Math.max(0, t.scrollWidth - window.innerWidth + 80));
+    on();
+    const ro = new ResizeObserver(on);
+    ro.observe(t);
+    window.addEventListener('resize', on);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener('resize', on);
+    };
+  }, []);
+
+  useEffect(() => {
+    let raf = 0;
+    let cur = 0;
+    const loop = () => {
+      const h = host.current;
+      if (h) {
+        const r = h.getBoundingClientRect();
+        if (r.bottom > 0 && r.top < window.innerHeight) {
+          const goal = Math.min(1, Math.max(0, -r.top / Math.max(1, r.height - window.innerHeight)));
+          cur += (goal - cur) * 0.14;
+          track.current.style.transform = `translate3d(${(-cur * dist).toFixed(1)}px,0,0)`;
+          fillRef.current.style.transform = `scaleX(${cur.toFixed(4)})`;
+          const items = track.current.querySelectorAll('.xr-item');
+          const mid = window.innerWidth * 0.62;
+          items.forEach((el) => {
+            const b = el.getBoundingClientRect();
+            el.classList.toggle('is-past', b.left + 40 < mid);
+          });
+        }
+      }
+      raf = requestAnimationFrame(loop);
+    };
+    raf = requestAnimationFrame(loop);
+    return () => cancelAnimationFrame(raf);
+  }, [dist]);
+
+  return (
+    <div className="xr" ref={host} style={{ height: `calc(100vh + ${dist}px)` }}>
+      <div className="xr-stage">
+        <div className="xr-track" ref={track}>
+          <span className="xr-line" aria-hidden="true">
+            <i ref={fillRef} />
+          </span>
+          {EXPERIENCE.map((item, i) => (
+            <div className={`xr-item ${i % 2 ? 'xr-down' : 'xr-up'}`} key={item.title}>
+              <span className="xr-node" aria-hidden="true">
+                <Icon name={TAG_ICON[item.tag] || 'spark'} size={13} stroke={2} />
+              </span>
+              <span className="xr-stem" aria-hidden="true" />
+              <span className="xr-idx mono" aria-hidden="true">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <XpCard item={item} onOpen={onOpen} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Experience() {
   const [open, setOpen] = useState(null);
   const trackRef = useRef(null);
@@ -152,6 +256,7 @@ export default function Experience() {
         ))}
       </div>
 
+      {narrow || reduced ? (
       <div className={`xp ${narrow ? 'xp-narrow' : ''}`} ref={trackRef}>
         <span className="xp-track" aria-hidden="true" />
         <motion.span
@@ -182,33 +287,14 @@ export default function Experience() {
                 <Icon name={TAG_ICON[item.tag] || 'spark'} size={13} stroke={2} />
               </motion.span>
 
-              <div
-                className="xp-card glass card"
-                role="button"
-                tabIndex={0}
-                aria-label={`${item.title}: view details`}
-                onClick={() => setOpen(item)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    setOpen(item);
-                  }
-                }}
-              >
-                <span className={`xp-tag chip ${TAG_CLASS[item.tag] || ''}`}>{item.tag}</span>
-                <h4>{item.title}</h4>
-                <span className="xp-org mono">{item.org}</span>
-                <p>{item.desc}</p>
-                <span className="xp-more">
-                  Details
-                  <Icon name="arrowRight" size={13} />
-                </span>
-                <span className="xp-edge" aria-hidden="true" />
-              </div>
+              <XpCard item={item} onOpen={setOpen} />
             </motion.article>
           );
         })}
       </div>
+      ) : (
+        <XpRail onOpen={setOpen} />
+      )}
       <AnimatePresence>{open && <ExperienceModal item={open} onClose={() => setOpen(null)} />}</AnimatePresence>
     </Section>
   );

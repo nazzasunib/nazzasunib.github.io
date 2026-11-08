@@ -185,7 +185,7 @@ export default function FabricJourney() {
         const xe = bx + fw * 1.32;
         const cols = Math.ceil((xe - xs) / sw);
         const rows = knit * R;
-        const front = bx - 40 + (fw + 80) * dye;
+        const front = xs - 40 + (xe - xs + 80) * dye;
         ctx.lineCap = 'round';
         ctx.lineWidth = Math.max(1.2, sw * 0.2);
         for (let r = 0; r < R; r += 1) {

@@ -19,6 +19,7 @@ import Footer from './components/Footer';
 import FabricJourney from './components/FabricJourney';
 import ChapterCut from './components/fx/ChapterCut';
 import StoryThread from './components/fx/StoryThread';
+import ScrubDriver from './components/fx/ScrubDriver';
 import { BackToTop, CardGlow, ScrollProgress } from './components/Ambient';
 
 import useGitHub from './components/useGitHub';
@@ -70,6 +71,7 @@ export default function App() {
 
       <main ref={mainRef}>
         <StoryThread hostRef={mainRef} />
+        <ScrubDriver />
         <NameReveal />
         <Hero />
         <About />
