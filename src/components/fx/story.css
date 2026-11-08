@@ -1,0 +1,160 @@
+/* =========================================================
+   Story layer: the thread, the fibre-to-garment scene and
+   the chapter cuts.
+   ========================================================= */
+
+/* ---------- thread ---------- */
+.thread {
+  position: absolute;
+  inset: 0 auto auto 0;
+  z-index: 2;
+  pointer-events: none;
+  overflow: visible;
+}
+.thread path { fill: none; stroke-linecap: round; }
+.thread-ghost { stroke: var(--rule); stroke-width: 1; stroke-dasharray: 2 7; }
+.thread-glow { stroke: var(--acc); stroke-width: 7; opacity: 0.16; filter: blur(4px); }
+.thread-line { stroke: url(#thread-g); stroke-width: 1.8; }
+.thread-knot .tk-ring { fill: var(--ground); stroke: var(--line); stroke-width: 1.2; transition: stroke 0.4s, r 0.4s; }
+.thread-knot .tk-dot { fill: var(--ink4); transition: fill 0.4s; }
+.thread-knot.is-on .tk-ring { stroke: var(--acc); }
+.thread-knot.is-on .tk-dot { fill: var(--acc); }
+.thread-needle { transition: opacity 0.3s; }
+.tn-halo { fill: var(--acc); opacity: 0.18; animation: tnPulse 1.8s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+.tn-core { fill: var(--acc); filter: drop-shadow(0 0 6px var(--acc)); }
+@keyframes tnPulse { 50% { transform: scale(1.5); opacity: 0.06; } }
+@media (max-width: 720px) {
+  .thread-glow { stroke-width: 4; }
+  .thread-line { stroke-width: 1.4; }
+}
+
+/* ---------- fibre to garment ---------- */
+.fj { position: relative; height: 340vh; z-index: 3; }
+.fj-stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+.fj-canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.fj-copy {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 1200px;
+  pointer-events: none;
+}
+.fj-copy > * { max-width: 440px; }
+.fj-now { min-height: 190px; animation: fjIn 0.6s var(--ease-out, cubic-bezier(.22,1,.36,1)) both; }
+@keyframes fjIn { from { opacity: 0; transform: translateY(18px); filter: blur(6px); } }
+.fj-n { font-size: 0.72rem; letter-spacing: 0.16em; color: var(--acc); }
+.fj-t {
+  margin: 12px 0 14px;
+  font-size: clamp(2rem, 4.2vw, 3.4rem);
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+  font-weight: 640;
+  color: var(--ink);
+  text-wrap: balance;
+}
+.fj-d { color: var(--ink3); font-size: 1.02rem; line-height: 1.6; max-width: 36ch; }
+.fj-steps { list-style: none; padding: 0; margin: 26px 0 18px; display: flex; flex-wrap: wrap; gap: 8px; }
+.fj-steps li {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--glass-br);
+  font-size: 0.8rem;
+  color: var(--ink4);
+  background: var(--glass);
+  transition: color 0.3s, border-color 0.3s, background 0.3s;
+}
+.fj-steps li .mono { font-size: 0.64rem; opacity: 0.7; }
+.fj-steps li.is-done { color: var(--ink2); }
+.fj-steps li.is-on { color: var(--on-acc); background: var(--acc); border-color: var(--acc); }
+.fj-bar { display: block; width: min(440px, 100%); height: 2px; background: var(--rule); border-radius: 2px; overflow: hidden; }
+.fj-bar i { display: block; height: 100%; background: var(--grad); transform-origin: left; transform: scaleX(0); }
+.fj-still { height: auto; }
+.fj-still .fj-stage { position: relative; height: 100vh; }
+@media (max-width: 860px) {
+  .fj-copy { justify-content: flex-end; padding-bottom: 9vh; }
+  .fj-now { min-height: 168px; }
+  .fj-t { font-size: clamp(1.7rem, 7.4vw, 2.3rem); }
+  .fj-d { font-size: 0.95rem; }
+  .fj-steps { margin: 16px 0 14px; gap: 6px; }
+  .fj-steps li { padding: 5px 9px; font-size: 0.72rem; }
+}
+
+/* ---------- chapter cut ---------- */
+.cc {
+  --p: 0;
+  position: relative;
+  z-index: 3;
+  height: 78vh;
+  min-height: 460px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  perspective: 1200px;
+}
+.cc-tiles { position: absolute; inset: 0; display: grid; grid-auto-rows: 1fr; }
+.cc-tiles i {
+  --in: clamp(0, calc((var(--p) - 0.14 - var(--d) * 0.24) * 7), 1);
+  --out: clamp(0, calc((var(--p) - 0.56 - var(--d) * 0.24) * 7), 1);
+  display: block;
+  margin: -0.5px;
+  transform: rotateX(calc((1 - var(--in)) * 90deg - var(--out) * 90deg));
+  opacity: calc(var(--in) - var(--out));
+  background-color: var(--paper);
+  border: 1px solid var(--rule);
+  will-change: transform;
+}
+/* basket weave: alternate tiles carry warp or weft stripes */
+.cc-tiles .cc-h { background-image: repeating-linear-gradient(0deg, transparent 0 5px, rgba(var(--fx-dot), 0.12) 5px 6px); }
+.cc-tiles .cc-w { background-image: repeating-linear-gradient(90deg, transparent 0 5px, rgba(var(--fx-dot), 0.12) 5px 6px); }
+
+.cc-label {
+  --show: clamp(0, calc((var(--p) - 0.3) * 6), 1);
+  --hide: clamp(0, calc((var(--p) - 0.66) * 6), 1);
+  position: relative;
+  z-index: 2;
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+  text-align: center;
+  padding: 0 16px;
+  opacity: calc(var(--show) - var(--hide));
+  transform: translateY(calc((1 - var(--show)) * 40px - var(--hide) * 40px)) scale(calc(0.94 + var(--show) * 0.06));
+}
+.cc-n {
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--acc);
+  padding: 6px 14px;
+  border: 1px solid var(--acc-br);
+  border-radius: 999px;
+  background: var(--ground);
+}
+.cc-t {
+  position: relative;
+  font-size: clamp(2.6rem, 9vw, 7.4rem);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.055em;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--line);
+  text-wrap: balance;
+  max-width: 14ch;
+}
+/* the title fills with colour as the band passes, like dye taking */
+.cc-t::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-stroke: 0;
+  clip-path: inset(0 calc((1 - clamp(0, calc((var(--p) - 0.34) * 3.6), 1)) * 100%) 0 0);
+}
+.cc-k { color: var(--ink3); font-size: 1rem; max-width: 44ch; }

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import Lenis from 'lenis';
 
 import Navbar from './components/Navbar';
@@ -16,6 +16,9 @@ import Social from './components/Social';
 import { CaseStudies, FabricProject, Now } from './components/Recruiter';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import FabricJourney from './components/FabricJourney';
+import ChapterCut from './components/fx/ChapterCut';
+import StoryThread from './components/fx/StoryThread';
 import { BackToTop, CardGlow, ScrollProgress } from './components/Ambient';
 
 import useGitHub from './components/useGitHub';
@@ -25,6 +28,7 @@ import { BUSINESS, TEXTILE } from './data/content';
 
 export default function App() {
   const gh = useGitHub();
+  const mainRef = useRef(null);
   const reduced = useReducedMotion();
 
   /* Lenis inertial scrolling, driven by rAF. Skipped when the visitor
@@ -64,19 +68,25 @@ export default function App() {
       <CardGlow />
       <Navbar />
 
-      <main>
+      <main ref={mainRef}>
+        <StoryThread hostRef={mainRef} />
         <NameReveal />
         <Hero />
         <About />
+        <ChapterCut n="01" title="The work" kicker="Where I have put in the hours, and what I learned there." />
         <Experience />
         <Skills />
+        <ChapterCut n="02" title="The craft" kicker="Textile engineering, told the way a mill sees it." />
+        <FabricJourney />
         <Expertise id="textile" data={TEXTILE} tone="jade" visual="layers" flip />
         <Now />
         <CaseStudies />
+        <ChapterCut n="03" title="What I build" kicker="Apps, projects and the code behind them." />
         <Projects gh={gh} />
         <FabricProject />
         <GitHubPanel gh={gh} />
         <Expertise id="business" data={BUSINESS} tone="saffron" visual="flow" />
+        <ChapterCut n="04" title="Off the desk" kicker="Events, recognition and the people I met along the way." />
         <Events />
         <Achievements />
         <Social />

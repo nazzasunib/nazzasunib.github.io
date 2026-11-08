@@ -38,7 +38,7 @@ export function SectionHead({ index, eyebrow, title, accent, sub, align = 'left'
   return (
     <div className={`sec-head sec-head-${align}`}>
       <Reveal>
-        <span className="eyebrow">
+        <span className="eyebrow" data-thread>
           {eyebrow}
         </span>
       </Reveal>

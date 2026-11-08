@@ -89,7 +89,7 @@ export default function Expertise({
       <div className={`xpert ${flip ? 'xpert-flip' : ''}`}>
         <div className="xpert-copy">
           <Reveal>
-            <span className="eyebrow">{data.eyebrow}</span>
+            <span className="eyebrow" data-thread>{data.eyebrow}</span>
           </Reveal>
 
           <h2 className="section-title">
