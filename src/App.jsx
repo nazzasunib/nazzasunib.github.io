@@ -3,6 +3,7 @@ import Lenis from 'lenis';
 
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import Doors from './components/Doors';
 import NameReveal from './components/NameReveal';
 import About from './components/About';
 import Skills from './components/Skills';
@@ -74,6 +75,7 @@ export default function App() {
         <ScrubDriver />
         <NameReveal />
         <Hero />
+        <Doors />
         <About />
         <ChapterCut n="01" title="The work" kicker="Where I have put in the hours, and what I learned there." />
         <Experience />

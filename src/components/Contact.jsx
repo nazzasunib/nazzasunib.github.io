@@ -127,8 +127,8 @@ export default function Contact() {
     <Section id="contact" bloom="vermilion" bloomAt="left">
       <SectionHead
         eyebrow="Contact"
-        title="Let's"
-        accent="talk."
+        title="Got a project?"
+        accent="Let's build it together."
         sub="Hiring, partnering or simply curious? I am open to roles and collaborations across textiles, business development and tech."
       />
 

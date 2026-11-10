@@ -1,156 +1,209 @@
 import { useEffect, useRef, useState } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { EDUCATION, EXPERIENCE, PROFILE, SKILL_GROUPS } from '../data/content';
+import { PROFILE } from '../data/content';
 import { useReducedMotion } from '../hooks';
-import HeroField from './fx/HeroField';
-import Icon from './ui/Icon';
+import { isLight, setMode } from '../lib/theme';
 import { scrollToId } from '../lib/scroll';
+import Icon from './ui/Icon';
 import './hero.css';
 
-export default function Hero() {
-  const ref = useRef(null);
-  const rig = useRef(null);
+/* the notebook page flips through these */
+const ROLES = ['Textile Engineer', 'Business Developer', 'App Builder', 'Problem Solver'];
+
+/* switch theme with a circular wipe that grows from the cord */
+function switchTheme(x, y) {
+  const next = isLight() ? 'dark' : 'light';
+  const doc = document;
+  if (!doc.startViewTransition || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    setMode(next);
+    return;
+  }
+  const r = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
+  const t = doc.startViewTransition(() => setMode(next));
+  t.ready.then(() => {
+    doc.documentElement.animate(
+      { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${r}px at ${x}px ${y}px)`] },
+      { duration: 750, easing: 'cubic-bezier(.65,0,.35,1)', pseudoElement: '::view-transition-new(root)' }
+    );
+  });
+}
+
+/* ---------- pull cord: drag it down (or click) to flip the lights ---------- */
+function PullCord() {
+  const [pull, setPull] = useState(0);
+  const [snap, setSnap] = useState(false);
+  const knob = useRef(null);
+  const drag = useRef(null);
+
+  const fire = () => {
+    const r = knob.current.getBoundingClientRect();
+    switchTheme(r.left + r.width / 2, r.top + r.height / 2);
+  };
+
+  const down = (e) => {
+    drag.current = { y: e.clientY, moved: false };
+    setSnap(false);
+    e.currentTarget.setPointerCapture(e.pointerId);
+  };
+  const move = (e) => {
+    if (!drag.current) return;
+    const d = Math.max(0, Math.min(90, e.clientY - drag.current.y));
+    if (d > 4) drag.current.moved = true;
+    setPull(d);
+  };
+  const up = () => {
+    if (!drag.current) return;
+    const { moved } = drag.current;
+    drag.current = null;
+    if (!moved || pull > 36) {
+      if (!moved) {
+        setPull(56);
+        setTimeout(() => {
+          setSnap(true);
+          setPull(0);
+        }, 140);
+      } else {
+        setSnap(true);
+        setPull(0);
+      }
+      fire();
+    } else {
+      setSnap(true);
+      setPull(0);
+    }
+  };
+
+  return (
+    <div className="cord" style={{ '--pull': `${pull}px` }}>
+      <span className="cord-line" />
+      <button
+        ref={knob}
+        type="button"
+        className={`cord-knob ${snap ? 'is-snap' : ''}`}
+        aria-label="Pull to switch light and dark mode"
+        onPointerDown={down}
+        onPointerMove={move}
+        onPointerUp={up}
+        onPointerCancel={up}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            fire();
+          }
+        }}
+      >
+        <i />
+      </button>
+      <span className="cord-hint mono">pull me</span>
+    </div>
+  );
+}
+
+/* ---------- notebook page that flips to the next role ---------- */
+function Notebook() {
+  const [i, setI] = useState(0);
+  const [prev, setPrev] = useState(null);
   const reduced = useReducedMotion();
-  /* card rig leans toward the pointer: ±12° yaw, ±9° pitch */
+
   useEffect(() => {
-    const host = ref.current;
-    const el = rig.current;
-    if (!host || !el || reduced) return undefined;
-    const move = (e) => {
-      const r = el.getBoundingClientRect();
-      const x = (e.clientX - r.left) / r.width - 0.5;
-      const y = (e.clientY - r.top) / r.height - 0.5;
-      el.style.setProperty('--rx', (x * 12).toFixed(2));
-      el.style.setProperty('--ry', (-y * 9).toFixed(2));
-    };
-    const leave = () => {
-      el.style.setProperty('--rx', 0);
-      el.style.setProperty('--ry', 0);
-    };
-    host.addEventListener('pointermove', move, { passive: true });
-    host.addEventListener('pointerleave', leave);
-    return () => {
-      host.removeEventListener('pointermove', move);
-      host.removeEventListener('pointerleave', leave);
-    };
+    if (reduced) return undefined;
+    const id = setInterval(() => {
+      setI((v) => {
+        setPrev(v);
+        return (v + 1) % ROLES.length;
+      });
+    }, 2600);
+    return () => clearInterval(id);
   }, [reduced]);
 
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
-  const fade = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-  const lift = useTransform(scrollYProgress, [0, 1], ['0%', '14%']);
+  return (
+    <div className="nb" aria-live="polite">
+      <span className="nb-rings" aria-hidden="true">
+        {Array.from({ length: 13 }, (_, k) => (
+          <i key={k} />
+        ))}
+      </span>
+      <div className="nb-stack">
+        <div className="nb-page nb-under" aria-hidden="true" />
+        <div className="nb-page nb-cur">
+          <span>{ROLES[i]}</span>
+        </div>
+        {prev !== null && (
+          <div className="nb-page nb-flip" key={`f-${i}`} aria-hidden="true">
+            <span>{ROLES[prev]}</span>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
 
+export default function Hero() {
   const go = (id) => (e) => {
     e.preventDefault();
     scrollToId(id);
   };
+  const first = PROFILE.first.split(' ')[0];
 
   return (
-    <section className="hx" id="home" ref={ref}>
-      <HeroField hostRef={ref} />
-      <div className="hx-spot" aria-hidden="true" />
-      <span className="hx-arc" aria-hidden="true" />
+    <section className="hx" id="home">
+      <span className="hx-grid" aria-hidden="true" />
+      <span className="hx-glow" aria-hidden="true" />
+      <PullCord />
 
-      {/* slowly turning wireframe cubes */}
-      <span className="hx-cube hx-cube-a" aria-hidden="true">
-        {['f', 'b', 'l', 'r', 't', 'd'].map((f) => <i key={f} className={`cf cf-${f}`} />)}
-      </span>
-      <span className="hx-cube hx-cube-b" aria-hidden="true">
-        {['f', 'b', 'l', 'r', 't', 'd'].map((f) => <i key={f} className={`cf cf-${f}`} />)}
-      </span>
-
-      <motion.div className="container hx-top" style={reduced ? undefined : { opacity: fade, y: lift }}>
-        {/* ---------- copy ---------- */}
-        <div className="hx-l">
-          <a className="pill rise" href="#experience" onClick={go('experience')}>
-            <b>New</b>
-            {PROFILE.badge.title} {PROFILE.badge.sub.replace(' Ecosystem', '')}
+      <div className="container hx-wrap">
+        <div className="hx-copy">
+          <a className="hx-pill" href="#experience" onClick={go('experience')}>
+            <span className="livedot">
+              <i />
+            </span>
+            {PROFILE.badge.title} at NidusLab
             <Icon name="arrowRight" size={13} />
           </a>
 
-          <h1 className="hx-h">
-            <span className="hx-big rise" style={{ animationDelay: '.08s' }}>
-              About <span className="hx-last">Me</span>
+          <h1 className="hx-hi">
+            <span className="hx-l1 rise">Hi, I&rsquo;m {first}.</span>
+            <span className="hx-l2 rise" style={{ animationDelay: '.1s' }}>
+              I am a
             </span>
           </h1>
+          <div className="rise" style={{ animationDelay: '.2s' }}>
+            <Notebook />
+          </div>
 
           <p className="hx-intro rise" style={{ animationDelay: '.3s' }}>
             {PROFILE.intro}
           </p>
 
-          <ul className="hv-facts hx-facts rise" style={{ animationDelay: '.34s' }}>
-            <li>
-              <span className="mono">Now</span>
-              <b>{PROFILE.badge.title}</b>
-              <span>{PROFILE.badge.sub}</span>
-            </li>
-            <li>
-              <span className="mono">Studying</span>
-              <b>{EDUCATION[0].title}</b>
-              <span>{EDUCATION[0].org.split(' · ')[0]}</span>
-            </li>
-            <li>
-              <span className="mono">Industry</span>
-              <b>Merchandising internship</b>
-              <span>Rising Knit Textiles Ltd</span>
-            </li>
-            <li>
-              <span className="mono">Based in</span>
-              <b>{PROFILE.location.split(', ').slice(0, 2).join(', ')}</b>
-              <span>{PROFILE.tagline}</span>
-            </li>
-          </ul>
-
           <div className="hx-ctas rise" style={{ animationDelay: '.38s' }}>
-            <a href="#projects" className="btn btn-primary" onClick={go('projects')}>
-              View Projects
+            <a href="#doors" className="btn btn-primary" onClick={go('doors')}>
+              Open the doors
               <Icon name="arrowRight" size={15} />
             </a>
-            <a href={PROFILE.resume} download="Nazzas-Ibn-Shams-Unib-Resume.pdf" className="btn btn-ghost">
-              <Icon name="download" size={15} />
-              Download Resume
+            <a href={PROFILE.resume} target="_blank" rel="noopener noreferrer" className="btn btn-ghost">
+              <Icon name="doc" size={15} />
+              View resume
             </a>
             <a href="#contact" className="btn btn-ghost" onClick={go('contact')}>
-              Contact Me
+              Contact me
             </a>
           </div>
-
-          <ul className="hx-chan rise mono" style={{ animationDelay: '.46s' }}>
-            {SKILL_GROUPS.map((g) => (
-              <li key={g.id}>{g.short}</li>
-            ))}
-            <li>AI</li>
-          </ul>
         </div>
 
-        {/* ---------- tilting card rig ---------- */}
-        <div className="hx-r">
-          <div className="hx-rig" ref={rig}>
-            <div className="hvc hv-photo">
-              <img src={PROFILE.portrait} alt={`Portrait of ${PROFILE.name}`} loading="eager" />
-            </div>
+        <div className="hx-photo rise" style={{ animationDelay: '.15s' }}>
+          <div className="hx-arch">
+            <img src={PROFILE.portrait} alt={`Portrait of ${PROFILE.name}`} loading="eager" />
           </div>
-        </div>
-      </motion.div>
-
-      {/* ---------- live ticker ---------- */}
-      <div className="hx-foot">
-        <div className="tick">
-          <div className="tk">
-            {[...EXPERIENCE, ...EXPERIENCE].map((x, i) => (
-              <span className={`it t-${x.tag.toLowerCase()}`} key={i}>
-                <i />
-                <b>{x.org}</b> · {x.title}
-              </span>
-            ))}
-          </div>
-        </div>
-        <button className="scroll-cue" onClick={() => scrollToId('about')} aria-label="Scroll to about">
-          <span className="livedot">
-            <i />
-            Scroll
+          <span className="hx-tag">
+            <b>{PROFILE.name}</b>
+            <span className="mono">{PROFILE.location.split(', ').slice(0, 2).join(', ')}</span>
           </span>
-        </button>
+        </div>
       </div>
+
+      <button className="hx-cue mono" onClick={() => scrollToId('doors')} aria-label="Scroll to the doors">
+        Scroll
+        <i />
+      </button>
     </section>
   );
 }

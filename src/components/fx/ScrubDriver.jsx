@@ -36,6 +36,7 @@ const RULES = [
   ['.contact-grid', 'split'],
   ['.cs-list', 'rise'],
   ['.now-list', 'weave'],
+  ['.doors-row', 'rise'],
 ];
 
 const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));

@@ -28,3 +28,11 @@ export function pauseScroll() {
 export function resumeScroll() {
   lenis?.start();
 }
+
+/* jump without animating — used behind a full-screen transition */
+export function jumpToId(id, offset = -72) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  if (lenis) lenis.scrollTo(el, { offset, immediate: true, force: true });
+  else window.scrollTo(0, el.getBoundingClientRect().top + window.scrollY + offset);
+}
