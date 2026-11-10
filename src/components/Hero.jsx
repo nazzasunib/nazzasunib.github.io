@@ -152,10 +152,7 @@ export default function Hero() {
       <div className="container hx-wrap">
         <div className="hx-copy">
           <h1 className="hx-hi">
-            <span className="hx-l1 rise">This is {PROFILE.name}.</span>
-            <span className="hx-l2 rise" style={{ animationDelay: '.1s' }}>
-              I am a
-            </span>
+            <span className="hx-l1 rise">{PROFILE.name}</span>
           </h1>
           <div className="rise" style={{ animationDelay: '.2s' }}>
             <Notebook />
