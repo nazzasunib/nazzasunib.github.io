@@ -37,12 +37,13 @@
 
 .hx-wrap {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
+  grid-template-columns: 1.35fr 0.85fr;
   align-items: center;
   gap: clamp(28px, 5vw, 72px);
 }
 
 /* ---------- copy ---------- */
+.hx-copy { container-type: inline-size; min-width: 0; }
 .hx-pill {
   display: inline-flex;
   align-items: center;
@@ -60,11 +61,12 @@
 
 .hx-hi { display: grid; margin: 0; }
 .hx-l1 {
-  font-size: clamp(2.3rem, 4.8vw, 4.3rem);
+  /* one line, sized to the column so it never wraps */
+  font-size: min(3.6rem, 7.4cqi);
   font-weight: 680;
   letter-spacing: -0.05em;
   line-height: 1.02;
-  text-wrap: balance;
+  white-space: nowrap;
   color: var(--ink);
 }
 .hx-l2 {
