@@ -7,7 +7,7 @@ import Icon from './ui/Icon';
 import './hero.css';
 
 /* the notebook page flips through these */
-const ROLES = ['Textile Engineer', 'Business Developer', 'App Builder', 'Problem Solver'];
+const ROLES = ['Business Development Executive at NidusLab', 'Textile Engineer'];
 
 /* switch theme with a circular wipe that grows from the cord */
 function switchTheme(x, y) {
@@ -111,7 +111,7 @@ function Notebook() {
         setPrev(v);
         return (v + 1) % ROLES.length;
       });
-    }, 2600);
+    }, 3200);
     return () => clearInterval(id);
   }, [reduced]);
 
@@ -128,7 +128,7 @@ function Notebook() {
           <span>{ROLES[i]}</span>
         </div>
         {prev !== null && (
-          <div className="nb-page nb-flip" key={`f-${i}`} aria-hidden="true">
+          <div className="nb-page nb-flip" key={`f-${i}`} aria-hidden="true" onAnimationEnd={() => setPrev(null)}>
             <span>{ROLES[prev]}</span>
           </div>
         )}
@@ -142,7 +142,6 @@ export default function Hero() {
     e.preventDefault();
     scrollToId(id);
   };
-  const first = PROFILE.first.split(' ')[0];
 
   return (
     <section className="hx" id="home">
@@ -152,16 +151,8 @@ export default function Hero() {
 
       <div className="container hx-wrap">
         <div className="hx-copy">
-          <a className="hx-pill" href="#experience" onClick={go('experience')}>
-            <span className="livedot">
-              <i />
-            </span>
-            {PROFILE.badge.title} at NidusLab
-            <Icon name="arrowRight" size={13} />
-          </a>
-
           <h1 className="hx-hi">
-            <span className="hx-l1 rise">Hi, I&rsquo;m {first}.</span>
+            <span className="hx-l1 rise">This is {PROFILE.name}.</span>
             <span className="hx-l2 rise" style={{ animationDelay: '.1s' }}>
               I am a
             </span>
@@ -194,8 +185,8 @@ export default function Hero() {
             <img src={PROFILE.portrait} alt={`Portrait of ${PROFILE.name}`} loading="eager" />
           </div>
           <span className="hx-tag">
-            <b>{PROFILE.name}</b>
-            <span className="mono">{PROFILE.location.split(', ').slice(0, 2).join(', ')}</span>
+            <b>{PROFILE.location.split(', ').slice(0, 2).join(', ')}</b>
+            <span className="mono">{PROFILE.tagline}</span>
           </span>
         </div>
       </div>
