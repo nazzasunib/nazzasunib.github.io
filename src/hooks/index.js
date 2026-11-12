@@ -100,11 +100,23 @@ export function useActiveSection(ids) {
       },
       { rootMargin: '-45% 0px -45% 0px', threshold: [0, 0.2, 0.6, 1] }
     );
-    ids.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) io.observe(el);
-    });
-    return () => io.disconnect();
+    /* sections behind doors mount later, so keep looking for them */
+    const seen = new Set();
+    const scan = () =>
+      ids.forEach((id) => {
+        const el = document.getElementById(id);
+        if (el && !seen.has(el)) {
+          seen.add(el);
+          io.observe(el);
+        }
+      });
+    scan();
+    const mo = new MutationObserver(scan);
+    mo.observe(document.body, { childList: true, subtree: true });
+    return () => {
+      io.disconnect();
+      mo.disconnect();
+    };
   }, [ids]);
   return active;
 }

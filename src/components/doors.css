@@ -2,10 +2,13 @@
    DOORS — four rooms, and the walk-through transition
    ========================================================= */
 .doors-row {
+  --n: 4;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: clamp(16px, 2.6vw, 34px);
+  grid-template-columns: repeat(var(--n), minmax(0, 190px));
+  justify-content: center;
+  gap: clamp(14px, 2.4vw, 34px);
   align-items: end;
+  padding-top: 10px;
 }
 .door {
   display: grid;
@@ -19,7 +22,7 @@
   font: inherit;
   text-align: center;
 }
-.door:nth-child(even) { margin-bottom: 22px; }
+.door:nth-child(even) { margin-bottom: 18px; }
 
 .door-frame {
   --door: #3f6cf0;
@@ -120,7 +123,44 @@
 }
 
 @media (max-width: 760px) {
-  .doors-row { grid-template-columns: repeat(2, 1fr); row-gap: 34px; }
   .door:nth-child(even) { margin-bottom: 0; }
-  .door-frame { max-width: 150px; }
+}
+
+/* ---------- states inside the hall ---------- */
+.door { transition: opacity 0.5s, scale 0.5s; }
+.door.is-open .door-leaf { transform: rotateY(-102deg); transition: transform 1s cubic-bezier(0.55, 0, 0.25, 1); }
+.door.is-open .door-inside { box-shadow: 0 0 60px 6px color-mix(in srgb, var(--door) 55%, transparent); }
+.door.is-open .door-frame { box-shadow: 0 30px 70px -20px color-mix(in srgb, var(--door) 70%, transparent); }
+.door.is-idle { opacity: 0.55; scale: 0.94; }
+.door.is-seen { opacity: 0.3; scale: 0.9; }
+.door.is-idle:hover, .door.is-seen:hover { opacity: 1; scale: 1; }
+
+/* later rows: just the doors, no heading block */
+.doors-next { position: relative; z-index: 3; padding: clamp(60px, 8vw, 110px) 0 clamp(30px, 4vw, 50px); }
+.doors-next .eyebrow { display: flex; justify-content: center; }
+.doors-next .eyebrow::before { display: none; }
+
+/* a room unfolds out of its door */
+.room { position: relative; }
+.room::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: min(420px, 60vw);
+  height: 2px;
+  translate: -50% 0;
+  background: linear-gradient(90deg, transparent, var(--door), transparent);
+  opacity: 0.8;
+  z-index: 4;
+}
+.room-in { animation: roomIn 1.15s cubic-bezier(0.7, 0, 0.2, 1) both; }
+@keyframes roomIn {
+  from { clip-path: circle(0% at 50% 0%); opacity: 0.2; }
+  to { clip-path: circle(160% at 50% 0%); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) { .room-in { animation: none; } }
+
+@media (max-width: 760px) {
+  .doors-row { grid-template-columns: repeat(min(var(--n), 3), minmax(0, 1fr)); row-gap: 26px; }
 }
