@@ -1127,3 +1127,50 @@ export const FABRIC_PROJECT = {
     { icon: 'users', title: 'Technical report', text: 'Documented our method and findings as a team.' },
   ],
 };
+
+/* ---------- B.Sc. thesis: denting order and denim quality ---------- */
+export const DENIM_PROJECT = {
+  id: 'denting',
+  title: 'Influence of Denting Order on 100% Cotton-based Denim Fabric Quality and Appearance',
+  short: 'Denting order vs. denim quality',
+  kind: 'B.Sc. thesis project',
+  org: 'Department of Textile Engineering, BUFT',
+  date: 'November 2026',
+  supervisor: 'Mohammad Hossain, Lecturer, Dept. of Textile Engineering, BUFT',
+  team: ['Hredoy Ahasan Shahim', 'Md. Rifat Bin Shadat', 'Riyad', 'Nazzas Ibn Shams Unib', 'MD Shakib Rayhan'],
+  pdf: 'assets/projects/denting-order-denim-thesis.pdf',
+  summary:
+    'Denting order is how warp ends are drawn through the dents of a loom reed. We wove four 100% cotton 3/1 right-hand twill denim samples that differed only in denting order, then tested how that one change affects strength, wear and appearance.',
+  setup: [
+    { k: 'Fabric', v: '100% cotton denim, 3/1 RHT' },
+    { k: 'Warp / weft', v: 'Indigo 9 Ne / white 10 Ne' },
+    { k: 'Construction', v: '60 EPI, 3,800 ends, 63 in wide' },
+    { k: 'Testing', v: 'Square Denims Ltd. physical lab, ISO methods' },
+  ],
+  orders: [
+    { name: 'Regular-2,2', pattern: [2, 2, 2, 2, 2, 2], note: '2 ends per dent' },
+    { name: 'Regular-4,4', pattern: [4, 4, 4], note: '4 ends per dent' },
+    { name: 'Irregular', pattern: [2, 4, 2, 4], note: '2 and 4 ends, alternating' },
+    { name: 'Skip', pattern: [2, 0, 4, 0, 2, 0], note: '2, 0, 4, 0: empty dents' },
+  ],
+  tear: [
+    { name: 'Regular-2,2', warp: 57.5, weft: 75.6 },
+    { name: 'Regular-4,4', warp: 49.4, weft: 43.8 },
+    { name: 'Irregular', warp: 44.7, weft: 42.9 },
+    { name: 'Skip', warp: 43.0, weft: 33.8 },
+  ],
+  tensile: [
+    { name: 'Regular-2,2', warp: 796, weft: 477 },
+    { name: 'Regular-4,4', warp: 612, weft: 466 },
+    { name: 'Irregular', warp: 443, weft: 444 },
+    { name: 'Skip', warp: 337, weft: 413 },
+  ],
+  findings: [
+    { value: '57.7%', label: 'lower warp tensile strength with skip denting than Regular-2,2' },
+    { value: '55.3%', label: 'lower weft tear strength with skip denting than Regular-2,2' },
+    { value: '1 grade', label: 'poorer pilling for the irregular and skip samples' },
+    { value: 'No change', label: 'in GSM, seam slippage (above 200 N) or abrasion (20,000 rubs)' },
+  ],
+  conclusion:
+    'Regular-2,2 gave the strongest fabric; every move away from it cost strength, most of all with skip denting, which also showed white weft through its empty dents as vertical stripes. Denting order shapes both the quality and the look of cotton denim.',
+};

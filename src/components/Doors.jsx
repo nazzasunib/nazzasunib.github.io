@@ -7,6 +7,7 @@ import { BUSINESS, TEXTILE } from '../data/content';
 import Experience from './Experience';
 import Skills from './Skills';
 import FabricJourney from './FabricJourney';
+import DenimProject from './DenimProject';
 import Expertise from './Expertise';
 import Projects from './Projects';
 import GitHubPanel from './GitHubPanel';
@@ -50,11 +51,12 @@ const DOORS = [
     label: 'Textile',
     room: 'The craft',
     color: '#2fb886',
-    ids: ['journey', 'textile', 'fabric'],
+    ids: ['journey', 'textile', 'denting', 'fabric'],
     render: () => (
       <>
         <FabricJourney />
         <Expertise id="textile" data={TEXTILE} tone="jade" visual="layers" flip />
+        <DenimProject />
         <FabricProject />
       </>
     ),
@@ -196,7 +198,17 @@ export default function Doors({ gh }) {
       open(door.id);
       setTimeout(() => scrollToId(target), 160);
     });
-    return () => registerDoorOpener(null);
+    /* a shared link such as /#denting opens the right door on arrival */
+    const fromHash = () => {
+      const h = decodeURIComponent(window.location.hash.slice(1));
+      if (h && !document.getElementById(h)) setTimeout(() => scrollToId(h), 400);
+    };
+    fromHash();
+    window.addEventListener('hashchange', fromHash);
+    return () => {
+      registerDoorOpener(null);
+      window.removeEventListener('hashchange', fromHash);
+    };
   }, [open]);
 
   /* scrolling down to the waiting row opens its first door */

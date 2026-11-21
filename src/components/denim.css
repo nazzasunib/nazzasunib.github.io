@@ -1,0 +1,83 @@
+/* =========================================================
+   DENIM PROJECT — B.Sc. thesis on denting order
+   ========================================================= */
+.dp { --indigo: #3a4fb0; --weft: #f3efe4; }
+:root:not([data-mode='light']) .dp { --indigo: #6c82ff; --weft: #e9e4d6; }
+
+.dp-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-bottom: 30px; }
+.dp-meta { font-size: 0.72rem; color: var(--ink4); letter-spacing: 0.06em; margin-left: 4px; }
+
+.dp-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 18px; margin-bottom: 18px; }
+.dp-about, .dp-orders, .dp-end { padding: clamp(20px, 2.4vw, 28px); border-radius: var(--radius); }
+.dp-h { display: block; font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--acc); margin-bottom: 12px; }
+.dp-about p { color: var(--ink2); line-height: 1.7; margin: 0 0 18px; }
+.dp-setup { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 18px; margin: 0; }
+.dp-setup div { border-left: 2px solid var(--acc-br); padding-left: 12px; min-width: 0; }
+.dp-setup dt { font-size: 0.64rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink4); }
+.dp-setup dd { margin: 3px 0 0; font-size: 0.9rem; color: var(--ink); }
+
+/* reed diagram */
+.dp-orders ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.dp-orders li { display: grid; grid-template-columns: 150px 1fr; align-items: center; gap: 14px; }
+.dp-order-name { display: grid; gap: 2px; }
+.dp-order-name b { font-size: 0.92rem; color: var(--ink); }
+.dp-order-name span { font-size: 0.74rem; color: var(--ink4); }
+.dp-reed {
+  display: flex;
+  gap: 4px;
+  padding: 6px;
+  border-radius: 8px;
+  background: var(--weft);
+  overflow: hidden;
+  min-width: 0;
+}
+.dp-dent {
+  flex: 1 1 0;
+  min-width: 18px;
+  height: 34px;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 2px;
+  padding: 0 3px;
+  border-left: 2px solid rgba(60, 60, 70, 0.35);
+}
+.dp-dent i { width: 4px; border-radius: 2px; background: var(--indigo); }
+.dp-dent.is-empty { background: repeating-linear-gradient(0deg, transparent 0 3px, rgba(0, 0, 0, 0.05) 3px 4px); }
+.dp-note { margin: 14px 0 0; font-size: 0.8rem; color: var(--ink4); }
+
+/* charts */
+.dp-charts { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 18px; }
+.dp-chart { padding: 22px 24px; border-radius: var(--radius); }
+.dp-chart-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+.dp-chart h4 { margin: 0; font-size: 1.02rem; color: var(--ink); }
+.dp-legend { display: inline-flex; align-items: center; gap: 6px; font-size: 0.68rem; color: var(--ink4); }
+.dp-legend i { width: 10px; height: 10px; border-radius: 3px; display: inline-block; margin-left: 6px; }
+.dp-legend .is-warp, .dp-bar.is-warp { background: var(--indigo); }
+.dp-legend .is-weft, .dp-bar.is-weft { background: var(--acc); }
+.dp-chart ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.dp-bar-name { display: block; font-size: 0.8rem; color: var(--ink2); margin-bottom: 4px; }
+.dp-bar-row { display: grid; grid-template-columns: 1fr 62px; align-items: center; gap: 10px; margin-top: 3px; }
+.dp-bar-track { height: 9px; border-radius: 9px; background: var(--rule); overflow: hidden; }
+.dp-bar { display: block; height: 100%; border-radius: 9px; transform-origin: left; }
+.dp-bar-row b { font-size: 0.72rem; font-weight: 500; color: var(--ink3); text-align: right; white-space: nowrap; }
+
+/* findings */
+.dp-finds { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 18px; }
+.dp-find { height: 100%; padding: 18px 18px 20px; border-radius: var(--radius); display: grid; gap: 6px; align-content: start; }
+.dp-find-v { font-size: clamp(1.5rem, 2.4vw, 2rem); font-weight: 680; letter-spacing: -0.04em; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.dp-find-l { font-size: 0.84rem; color: var(--ink3); line-height: 1.5; }
+
+.dp-conclusion { color: var(--ink); font-size: 1.02rem; line-height: 1.7; margin: 0 0 16px; }
+.dp-team { color: var(--ink3); font-size: 0.86rem; margin: 0 0 6px; }
+.dp-team .mono { font-size: 0.64rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--acc); margin-right: 8px; }
+
+@media (max-width: 900px) {
+  .dp-grid, .dp-charts { grid-template-columns: 1fr; }
+  .dp-finds { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 520px) {
+  .dp-orders li { grid-template-columns: 1fr; gap: 6px; }
+  .dp-setup { grid-template-columns: 1fr; }
+  .dp-finds { grid-template-columns: 1fr; }
+}

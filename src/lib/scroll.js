@@ -22,7 +22,11 @@ export function scrollToId(id, offset = -72) {
     if (doorOpener) doorOpener(id);
     return;
   }
-  if (lenis) lenis.scrollTo(el, { offset });
+  if (lenis) {
+    /* a door may have just added a room: refresh Lenis's page height first */
+    lenis.resize?.();
+    lenis.scrollTo(el, { offset });
+  }
   else el.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
@@ -46,6 +50,9 @@ export function jumpToId(id, offset = -72) {
     if (doorOpener) doorOpener(id);
     return;
   }
-  if (lenis) lenis.scrollTo(el, { offset, immediate: true, force: true });
+  if (lenis) {
+    lenis.resize?.();
+    lenis.scrollTo(el, { offset, immediate: true, force: true });
+  }
   else window.scrollTo(0, el.getBoundingClientRect().top + window.scrollY + offset);
 }
